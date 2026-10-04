@@ -1,0 +1,124 @@
+\documentclass[11pt,oneside,openany]{book}
+\usepackage[paper=a4paper,top=2.2cm,bottom=2.2cm,left=2.5cm,right=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,longtable,array,multirow}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{microtype}
+\usepackage{caption,subcaption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\hypersetup{hidelinks,pdftitle={Simulim dhe Metoda Numerike},pdfauthor={Klaudio Peqini}}
+\graphicspath{{figures/}}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0pt}
+\setlist{itemsep=.1em,topsep=.2em,parsep=0pt}
+\captionsetup{font=small,labelfont=bf}
+\pagestyle{plain}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\vect}[1]{\bm{#1}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dd}{\,\mathrm{d}}
+\newcommand{\Oh}{\mathcal{O}}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle}
+\renewcommand{\contentsname}{Përmbajtja}
+\renewcommand{\chaptername}{Kapitulli}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabela}
+\renewcommand{\bibname}{Literatura}
+\setcounter{tocdepth}{1}
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{3.2em}}
+\makeatother
+\newenvironment{qellime}{\par\medskip\noindent\textbf{Rezultatet e të nxënit.}\ }{\par\medskip}
+\newenvironment{shembull}[1][]{\par\medskip\noindent\textbf{Shembull #1.}\ }{\par\medskip}
+\newenvironment{kujdes}{\par\medskip\noindent\textbf{Kujdes numerik.}\ }{\par\medskip}
+\newenvironment{lidhje}{\par\medskip\noindent\textbf{Lidhja me laboratorin.}\ }{\par\medskip}
+\lstdefinestyle{scientific}{basicstyle=\ttfamily\footnotesize,keywordstyle=\bfseries,commentstyle=\itshape,showstringspaces=false,frame=single,framerule=.3pt,breaklines=true,columns=fullflexible,literate={ë}{{\"e}}1 {Ë}{{\"E}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1}
+\lstset{style=scientific}
+
+\begin{document}
+\frontmatter
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+{\Large Universiteti i Tiranës\\Fakulteti i Shkencave të Natyrës\\Departamenti i Fizikës\par}
+\vspace{2.2cm}
+{\Huge\bfseries Simulim dhe Metoda Numerike\par}
+\vspace{.6cm}
+{\LARGE Leksione të shkruara\par}
+\vspace{1.4cm}
+{\Large Bachelor në Fizikë dhe Shkenca Kompjuterike\par}
+\vfill
+{\large Prof. Asoc. Dr. Klaudio Peqini\par}
+\vspace{.4cm}
+{\large Viti akademik 2026--2027\par}
+\end{titlepage}
+
+\chapter*{Parathënie}
+Ky tekst përmbledh në një tërësi koherente përmbajtjen e lëndës \emph{Simulim dhe Metoda Numerike}, me 30 orë leksione dhe 30 orë laborator. Ai vazhdon filozofinë e kursit \emph{Modelim në Fizikë}: nga pyetja fizike te modeli matematik, nga modeli te algoritmi dhe nga algoritmi te një eksperiment numerik i verifikueshëm e i riprodhueshëm. Theksi i ri vendoset te gabimi numerik, kampionimi, simulimi stokastik dhe metodat Monte Carlo.
+
+Teksti nuk e lidh metodën shkencore me një gjuhë të vetme programimi. Shembujt mund të realizohen në Python ose MATLAB/Octave. Notebook-u përdoret për të bashkuar shpjegimin, kodin, figurat dhe interpretimin; funksionet dhe paketat përdoren për kod të ripërdorshëm. Termat \emph{bredhje}, \emph{statistike} dhe \emph{pacaktueshmëri} përdoren në mënyrë të njëtrajtshme në të gjithë tekstin.
+
+\begin{figure}[h]
+\centering\includegraphics[width=.96\textwidth]{01_cikli_simulimit.pdf}
+\caption{Cikli i punës në simulimin fizik. Rezultati kthehet te pyetja fillestare përmes verifikimit dhe vleftësimit.}
+\end{figure}
+
+\chapter*{Si të përdoret ky tekst}
+Çdo kapitull përmban objektiva, teori, shembuj fizikë, algoritme, analiza të gabimit, lidhje me laboratorin dhe pyetje kontrolli. Leximi duhet të shoqërohet me ekzekutimin e notebook-ut përkatës. Kur paraqitet një rezultat numerik, studenti duhet të jetë në gjendje të përgjigjet: cilin model po zgjidhim, me cilën metodë, me çfarë gabimi dhe me cilat kufizime fizike?
+
+\tableofcontents
+\mainmatter
+\include{chapters/01_hyrje}
+\include{chapters/02_aritmetika}
+\include{chapters/03_ekuacionet_sistemet_vetjake}
+\include{chapters/04_interpolimi_regresi}
+\include{chapters/05_diferencimi_integrimi}
+\include{chapters/06_edodinamika}
+\include{chapters/07_diferencat_valet}
+\include{chapters/08_probabiliteti}
+\include{chapters/09_numrat_kampionimi}
+\include{chapters/10_integrimi_mc}
+\include{chapters/11_bredhjet_markov}
+\include{chapters/12_metropolis_ising}
+\appendix
+\include{chapters/shtojca}
+
+\backmatter
+\chapter*{Përfundime}
+Metodat numerike dhe Monte Carlo nuk janë vetëm teknika llogaritëse. Ato janë mënyra për të ndërtuar argumente shkencore kur zgjidhja analitike mungon, të dhënat kanë pacaktueshmëri ose hapësira e gjendjeve është shumë e madhe. Një simulim bindës bashkon modelin fizik, analizën e gabimit, kontrollin e kodit, eksperimentin numerik dhe interpretimin e matur.
+
+\begin{thebibliography}{99}
+\bibitem{hanelli} L. Hanelli dhe F. Osmani, \emph{Analiza numerike me MATLAB}, Pegi, Tiranë, 2013.
+\bibitem{hoxha} F. Hoxha, \emph{Metoda të Analizës Numerike}, Tiranë, 2008.
+\bibitem{datja} R. Datja, \emph{Analizë Numerike: leksione dhe seminare të shkruara për Inxhinieri Elektronike dhe Mekatronikë}, Universiteti Politeknik i Tiranës, 2022--2023.
+\bibitem{dishmema} E. Dishmema, \emph{Metoda numerike për ekuacionet diferenciale me vonesa}, disertacion, Fakulteti i Shkencave të Natyrës, Universiteti i Tiranës, 2020.
+\bibitem{dishmemaArticle} E. Dishmema et al., ``Krahasim i strategjive numerike për problemin e vlerës fillestare të ekuacioneve diferenciale të zakonshme dhe me vonesa'', \emph{Buletini i Shkencave të Natyrës}, Universiteti i Tiranës.
+\bibitem{naco} A. Naço, \emph{Analizë krahasuese e metodave për zgjidhjen e problemit kufitar}, punim në Analizë Numerike, Universiteti Politeknik i Tiranës.
+\bibitem{butka} A. Butka, \emph{Metoda bootstrap tek modelet e serive kohore, në veçanti tek modelet ARFIMA}, disertacion, Fakulteti i Shkencave të Natyrës, Universiteti i Tiranës.
+\bibitem{tasho} E. Tasho Milo, \emph{Vlerat e humbura me metodat e rizgjedhjes}, disertacion, Programi Metodat Probabilitare, Statistike dhe Metodat e Analizës Numerike, Universiteti i Tiranës, 2019.
+\bibitem{capollari} Gj. Çapollari dhe bashkautorë, \emph{Ushtrime probabiliteti dhe statistike}, material universitar, Tiranë, 2007.
+\bibitem{zeqiri2020} A. Zeqiri et al., punim mbi algjebrën lineare numerike dhe metodat iterative, \emph{Buletini i Shkencave të Natyrës}, Universiteti i Tiranës, 29, 2020.
+\bibitem{hyka} N. Hyka, materiale mësimore dhe trajnuese mbi metodat Monte Carlo dhe analizën e të dhënave, Universiteti i Mjekësisë, Tiranë.
+\bibitem{newman} M. Newman, \emph{Computational Physics}, CreateSpace, 2012.
+\bibitem{giordano} N. J. Giordano dhe H. Nakanishi, \emph{Computational Physics}, Pearson, 2005.
+\bibitem{press} W. H. Press et al., \emph{Numerical Recipes}, 3rd ed., Cambridge University Press, 2007.
+\bibitem{burden} R. L. Burden dhe J. D. Faires, \emph{Numerical Analysis}, 9th ed., Brooks/Cole, 2011.
+\bibitem{higham} N. J. Higham, \emph{Accuracy and Stability of Numerical Algorithms}, 2nd ed., SIAM, 2002.
+\bibitem{landau} R. H. Landau, M. J. Páez dhe C. C. Bordeianu, \emph{Computational Physics}, 3rd ed., Wiley-VCH, 2015.
+\bibitem{krauth} W. Krauth, \emph{Statistical Mechanics: Algorithms and Computations}, Oxford University Press, 2006.
+\bibitem{robert} C. P. Robert dhe G. Casella, \emph{Monte Carlo Statistical Methods}, 2nd ed., Springer, 2004.
+\bibitem{metropolis} N. Metropolis et al., ``Equation of State Calculations by Fast Computing Machines'', \emph{J. Chem. Phys.} 21, 1087--1092, 1953.
+\bibitem{hastings} W. K. Hastings, ``Monte Carlo Sampling Methods Using Markov Chains and Their Applications'', \emph{Biometrika} 57, 97--109, 1970.
+\bibitem{walter} J.-C. Walter dhe G. T. Barkema, ``An Introduction to Monte Carlo Methods'', arXiv:1404.0209, 2014.
+\end{thebibliography}
+\end{document}
