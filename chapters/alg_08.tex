@@ -1,0 +1,56 @@
+\section{Algoritmet bazë të simulimit probabilitar}
+\subsection{Hedhja e monedhës}
+\begin{lstlisting}[language=Python,caption={Vlerësimi i probabilitetit dhe gabimit standard.}]
+import numpy as np
+
+def monedha(N, p=0.5, seed=2026):
+    rng = np.random.default_rng(seed)
+    x = rng.random(N) < p
+    p_hat = x.mean()
+    se = np.sqrt(p_hat*(1-p_hat)/N)
+    return p_hat, se, x
+
+for N in [100, 1_000, 10_000, 100_000]:
+    p_hat, se, _ = monedha(N)
+    print(N, p_hat, se)
+\end{lstlisting}
+Vlerësimi duhet përsëritur për shumë fara për të parë shpërndarjen e $\hat p$, jo vetëm një trajektore të vetme.
+
+\subsection{Intervali Wilson}
+Intervali normal $\hat p\pm z\sqrt{\hat p(1-\hat p)/N}$ sillet dobët për $N$ të vogël ose $\hat p$ pranë 0 e 1. Intervali Wilson është më i qëndrueshëm:
+\begin{equation}
+ \frac{\hat p+z^2/(2N)\pm z\sqrt{\hat p(1-\hat p)/N+z^2/(4N^2)}}{1+z^2/N}.
+\end{equation}
+
+\begin{lstlisting}[language=Python]
+def interval_wilson(k, n, z=1.96):
+    phat = k/n
+    den = 1 + z*z/n
+    q = phat + z*z/(2*n)
+    d = z*np.sqrt(phat*(1-phat)/n + z*z/(4*n*n))
+    return (q-d)/den, (q+d)/den
+\end{lstlisting}
+
+\subsection{Përhapja Monte Carlo e pacaktueshmërisë}
+\begin{lstlisting}[language=Python,caption={Përhapja e hyrjeve të korreluara.}]
+rng = np.random.default_rng(7)
+mu = np.array([10.0, 2.0])
+Sigma = np.array([[0.25, 0.08], [0.08, 0.04]])
+x = rng.multivariate_normal(mu, Sigma, size=200_000)
+z = x[:, 0] / x[:, 1]**2
+print(np.mean(z), np.std(z), np.quantile(z, [0.025, 0.975]))
+\end{lstlisting}
+Krahasimi me linearizimin $\nabla f^T\Sigma\nabla f$ tregon kur jolineariteti dhe asimetria bëhen të rëndësishme.
+
+\subsection{Kontrolli i CLT-së}
+Për çdo $N$ gjenerohen shumë eksperimente të pavarura dhe studiohet
+\begin{equation}
+ Z=\frac{\sqrt N(\bar X-\mu)}{\sigma}.
+\end{equation}
+Histogrami i $Z$ krahasohet me Gauss-in standard. Termi i rekomanduar është \emph{shpërndarje normale} ose \emph{Gauss}, jo përkthime jo të qëndrueshme.
+
+\begin{kujdes}
+\emph{Luhatje} përshkruan variacionin e një madhësie të rastit; \emph{gabim standard} përshkruan pacaktueshmërinë e një vlerësuesi. Ato nuk janë sinonime.
+\end{kujdes}
+
+Për probabilitetin, statistikën dhe terminologjinë e vlerësimit janë konsultuar materiale universitare shqip \cite{capollari,butka,tasho}; lidhja me simulimin fizik mbështetet te \cite{newman,landau}.

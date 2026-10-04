@@ -1,0 +1,94 @@
+\chapter[Metropolis--Hastings dhe Monte Carlo në fizikën statistike]{Metropolis--Hastings dhe Monte Carlo\\në fizikën statistike}
+\begin{qellime}
+Studenti ndërton algoritmin Metropolis--Hastings; provon ruajtjen e shpërndarjes synuar; dallon termalizimin, përzierjen dhe autokorrelacionin; simulon modelin Ising dhe interpreton energjinë, magnetizimin, kapacitetin termik dhe tranzicionin fazor.
+\end{qellime}
+
+\section{Pse nevojitet MCMC}
+Në fizikën statistike duam pritje sipas shpërndarjes Boltzmann,
+\begin{equation}
+ \pi(x)=\frac{e^{-\beta E(x)}}{Z},\qquad
+ Z=\sum_xe^{-\beta E(x)}.
+\end{equation}
+Numri i gjendjeve rritet eksponencialisht dhe $Z$ është zakonisht i paarritshëm. Metodat Markov Chain Monte Carlo ndërtojnë një zinxhir me shpërndarje stacionare $\pi$ pa kërkuar konstanten e normalizimit.
+
+\section{Algoritmi Metropolis--Hastings}
+Nga gjendja $x$, propozohet $y\sim q(y|x)$ dhe pranohet me probabilitet
+\begin{equation}
+ \alpha(x,y)=\min\left[1,\frac{\pi(y)q(x|y)}{\pi(x)q(y|x)}\right].
+\end{equation}
+Nëse propozimi është simetrik,
+\begin{equation}
+ \alpha(x,y)=\min[1,e^{-\beta\Delta E}].
+\end{equation}
+Raporti anulon $Z$. Hapi i refuzuar nuk hidhet; gjendja e vjetër regjistrohet sërish. Kjo është e domosdoshme për shpërndarjen e saktë.
+
+\begin{shembull}[Algoritmi Metropolis--Hastings]
+Niset nga $x_0$. Për çdo hap propozohet $y\sim q(\cdot|x_n)$ dhe gjenerohet $u\sim\mathcal U(0,1)$. Llogaritet $a=\min\{1,\pi(y)q(x_n|y)/[\pi(x_n)q(y|x_n)]\}$. Nëse $u<a$, vendoset $x_{n+1}=y$; përndryshe vendoset $x_{n+1}=x_n$.
+\end{shembull}
+
+\section{Termalizimi dhe diagnostika}
+Hapat e parë varen nga gjendja fillestare dhe hiqen si \emph{burn-in}. Gjatësia nuk zgjidhet me një numër universal; kontrollohen disa nisje, gjurmët, observablat dhe koha e autokorrelacionit. Hollimi i zinxhirit zakonisht hedh informacion dhe nuk zëvendëson vlerësimin e $N_{\mathrm{eff}}$.
+
+Norma e pranimit nuk është qëllim në vetvete. Hapa shumë të vegjël pranohen shpesh, por lëvizin ngadalë; hapa shumë të mëdhenj refuzohen. Propozimi duhet të balancojë lëvizjen dhe pranimin. Për shpërndarje shumëmodale, zinxhiri mund të mbetet në një modë edhe kur gjurma duket e qëndrueshme.
+
+\section{Modeli Ising dydimensional}
+Në rrjet katror me spine $s_i=\pm1$,
+\begin{equation}
+ E=-J\sum_{\langle i,j\rangle}s_is_j-H\sum_is_i,
+\qquad m=\frac1N\sum_is_i.
+\end{equation}
+Me kufij periodikë, çdo spin ka katër fqinjë. Për një kthim $s_i\to-s_i$,
+\begin{equation}
+ \Delta E=2s_i\left(J\sum_{j\in\mathrm{fqinj}}s_j+H\right).
+\end{equation}
+Në temperaturë të ulët, gjendjet e rreshtuara dominojnë; në temperaturë të lartë, entropia prodhon çrregullim.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.78\textwidth]{24_ising_konfigurime.pdf}
+\caption{Formimi i domeneve nën temperaturën kritike dhe çrregullimi sipër saj.}
+\end{figure}
+
+\section{Observablat termodinamike}
+Nga luhatjet merren
+\begin{equation}
+ C_V=\frac{\beta^2}{N}(\avg{E^2}-\avg E^2),
+ \qquad
+ \chi=\frac{\beta}{N}(\avg{M^2}-\avg M^2).
+\end{equation}
+Në sistem të fundmë, tranzicioni shfaqet si maksimum i gjerë, jo singularitet i vërtetë. Temperatura kritike e rrjetit katror pa fushë është
+\begin{equation}
+ \frac{k_BT_c}{J}=\frac{2}{\ln(1+\sqrt2)}\approx2.269.
+\end{equation}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{25_ising_magnetizimi.pdf}
+\caption{Rënia e magnetizimit pranë zonës kritike në një simulim të fundmë.}
+\end{figure}
+
+\subsection{Ngadalësimi kritik dhe përmirësimet}
+Pranë $T_c$, domenet ekzistojnë në shumë shkallë dhe përditësimi me një spin përzihet ngadalë. Koha e autokorrelacionit rritet me madhësinë e sistemit. Algoritmet e grupeve, si Wolff dhe Swendsen--Wang, ndryshojnë bashkë rajone të korreluara dhe ulin ngadalësimin kritik.
+
+\subsection{Gabimet dhe analiza e të dhënave MCMC}
+Mesatarja llogaritet pas termalizimit, por gabimi nuk merret duke trajtuar çdo hap si të pavarur. Përdoren autokorrelacioni i integruar, bllokimi ose batch means. Simulime të pavarura me fara të ndryshme ndihmojnë të zbulohet mos-përzierja.
+
+\begin{kujdes}
+Një konfigurim tërheqës vizualisht nuk është rezultat termodinamik. Përfundimet kërkojnë seri të termalizuara, madhësi efektive, prova me përmasa të ndryshme të rrjetit dhe observabla me gabime statistike.
+\end{kujdes}
+
+\subsection{Nga Ising te probleme të tjera}
+I njëjti parim përdoret në mekanikën statistike, inferencën Bayesiane, modelet e materialeve dhe fushat në rrjet. Ndryshojnë energjia, hapësira e gjendjeve dhe propozimi; mbeten invarianca e shpërndarjes, ergodiciteti dhe analiza e korrelacionit.
+
+\begin{lidhje}
+Laboratori zbaton Ising 2D me Metropolis, verifikon $\Delta E$, mat normën e pranimit, termalizimin dhe autokorrelacionin, pastaj paraqet $|m|$, $C_V$ dhe $\chi$ kundrejt temperaturës.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Pse konstanta e normalizimit anulohet në raportin Metropolis?
+\item Pse hapat e refuzuar duhet të regjistrohen?
+\item Çfarë është ngadalësimi kritik dhe si ndikon në gabimin statistik?
+\item Pse një simulim me një madhësi rrjeti nuk mjafton për të vërtetuar tranzicion fazor?
+\end{enumerate}
+\input{chapters/alg_12}
+\input{chapters/zhvillim_12}
+\input{chapters/thellim_12}

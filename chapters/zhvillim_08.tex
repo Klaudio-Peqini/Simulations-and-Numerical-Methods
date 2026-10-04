@@ -1,0 +1,68 @@
+\subsection{Nga aksiomat te ndryshorja e rastit}
+Një hapësirë probabilitare $(\Omega,\mathcal F,P)$ përbëhet nga rezultatet e mundshme, ngjarjet e matshme dhe masa e probabilitetit. Ndryshorja e rastit $X:\Omega\to\R$ e shndërron rezultatin elementar në madhësi numerike. Për një ndryshore diskrete,
+\begin{equation}
+ \E[g(X)]=\sum_x g(x)p_X(x),
+\end{equation}
+ndërsa për një ndryshore të vazhdueshme,
+\begin{equation}
+ \E[g(X)]=\int_{-\infty}^{\infty}g(x)f_X(x)\dd x.
+\end{equation}
+Varianca del nga identiteti
+\begin{equation}
+ \Var(X)=\E[(X-\mu)^2]=\E[X^2]-\mu^2.
+\end{equation}
+Ajo ka njësinë në katror të $X$; devijimi standard ka të njëjtën njësi si madhësia fizike.
+
+\subsection{Hedhja e monedhës dhe shpërndarja binomiale}
+Le të jetë $X_i\in\{0,1\}$ treguesi i suksesit me $P(X_i=1)=p$. Për prova të pavarura, $S_N=\sum_iX_i$ ka shpërndarje binomiale. Numri i vargjeve me $k$ suksese është $\binom Nk$, prandaj
+\begin{equation}
+ P(S_N=k)=\binom Nk p^k(1-p)^{N-k}.
+\end{equation}
+Nga lineariteti i pritjes dhe pavarësia,
+\begin{equation}
+ \E[S_N]=Np,\qquad \Var(S_N)=Np(1-p).
+\end{equation}
+Vlerësuesi $\widehat p=S_N/N$ është i paanshëm dhe ka variancë $p(1-p)/N$. Kështu gabimi standard ulet si $N^{-1/2}$, jo si $N^{-1}$.
+
+\subsection{Ligji i numrave të mëdhenj dhe teorema qendrore kufitare}
+Ligji i numrave të mëdhenj pohon se mesatarja e mostrës $\overline X_N$ afrohet me $\mu$ kur $N$ rritet. Teorema qendrore kufitare jep më shumë: për ndryshore të pavarura me variancë të fundme,
+\begin{equation}
+ \frac{\sqrt N(\overline X_N-\mu)}{\sigma}
+ \xrightarrow{d}\mathcal N(0,1).
+\end{equation}
+Kjo justifikon intervalin asimptotik $\overline X\pm z_{1-\alpha/2}s/\sqrt N$. Për mostra të vogla me variancë të panjohur përdoret shpërndarja Student. Për Bernoulli me $p$ pranë zeros ose njësisë, intervali normal mund të dalë jashtë $[0,1]$; intervali Wilson ka sjellje më të mirë.
+
+\subsection{Kovarianca dhe përhapja e pacaktueshmërisë}
+Për vektorin $\vect X$ me kovariancë $\Sigma$ dhe $Y=g(\vect X)$, linearizimi rreth mesatares jep
+\begin{equation}
+ g(\vect X)\simeq g(\vect\mu)+\nabla g(\vect\mu)^T(\vect X-\vect\mu),
+\end{equation}
+prandaj
+\begin{equation}
+ \Var(Y)\simeq\nabla g(\vect\mu)^T\Sigma\nabla g(\vect\mu).
+\end{equation}
+Termat jashtë diagonales mund ta rrisin ose ta ulin pacaktueshmërinë. Supozimi i pavarësisë pa argument mund të jetë po aq problematik sa neglizhimi i një burimi gabimi.
+
+Kur linearizimi nuk është i mjaftueshëm, përhapja Monte Carlo gjeneron $\vect X^{(r)}$ nga shpërndarja e hyrjeve dhe llogarit $Y^{(r)}=g(\vect X^{(r)})$. Shpërndarja empirike e $Y$ mund të jetë asimetrike; atëherë raportohen kuantilet dhe jo vetëm mesatarja me devijimin standard.
+
+\begin{lstlisting}[language=Python,caption={Përhapje Monte Carlo e hyrjeve të korreluara.}]
+import numpy as np
+
+rng = np.random.default_rng(2026)
+mes = np.array([2.0, 3.0])
+kov = np.array([[0.04, 0.03],
+                [0.03, 0.09]])
+x = rng.multivariate_normal(mes, kov, size=100_000)
+y = x[:, 0]**2 / x[:, 1]
+q025, q50, q975 = np.quantile(y, [0.025, 0.5, 0.975])
+print(q50, q025, q975)
+\end{lstlisting}
+
+\subsection{Përmbledhje dhe ushtrime}
+Probabiliteti përshkruan modelin e rastësisë; statistika përdor të dhënat për të nxjerrë përfundime rreth këtij modeli. Pacaktueshmëria e rezultatit duhet lidhur me një procedurë kampionimi dhe me supozimet e saj.
+\begin{enumerate}
+\item Nxirrni mesataren dhe variancën e binomiales nga funksioni gjenerues i momenteve.
+\item Krahasoni intervalin normal dhe Wilson për $k=1$ sukses në $N=20$ prova.
+\item Provoni me simulim shkallëzimin $N^{-1/2}$ dhe shpjegoni shpërndarjen e pjerrësive të matura.
+\item Për periodën $T=2\pi\sqrt{L/g}$, nxirrni përhapjen lineare të pacaktueshmërisë dhe krahasojeni me Monte Carlo.
+\end{enumerate}

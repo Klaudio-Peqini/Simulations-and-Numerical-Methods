@@ -1,0 +1,63 @@
+\section{Algoritmi bazë i një eksperimenti numerik}
+Algoritmi kryesor i kapitullit nuk është një formulë e vetme, por cikli i plotë i punës. Ai duhet të përdoret në çdo notebook të kursit.
+
+\begin{enumerate}
+\item Formulohet pyetja fizike dhe përcaktohet madhësia e daljes.
+\item Shënohen supozimet, njësitë, parametrat dhe kushtet fillestare.
+\item Zgjidhet modeli minimal që mund t'i përgjigjet pyetjes.
+\item Përcaktohen rrjeti, algoritmi, toleranca dhe kriteri i ndalimit.
+\item Shkruhet kodi si funksione të testueshme.
+\item Verifikohet me një rast analitik ose një ligj ruajtjeje.
+\item Kryhet studimi i konvergjencës ose i numrit të mostrave.
+\item Raportohen rezultati, gabimi numerik, pacaktueshmëria dhe kufijtë e modelit.
+\end{enumerate}
+
+\subsection{Një skelet Python për notebook-un}
+\begin{lstlisting}[language=Python,caption={Skelet minimal për një eksperiment numerik.}]
+from dataclasses import dataclass
+import numpy as np
+import matplotlib.pyplot as plt
+
+@dataclass(frozen=True)
+class Parametra:
+    y0: float = 1.5       # m
+    v0: float = 8.0       # m/s
+    g: float = 9.81       # m/s^2
+    t_fund: float = 1.2   # s
+    dt: float = 0.02      # s
+
+def modeli_analitik(t, p):
+    """Pozicioni vertikal pa rezistence ajri."""
+    return p.y0 + p.v0*t - 0.5*p.g*t**2
+
+def eksperiment(p):
+    t = np.arange(0.0, p.t_fund + p.dt/2, p.dt)
+    y = modeli_analitik(t, p)
+    assert np.isclose(y[0], p.y0)
+    return t, y
+
+p = Parametra()
+t, y = eksperiment(p)
+plt.plot(t, y)
+plt.xlabel("Koha t [s]")
+plt.ylabel("Lartesia y [m]")
+plt.grid(alpha=0.25)
+plt.show()
+\end{lstlisting}
+
+\subsection{Kontrolli i riprodhueshmërisë}
+Për simulime stokastike përdoret një gjenerator i deklaruar, jo gjendja globale e fshehur.
+\begin{lstlisting}[language=Python]
+rng = np.random.default_rng(2026)
+mostra = rng.normal(loc=0.0, scale=1.0, size=10_000)
+\end{lstlisting}
+Fara nuk e bën rezultatin ``më të rastit''; ajo identifikon realizimin. Në raport shënohen fara, numri i mostrave dhe versionet e bibliotekave.
+
+\subsection{Terminologji dhe stil shkencor}
+Në këtë tekst përdoren \emph{zbatim} për implementation, \emph{rrjetë} për grid, \emph{hap} për step, \emph{mbetje} për residual, \emph{vleftësim} për validation dhe \emph{riprodhueshmëri} për reproducibility. Kodi nuk duhet të fshehë njësitë fizike; ato shënohen në komente, tabela dhe boshte.
+
+\begin{lidhje}
+Notebook-u i studentit duhet të nisë nga ky skelet dhe të ruajë ndarjen ndërmjet parametrave, modelit, eksperimentit dhe paraqitjes grafike.
+\end{lidhje}
+
+Për organizimin terminologjik të modelit, algoritmit dhe zbatimit numerik janë konsultuar tekstet universitare shqip të analizës numerike \cite{hanelli,hoxha,datja}, krahas literaturës ndërkombëtare të fizikës llogaritëse \cite{newman,landau}.

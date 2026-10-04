@@ -1,0 +1,65 @@
+\subsection{Nga ligji fizik te algoritmi: një shembull i plotë}
+Le të ndërtojmë modelin e rënies vertikale me rezistencë lineare të ajrit. Zgjedhim boshtin pozitiv për poshtë dhe shënojmë me $y(t)$ zhvendosjen dhe me $v(t)=\dot y(t)$ shpejtësinë. Ligji i dytë i Njutonit jep
+\begin{equation}
+ m\dot v=mg-cv,\qquad \dot y=v,
+\end{equation}
+ku $m>0$, $g>0$ dhe $c\ge0$. Përmasat fizike janë $[g]=LT^{-2}$ dhe $[c]=MT^{-1}$; prandaj $c/m$ ka përmasën e inversit të kohës. Koha karakteristike $\tau=m/c$ tregon sa shpejt humbet kujtesa e kushtit fillestar. Zgjidhja analitike,
+\begin{equation}
+ v(t)=v_\infty+(v_0-v_\infty)e^{-t/\tau},\qquad v_\infty=\frac{mg}{c},
+\end{equation}
+është një pikë reference për verifikimin e kodit. Ajo nuk përdoret sepse problemi është i vështirë, por sepse na lejon të ndajmë gabimin e algoritmit nga gabimi i modelit.
+
+Me metodën e Eulerit, derivati në $t_n$ zëvendësohet nga diferenca përpara,
+\begin{equation}
+ \dot v(t_n)=\frac{v(t_n+h)-v(t_n)}{h}+\Oh(h).
+\end{equation}
+Duke neglizhuar termin $\Oh(h)$ dhe duke shënuar $v_n\approx v(t_n)$ merret
+\begin{equation}
+ v_{n+1}=v_n+h\left(g-\frac{c}{m}v_n\right),\qquad y_{n+1}=y_n+hv_n.
+\end{equation}
+Gabimi lokal i një hapi është $\Oh(h^2)$, ndërsa grumbullimi në një interval kohor të fiksuar jep gabim global $\Oh(h)$. Kjo dallon rendin lokal nga rendi global dhe shpjegon pse përgjysmimi i hapit duhet ta përgjysmojë afërsisht gabimin për një metodë të rendit të parë.
+
+\begin{lstlisting}[language=Python,caption={Eksperiment konvergjence për rënien me rezistencë lineare.}]
+import numpy as np
+
+def renie_euler(m, c, g, y0, v0, T, h):
+    n = int(np.ceil(T / h))
+    h = T / n                 # hapi rregullohet që t_n të arrijë saktë T
+    t = np.linspace(0.0, T, n + 1)
+    y = np.empty(n + 1); v = np.empty(n + 1)
+    y[0], v[0] = y0, v0
+    for k in range(n):
+        y[k + 1] = y[k] + h * v[k]
+        v[k + 1] = v[k] + h * (g - (c / m) * v[k])
+    return t, y, v
+
+def v_sakte(t, m, c, g, v0):
+    tau = m / c
+    v_inf = m * g / c
+    return v_inf + (v0 - v_inf) * np.exp(-t / tau)
+
+for h in (0.2, 0.1, 0.05, 0.025):
+    t, y, v = renie_euler(1.0, 0.4, 9.81, 0.0, 0.0, 4.0, h)
+    gabimi = np.max(np.abs(v - v_sakte(t, 1.0, 0.4, 9.81, 0.0)))
+    print(f"h={h:7.4f}, gabimi maksimal={gabimi:.6e}")
+\end{lstlisting}
+Ky program ndan modelin, integruesin dhe testin analitik. Në MATLAB/Octave të njëjtat vargje ndërtohen me \texttt{linspace} dhe cikli me \texttt{for}; ndryshimi sintaksor nuk ndryshon logjikën shkencore.
+
+\subsection{Verifikim, vleftësim dhe analizë ndjeshmërie}
+Një rezultat mund të jetë i konverguar ndaj $h\to0$ dhe përsëri të jetë fizikisht i gabuar. Konvergjenca kontrollon vetëm diskretizimin. Për vleftësim duhen të dhëna ose një model referimi. Në shembullin e mësipërm, koeficienti $c$ mund të varet nga forma, dendësia e ajrit dhe regjimi i rrjedhjes. Nëse $c$ është matur me pacaktueshmëri, kjo pacaktueshmëri duhet të përhapet deri te $v(t)$.
+
+Ndjeshmëria lokale ndaj parametrit $c$ mund të vlerësohet me
+\begin{equation}
+ S_c(t)\approx\frac{v(t;c+\Delta c)-v(t;c-\Delta c)}{2\Delta c}.
+\end{equation}
+Vlera $S_c$ ka njësi dhe varet nga shkalla; një ndjeshmëri pa përmasa është $cS_c/v$. Në një studim të plotë raportohen veçmas gabimi i diskretizimit, pacaktueshmëria e parametrave dhe mospërputhja model--eksperiment.
+
+\subsection{Përmbledhje dhe punë e pavarur}
+Eksperimenti numerik është një zinxhir argumentesh: përkufizim i pyetjes, zgjedhje e modelit, kontroll dimensional, diskretizim, implementim, verifikim dhe interpretim fizik. Studenti duhet të jetë në gjendje të tregojë ku hyn çdo supozim dhe cilin lloj gabimi kontrollon çdo provë.
+
+\begin{enumerate}
+\item Nxirrni zgjidhjen analitike për $y(t)$ dhe përdoreni për të matur rendin e Eulerit.
+\item Zëvendësoni forcën $-cv$ me $-cv|v|$ dhe përcaktoni shpejtësinë kufitare.
+\item Ndërtoni të njëjtin eksperiment në MATLAB/Octave dhe krahasoni rezultatet deri në tolerancën e rrumbullakimit.
+\item Shpjegoni pse krahasimi me të dhënat eksperimentale është vleftësim, ndërsa krahasimi me zgjidhjen analitike është verifikim.
+\end{enumerate}

@@ -1,0 +1,204 @@
+\chapter{Fjalorth, standarde të kodit dhe ura drejt notebook-eve}
+Kjo shtojcë standardizon gjuhën e përdorur në leksione dhe në laborator. Qëllimi është që termi fizik, simboli matematik dhe emri në kod të tregojnë të njëjtin koncept. Kur dokumentacioni i një biblioteke përdor termin anglisht, ai jepet në kllapa vetëm në paraqitjen e parë.
+
+\section{Fjalorth i termave kryesorë}
+\small
+\begin{longtable}{p{.25\textwidth}p{.22\textwidth}p{.45\textwidth}}
+\toprule
+Termi në shqip & Termi ndërkombëtar & Kuptimi në këtë tekst\\ \midrule
+\endfirsthead
+\toprule
+Termi në shqip & Termi ndërkombëtar & Kuptimi në këtë tekst\\ \midrule
+\endhead
+algoritëm & algorithm & Varg i fundmë hapash që prodhon një rezultat nga hyrjet.\\
+zbatim & implementation & Realizimi i algoritmit në një gjuhë programimi.\\
+rrjetë & grid, mesh & Bashkësia diskrete e pikave në kohë ose hapësirë.\\
+hap & step size & Largësia $h$, $\Delta t$ ose $\Delta x$ ndërmjet pikave të rrjetës.\\
+gabim absolut & absolute error & $|\tilde x-x|$.\\
+gabim relativ & relative error & $|\tilde x-x|/|x|$, kur emëruesi është i përshtatshëm.\\
+gabim i përparmë & forward error & Gabimi në rezultatin e llogaritur.\\
+gabim i prapëm & backward error & Perturbimi minimal i të dhënave që e bën rezultatin të saktë.\\
+gabim i këputjes & truncation error & Gabimi nga zëvendësimi i një procesi të pafundëm me formulë të fundme.\\
+gabim rrumbullakimi & round-off error & Gabimi nga paraqitja dhe veprimet me saktësi të fundme.\\
+kushtëzim & conditioning & Ndjeshmëria e problemit ndaj perturbimeve të hyrjeve.\\
+qëndrueshmëri & stability & Kontrolli i përhapjes së gabimeve nga algoritmi.\\
+pajtueshmëri & consistency & Përafrimi i formulës diskrete me ekuacionin kur hapi shkon në zero.\\
+konvergjencë & convergence & Përafrimi i zgjidhjes numerike me zgjidhjen e problemit.\\
+mbetje & residual & Diferenca që mbetet kur përafrimi zëvendësohet në ekuacion.\\
+tolerancë & tolerance & Prag numerik për ndalim ose pranim.\\
+metodë e shtjelluar & explicit method & Hapi i ri llogaritet drejtpërdrejt nga vlerat e njohura.\\
+metodë e pashtjelluar & implicit method & Hapi i ri gjendet duke zgjidhur një ekuacion.\\
+problem i vlerës fillestare & initial-value problem & Kushti jepet në kohën fillestare.\\
+problem i vlerave kufitare & boundary-value problem & Kushtet jepen në kufij të ndryshëm të domenit.\\
+përshtatje & fitting & Përcaktimi i parametrave të modelit nga të dhënat.\\
+mbetje e regresit & regression residual & $r_i=y_i-\hat y_i$.\\
+rizgjedhje & resampling & Ndërtimi i mostrave të reja nga të dhënat ekzistuese.\\
+ndryshore rasti & random variable & Funksion numerik mbi hapësirën e rezultateve.\\
+mostër & sample & Bashkësi realizimesh të një ndryshoreje rasti.\\
+kampionim & sampling & Procedura e gjenerimit ose përzgjedhjes së mostrave.\\
+vlerësues & estimator & Rregull që i shoqëron mostrës një vlerë për parametrin.\\
+vlerësim & estimate & Vlera konkrete e prodhuar nga vlerësuesi.\\
+gabim standard & standard error & Devijimi standard i shpërndarjes së vlerësuesit.\\
+interval besimi & confidence interval & Procedurë intervalore me mbulim të përcaktuar në përsëritje.\\
+pacaktueshmëri & uncertainty & Diapazoni i arsyeshëm i vlerave për shkak të informacionit të kufizuar.\\
+luhatje & fluctuation & Variacion fizik ose statistik i observablit.\\
+gjenerator pseudorastësor & pseudorandom generator & Algoritëm determinist që prodhon varg me veti të kërkuara statistike.\\
+farë & seed & Gjendje fillestare që identifikon një varg pseudorastësor.\\
+kampionim i rëndësisë & importance sampling & Kampionim nga një propozim dhe korrigjim me pesha.\\
+variabël kontrollues & control variate & Madhësi me pritje të njohur që ul variancën e vlerësuesit.\\
+bredhje e rastit & random walk & Proces i ndërtuar nga hapa të rastit.\\
+zinxhir Markov & Markov chain & Proces ku kalimi i ardhshëm varet nga gjendja e tanishme.\\
+shpërndarje stacionare & stationary distribution & Shpërndarje që nuk ndryshon nën operatorin e kalimit.\\
+balancë e detajuar & detailed balance & Barazi e flukseve probabilitare ndërmjet çifteve të gjendjeve.\\
+përzierje & mixing & Humbja e varësisë nga gjendja fillestare.\\
+termalizim & thermalization & Përafrimi i simulimit të fizikës statistike drejt ekuilibrit.\\
+kohë autokorrelacioni & autocorrelation time & Shkalla e varësisë ndërmjet mostrave të zinxhirit.\\
+madhësi efektive e mostrës & effective sample size & Numri i përafërt i mostrave të pavarura me të njëjtën saktësi.\\
+ngadalësim kritik & critical slowing down & Rritja e kohës së korrelacionit pranë tranzicionit kritik.\\
+observabël & observable & Madhësi e matshme e llogaritur nga gjendja e sistemit.\\
+vleftësim & validation & Kontrolli i përshtatshmërisë së modelit ndaj dukurisë reale.\\
+verifikim & verification & Kontrolli nëse ekuacionet e zgjedhura zgjidhen saktë.\\
+riprodhueshmëri & reproducibility & Mundësia për të marrë të njëjtin rezultat me të njëjtat të dhëna dhe procedurë.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\section{Emërtimi i madhësive në kod}
+Emrat duhet të jenë të shkurtër, por jo të paqartë. Simbolet standarde mund të ruhen kur konteksti është i qartë: \texttt{dt}, \texttt{dx}, \texttt{beta}, \texttt{omega}. Për madhësi të përpunuara përdoren emra përshkrues: \texttt{gabimi\_relativ}, \texttt{energji\_totale}, \texttt{koha\_autokorrelacionit}. Njësia jepet në docstring ose në emër kur rreziku i ngatërrimit është i madh.
+
+\begin{lstlisting}[language=Python,caption={Funksion me kontratë të qartë numerike.}]
+def shpejtesia_terminale(masa_kg: float,
+                         g_ms2: float,
+                         koeficienti_kg_s: float) -> float:
+    """Kthen shpejtesine terminale [m/s] per rezistence lineare."""
+    if masa_kg <= 0 or koeficienti_kg_s <= 0:
+        raise ValueError("Masa dhe koeficienti duhet te jene pozitivë.")
+    return masa_kg * g_ms2 / koeficienti_kg_s
+\end{lstlisting}
+
+\section{Struktura standarde e çdo notebook-u}
+Çdo notebook i kursit duhet të ketë të njëjtën skelet pedagogjik. Kjo lejon që studenti të përqendrohet te fizika dhe metoda, jo te gjetja e strukturës së raportit.
+
+\begin{enumerate}
+\item \textbf{Titulli dhe pyetja fizike.} Një fjali që mund të marrë përgjigje numerike.
+\item \textbf{Rezultatet e të nxënit.} Tre deri pesë aftësi të verifikueshme.
+\item \textbf{Modeli.} Ekuacionet, supozimet, njësitë dhe domeni i vlefshmërisë.
+\item \textbf{Algoritmi.} Hapat, rendi, stabiliteti, kostoja dhe kriteri i ndalimit.
+\item \textbf{Zbatimi.} Funksione të vogla, parametra të përqendruar dhe komente për arsyen, jo për sintaksën e dukshme.
+\item \textbf{Verifikimi.} Rast analitik, ligj ruajtjeje, mbetje ose provë konvergjence.
+\item \textbf{Eksperimenti.} Ndryshohet një faktor në çdo seri; ruhen të dhënat e papërpunuara.
+\item \textbf{Analiza.} Figura me njësi, tabela, gabim numerik dhe pacaktueshmëri.
+\item \textbf{Interpretimi.} Përgjigjja fizike dhe kufijtë e saj.
+\item \textbf{Detyra.} Ndryshim modeli, metode ose të dhënash që kërkon arsyetim të ri.
+\end{enumerate}
+
+\section{Kontrollet minimale të cilësisë}
+\begin{longtable}{p{.24\textwidth}p{.68\textwidth}}
+\toprule
+Kontrolli & Pyetjet që duhet të marrin përgjigje\\ \midrule
+\endfirsthead
+\toprule Kontrolli & Pyetjet që duhet të marrin përgjigje\\ \midrule\endhead
+Fizika & A janë njësitë të pajtueshme? A respektohen kufijtë dhe shenjat? A ka ligj ruajtjeje?\\
+Matematika & A ekziston dhe është unike zgjidhja? A është problemi i mirëkushtëzuar?\\
+Algoritmi & Cili është rendi? Cili është kushti i stabilitetit? Sa kushton në kohë dhe memorie?\\
+Kodi & A testohen hyrjet? A shmangen inverset e panevojshme? A është fara e kontrolluar?\\
+Konvergjenca & A ndryshon rezultati siç pritet kur përgjysmohet hapi ose rritet $N$?\\
+Statistika & A janë mostrat të pavarura? A raportohet gabimi standard ose $N_{\mathrm{eff}}$?\\
+Figura & A kanë boshtet emra dhe njësi? A dallohen të dhënat nga modeli?\\
+Raportimi & A përmenden supozimet, tolerancat, versionet dhe kufijtë e përfundimit?\\
+\bottomrule
+\end{longtable}
+
+\section{Lidhja ndërmjet kapitujve dhe laboratorëve}
+\begin{longtable}{p{.08\textwidth}p{.35\textwidth}p{.47\textwidth}}
+\toprule
+Nr. & Boshti i leksionit & Produkti minimal i notebook-ut\\ \midrule
+\endfirsthead
+\toprule Nr. & Boshti i leksionit & Produkti minimal i notebook-ut\\ \midrule\endhead
+1 & Programimi shkencor & Funksione, figura me njësi, test fillestar dhe raport i shkurtër.\\
+2 & Gabimet dhe kushtëzimi & Grafik gabimi--hap dhe sistem me $\kappa(A)$ të ndryshueshme.\\
+3 & Rrënjët, sistemet, modet & Krahasim konvergjence dhe mode normale masë--sustë.\\
+4 & Interpolimi dhe regresi & Ligji i Keplerit, mbetje dhe pacaktueshmëri parametrash.\\
+5 & Derivatet dhe integralet & Perioda e lavjerrësit dhe studim konvergjence.\\
+6 & Ekuacionet diferenciale & Rënie, lavjerrës dhe orbitë me kontrolle energjie.\\
+7 & Valët & Puls, valë e qëndrueshme, CFL dhe reflektim nga plazma.\\
+8 & Probabiliteti & Hedhje monedhe, interval besimi dhe CLT empirike.\\
+9 & Kampionimi & Gjenerim shpërndarjesh dhe teste të CDF-së e korrelacionit.\\
+10 & Integrimi Monte Carlo & Integral shumëpërmasor, $N^{-1/2}$ dhe zbritje me pacaktueshmëri.\\
+11 & Bredhjet dhe Markov & Difuzion, kohë e parë kalimi dhe $N_{\mathrm{eff}}$.\\
+12 & Metropolis dhe Ising & Termalizim, autokorrelacion, magnetizim dhe efekte të përmasës.\\
+\bottomrule
+\end{longtable}
+
+\section{Parimi i kalimit nga notebook-u te paketa}
+Në fillim funksionet shkruhen pranë shpjegimit. Kur përdoren në dy ose më shumë notebook-e, ato zhvendosen në modul. Paketa përfundimtare duhet të ketë ndarje ndërmjet modelit, algoritmeve, analizës dhe paraqitjes. Testet ruhen veçmas dhe ekzekutohen pa hapur notebook-un.
+
+\begin{lstlisting}[caption={Struktura e rekomanduar e paketës së studentit.}]
+projekti/
+|-- pyproject.toml
+|-- README.md
+|-- src/simulim_fizik/
+|   |-- modele.py
+|   |-- algoritme.py
+|   |-- statistike.py
+|   `-- vizualizim.py
+|-- notebooks/
+|   |-- 01_verifikimi.ipynb
+|   `-- 02_eksperimenti.ipynb
+|-- tests/
+|   |-- test_modele.py
+|   `-- test_algoritme.py
+`-- results/
+\end{lstlisting}
+
+Kjo strukturë ruan parimin e kursit pararendës: notebook-u për kuptim dhe komunikim; paketa për ripërdorim, testim dhe zgjerim.
+
+\section{Udhëzues i burimeve shkencore në shqip}
+Literatura universitare në shqip përdoret në këtë tekst për tri qëllime: për terminologjinë, për rendin didaktik të analizës numerike dhe për shembujt që janë familjarë në programet shqiptare. Ajo plotësohet me literaturë ndërkombëtare kur kërkohen algoritme moderne, analiza të hollësishme të qëndrueshmërisë ose metoda Monte Carlo të avancuara.
+
+\subsection{Analiza numerike me MATLAB}
+Teksti i L. Hanellit dhe F. Osmanit \cite{hanelli} është burim qendror për trajtimin në shqip të gabimeve, ekuacioneve jolineare, sistemeve lineare, interpolimit, kuadraturës, ekuacioneve diferenciale dhe problemeve të vlerave vetjake. Në këto leksione ruhet ndarja e qartë ndërmjet problemit matematik, metodës dhe zbatimit, por shembujt e kodit janë përditësuar kryesisht në Python dhe lidhen me eksperimente fizike.
+
+\subsection{Metoda të Analizës Numerike}
+Teksti i F. Hoxhës \cite{hoxha} përdoret për përkufizimet, rendin e temave dhe emërtimet tradicionale shqip. Veçanërisht të dobishme janë dallimet ndërmjet gabimit, kushtëzimit, qëndrueshmërisë dhe konvergjencës. Në leksione këto koncepte shoqërohen me eksperimente kompjuterike, sepse studenti duhet t'i shohë si sjellje të matshme dhe jo vetëm si përkufizime.
+
+\subsection{Leksionet e Universitetit Politeknik të Tiranës}
+Materialet e R. Datjës \cite{datja} japin një urë të vlefshme ndërmjet analizës numerike, MATLAB-it dhe programeve inxhinierike. Ato janë përdorur për të kontrolluar terminologjinë e metodave të rrënjëve, interpolimit, kuadraturës dhe vlerave vetjake. Në këtë tekst ruhet lidhja me MATLAB/Octave, edhe kur snippet-i kryesor jepet në Python.
+
+\subsection{Ekuacionet diferenciale dhe qëndrueshmëria}
+Disertacioni dhe punimet e E. Dishmemës \cite{dishmema,dishmemaArticle} përmbajnë një trajtim të gjerë në shqip të metodave me një hap, gabimit lokal e global, pajtueshmërisë, konvergjencës dhe qëndrueshmërisë. Ky burim ka ndihmuar veçanërisht në përdorimin e termave \emph{metodë e shtjelluar} dhe \emph{metodë e pashtjelluar}. Leksionet tona fokusohen te ekuacionet e zakonshme pa vonesë, por parimet numerike janë të përbashkëta.
+
+\subsection{Problemet kufitare dhe ekuacionet me derivate të pjesshme}
+Puna e A. Naços \cite{naco} dhe materialet shqiptare të analizës numerike shërbejnë si pikë reference për problemet kufitare. Për valët, diferencat e fundme dhe kushtin CFL, këto burime plotësohen me tekstet e fizikës llogaritëse, sepse interpretimi fizik i dispersimit dhe reflektimit është po aq i rëndësishëm sa skema numerike.
+
+\subsection{Probabiliteti, rizgjedhja dhe analiza e të dhënave}
+Materialet e probabilitetit dhe statistikës \cite{capollari}, si edhe disertacionet mbi bootstrap-in dhe vlerat e humbura \cite{butka,tasho}, ndihmojnë në standardizimin e termave \emph{mostër}, \emph{vlerësues}, \emph{rizgjedhje}, \emph{gabim standard} dhe \emph{interval besimi}. Këto koncepte janë themelore për Monte Carlo-n, edhe kur objektivi përfundimtar është një integral ose një observabël termodinamik.
+
+\subsection{Monte Carlo dhe fizika statistike}
+Burimet e plota në shqip për MCMC dhe modelin Ising janë më të pakta. Për këtë arsye, terminologjia probabilitare lidhet me burimet shqiptare, ndërsa hollësitë algoritmike mbështeten te Metropolis et al., Hastings, Krauth dhe Robert--Casella \cite{metropolis,hastings,krauth,robert}. Ky kombinim shmang dy rreziqe: përkthimin mekanik të termave dhe thjeshtimin e tepërt të teorisë.
+
+\section{Rruga e rekomanduar e leximit}
+\begin{longtable}{p{.22\textwidth}p{.33\textwidth}p{.37\textwidth}}
+\toprule
+Nevoja e studentit & Kapitujt e këtij teksti & Burimet plotësuese\\ \midrule
+\endfirsthead
+\toprule Nevoja e studentit & Kapitujt e këtij teksti & Burimet plotësuese\\ \midrule\endhead
+Bazat e gabimit dhe algoritmit & 1--2 & Hanelli--Osmani; Hoxha; Higham\\
+Rrënjë dhe sisteme & 3 & Hanelli--Osmani; Datja; Burden--Faires\\
+Vlera vetjake dhe mode & 3 & Datja; Newman; Landau et al.\\
+Interpolim dhe përshtatje & 4 & Hanelli--Osmani; Hoxha; Press et al.\\
+Derivim dhe kuadraturë & 5 & Hoxha; Datja; Newman\\
+Ekuacione diferenciale & 6 & Dishmema; Hanelli--Osmani; Giordano--Nakanishi\\
+Valë dhe diferenca të fundme & 7 & Naço; Giordano--Nakanishi; Landau et al.\\
+Probabilitet dhe pacaktueshmëri & 8 & Çapollari et al.; Butka; Tasho Milo\\
+Gjeneratorë dhe kampionim & 9 & Press et al.; Robert--Casella\\
+Integrim Monte Carlo & 10 & Newman; Press et al.; Robert--Casella\\
+Bredhje dhe Markov & 11 & Newman; Krauth; Robert--Casella\\
+Metropolis dhe Ising & 12 & Metropolis et al.; Hastings; Krauth\\
+\bottomrule
+\end{longtable}
+
+\section{Parime për citimin në notebook}
+Kur një formulë, algoritëm ose grup të dhënash merret nga një burim, notebook-u duhet të japë autorin, titullin dhe vendin e saktë ku është përdorur. Dokumentacioni i NumPy, SciPy ose MATLAB citohet për sjelljen e funksionit të gatshëm; ai nuk zëvendëson burimin shkencor të metodës. Për figurat e prodhuara nga kodi i studentit shënohet ``llogaritje e autorit'' dhe ruhen skripti, parametrat dhe të dhënat që e gjeneruan.
+
+Një listë e gjatë referencash nuk garanton cilësi. Çdo citim duhet të ketë rol të qartë: përkufizim, metodë, të dhëna, krahasim ose interpretim. Burimet në shqip ndihmojnë terminologjinë dhe vazhdimësinë akademike; burimet ndërkombëtare sigurojnë mbulimin e zhvillimeve dhe standardeve të fushës.

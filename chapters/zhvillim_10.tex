@@ -1,0 +1,88 @@
+\subsection{Integrimi Monte Carlo si vlerësim i një pritjeje}
+Le të jetë $X\sim p$ dhe
+\begin{equation}
+ I=\int h(x)p(x)\dd x=\E_p[h(X)].
+\end{equation}
+Vlerësuesi bazë është
+\begin{equation}
+ \widehat I_N=\frac1N\sum_{i=1}^{N}h(X_i).
+\end{equation}
+Për mostra të pavarura,
+\begin{equation}
+ \E[\widehat I_N]=I,
+ \qquad
+ \Var(\widehat I_N)=\frac{\sigma_h^2}{N}.
+\end{equation}
+Gabimi standard vlerësohet me $s_h/\sqrt N$. Teorema qendrore kufitare jep
+\begin{equation}
+ \frac{\widehat I_N-I}{s_h/\sqrt N}\approx\mathcal N(0,1).
+\end{equation}
+Kështu për ta përgjysmuar gabimin duhen afërsisht katër herë më shumë mostra. Shkalla $N^{-1/2}$ nuk varet drejtpërdrejt nga dimensioni, por varianca e integrandit dhe vështirësia e kampionimit mund të rriten fort me dimensionin.
+
+Për integralin $J=\int_D f(\vect x)\dd\vect x$ mbi një rajon me vëllim $V_D$, nëse $X$ është uniforme në $D$, atëherë $J=V_D\E[f(X)]$. Metoda gjeometrike hit-or-miss përdor një ndryshore treguese dhe zakonisht ka variancë më të madhe se mesatarja e drejtpërdrejtë e $f$.
+
+\subsection{Variablat antitetike}
+Nëse $U\sim\mathcal U(0,1)$, edhe $1-U$ është uniforme. Vlerësuesi
+\begin{equation}
+ \widehat I_{\mathrm{anti}}=\frac1N\sum_{i=1}^{N}
+ \frac{h(U_i)+h(1-U_i)}{2}
+\end{equation}
+ka variancë
+\begin{equation}
+ \frac{1}{2N}\left[\Var(h(U))+\Cov(h(U),h(1-U))\right].
+\end{equation}
+Për $h$ monotone, kovarianca zakonisht është negative dhe varianca ulet. Metoda nuk është automatikisht e dobishme për funksione jo monotone; kovarianca duhet matur.
+
+\subsection{Variabli kontrollues}
+Le të jetë $Y$ madhësia e interesit dhe $C$ një madhësi e korreluar me pritje të njohur $\mu_C$. Vlerësuesi
+\begin{equation}
+ Y_\beta=Y-\beta(C-\mu_C)
+\end{equation}
+mbetet i paanshëm. Varianca është
+\begin{equation}
+ \Var(Y_\beta)=\Var(Y)+\beta^2\Var(C)-2\beta\Cov(Y,C).
+\end{equation}
+Derivimi ndaj $\beta$ jep optimumin
+\begin{equation}
+ \beta_*=\frac{\Cov(Y,C)}{\Var(C)}.
+\end{equation}
+Në praktikë $\beta_*$ vlerësohet nga një mostër pilot ose nga e njëjta mostër, duke raportuar qartë procedurën.
+
+\subsection{Kampionimi i rëndësisë për ngjarje të rralla}
+Kur integrali dominohet nga një rajon që $p$ e viziton rrallë, kampionimi i drejtpërdrejtë prodhon shumicën e kontributeve zero dhe disa pesha shumë të mëdha. Me $X\sim q$,
+\begin{equation}
+ I=\E_q\left[h(X)\frac{p(X)}{q(X)}\right].
+\end{equation}
+Propozimi ideal formal është $q_*(x)\propto|h(x)|p(x)$, por varet nga integrali i panjohur. Ai shërben si parim projektimi: $q$ duhet të imitojë madhësinë e integrandit, jo vetëm dendësinë bazë.
+
+\subsection{Përhapja Monte Carlo në zbritjen e mjetit hapësinor}
+Në një model të thjeshtuar vertikal,
+\begin{align}
+ \dot h&=v,\\
+ m\dot v&=-mg(h)+\tfrac12\rho(h)C_DA,v|v|+T(t),
+\end{align}
+ku $h$ është lartësia dhe $v<0$ gjatë zbritjes. Parametrat $C_D$, masa, dendësia atmosferike dhe shtytja kanë pacaktueshmëri. Çdo realizim përdor një mostër të parametrave, integron ODE-në dhe regjistron shpejtësinë në kontakt. Probabiliteti i dështimit vlerësohet nga treguesi $I_r=1$ kur $|v_{\mathrm{kontakt}}|$ tejkalon kufirin.
+
+Një analizë bindëse raporton intervalin e besimit të probabilitetit, jo vetëm numrin e dështimeve. Për ngjarje shumë të rralla, simulimi i drejtpërdrejtë është joefikas; nevojitet kampionim i rëndësisë ose ndarje e ngjarjeve, me korrigjimin përkatës të peshave.
+
+\begin{lstlisting}[language=Python,caption={Vlerësues Monte Carlo me gabim standard.}]
+import numpy as np
+
+def monte_carlo(h, gjenero, N, fare=2026):
+    rng = np.random.default_rng(fare)
+    x = gjenero(rng, N)
+    y = np.asarray(h(x), float)
+    vleresimi = y.mean()
+    gabimi_standard = y.std(ddof=1) / np.sqrt(N)
+    return vleresimi, gabimi_standard
+\end{lstlisting}
+
+\subsection{Përmbledhje dhe ushtrime}
+Monte Carlo prodhon një vlerësim dhe një procedurë të matjes së gabimit. Numri i shifrave duhet të jetë në përputhje me gabimin standard.
+\begin{enumerate}
+\item Nxirrni variancën e metodës hit-or-miss për një sipërfaqe me probabilitet $p$.
+\item Provoni formulën e $\beta_*$ dhe zvogëlimin maksimal të variancës në terma të korrelacionit.
+\item Krahasoni kuadraturën deterministe dhe Monte Carlo kur dimensioni rritet.
+\item Ndërtoni një analizë konvergjence me shumë fara dhe përshtatni pjerrësinë në grafik log--log.
+\item Vlerësoni probabilitetin e uljes së pasigurt të mjetit dhe jepni interval Wilson.
+\end{enumerate}

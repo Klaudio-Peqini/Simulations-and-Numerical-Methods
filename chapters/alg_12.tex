@@ -1,0 +1,74 @@
+\section{Algoritmi Metropolis për modelin Ising}
+\subsection{Energjia lokale dhe një sweep}
+\begin{lstlisting}[language=Python,caption={Përditësimi Metropolis me një spin.}]
+def delta_E(spin, i, j, J=1.0, H=0.0):
+    L = spin.shape[0]
+    fq = (spin[(i+1) % L, j] + spin[(i-1) % L, j]
+          + spin[i, (j+1) % L] + spin[i, (j-1) % L])
+    return 2.0*spin[i, j]*(J*fq + H)
+
+def sweep_metropolis(spin, beta, rng, J=1.0, H=0.0):
+    L = spin.shape[0]
+    pranuar = 0
+    for _ in range(L*L):
+        i, j = rng.integers(0, L, size=2)
+        dE = delta_E(spin, i, j, J, H)
+        if dE <= 0.0 or rng.random() < np.exp(-beta*dE):
+            spin[i, j] *= -1
+            pranuar += 1
+    return pranuar/(L*L)
+\end{lstlisting}
+
+\subsection{Matja e energjisë pa numërim të dyfishtë}
+\begin{lstlisting}[language=Python]
+def observablat(spin, J=1.0, H=0.0):
+    djathtas = np.roll(spin, -1, axis=1)
+    poshte = np.roll(spin, -1, axis=0)
+    E = -J*np.sum(spin*(djathtas + poshte)) - H*np.sum(spin)
+    M = np.sum(spin)
+    return E, M
+\end{lstlisting}
+Numërohen vetëm lidhjet djathtas dhe poshtë, në mënyrë që çdo çift fqinjësh të hyjë një herë.
+
+\subsection{Termalizimi dhe matjet}
+\begin{lstlisting}[language=Python,caption={Struktura e një simulimi të plotë.}]
+def simulo_ising(L, T, n_term, n_matje, hendek, seed):
+    rng = np.random.default_rng(seed)
+    spin = rng.choice([-1, 1], size=(L, L))
+    beta = 1.0/T
+    for _ in range(n_term):
+        sweep_metropolis(spin, beta, rng)
+    E, M = [], []
+    for _ in range(n_matje):
+        for _ in range(hendek):
+            sweep_metropolis(spin, beta, rng)
+        e, m = observablat(spin)
+        E.append(e); M.append(m)
+    return np.asarray(E), np.asarray(M)
+\end{lstlisting}
+Hendeku nuk garanton pavarësi. Autokorrelacioni matet dhe raportohet $N_{\mathrm{eff}}$.
+
+\subsection{Observablat dhe gabimet}
+\begin{lstlisting}[language=Python]
+N = L*L
+e = E/N; m = M/N
+Cv = (np.mean(E**2) - np.mean(E)**2)/(N*T*T)
+chi = (np.mean(M**2) - np.mean(M)**2)/(N*T)
+m_abs = np.mean(np.abs(m))
+\end{lstlisting}
+Për gabimet përdoret bllokimi: seria ndahet në blloqe më të gjata se koha e korrelacionit dhe mesataret e blloqeve trajtohen si afërsisht të pavarura.
+
+\subsection{Protokolli i studimit termik}
+\begin{enumerate}
+\item Ekzekutohen disa temperatura larg dhe pranë $T_c$.
+\item Për çdo temperaturë kontrollohen termalizimi dhe pranimi.
+\item Raportohen $\avg{|m|}$, $\avg e$, $C_V$, $\chi$ dhe gabimet.
+\item Përsëritet për disa $L$ për të dalluar efektet e përmasës së fundme.
+\item Krahasohen nisja e rregullt dhe e çrregullt pranë zonës kritike.
+\end{enumerate}
+
+\begin{kujdes}
+Përdoren \emph{balancë e detajuar}, \emph{shpërndarje stacionare}, \emph{termalizim}, \emph{përzierje}, \emph{kohë autokorrelacioni} dhe \emph{ngadalësim kritik}. Këto terma përkufizohen para përdorimit dhe nuk zëvendësohen me anglicizma të panevojshëm.
+\end{kujdes}
+
+Termat e fizikës statistike janë harmonizuar me përdorimin universitar në shqip dhe me burimet probabilitare \cite{capollari,butka}; algoritmi dhe analiza MCMC mbështeten te burimet themelore \cite{metropolis,hastings,krauth,robert,walter}.

@@ -1,0 +1,55 @@
+\subsection{Koha mesatare e daljes}
+Për bredhjen simetrike në nyjet $0,1,\ldots,L$ me kufij thithës, le të jetë $T_i$ numri mesatar i hapave deri në dalje kur nisemi nga $i$. Kushtëzimi ndaj hapit të parë jep
+\begin{equation}
+ T_i=1+\frac12T_{i-1}+\frac12T_{i+1},
+ \qquad T_0=T_L=0.
+\end{equation}
+Riorganizimi jep diferencën e dytë
+\begin{equation}
+ T_{i+1}-2T_i+T_{i-1}=-2.
+\end{equation}
+Zgjidhja kuadratike që plotëson kufijtë është
+\begin{equation}
+ T_i=i(L-i).
+\end{equation}
+Në kufirin e difuzionit, koha mesatare $\tau(x)$ plotëson ekuacionin e prapëm
+\begin{equation}
+ D\tau''(x)=-1,qquad \tau(0)=\tau(a)=0,
+\end{equation}
+me zgjidhje $\tau(x)=x(a-x)/(2D)$. Kjo lidh drejtpërdrejt ekuacionin diskret me modelin e vazhdueshëm.
+
+Nëse një kufi është reflektues, kushti bëhet derivat zero. Me drift, operatori i prapëm është $v\partial_x+D\partial_{xx}$. Kohët e para të kalimit janë të ndjeshme ndaj bishtave dhe kërkojnë shumë realizime; mesatarja vetëm mund të mos përshkruajë shpërndarjen.
+
+\subsubsection{Spektri i matricës së kalimit}
+Për një zinxhir të kthyeshëm, matrica e kalimit është vetë-adjunkte në prodhimin skalar të peshuar
+\begin{equation}
+ \langle f,g\rangle_\pi=\sum_i\pi_if_ig_i.
+\end{equation}
+Vlerat vetjake janë reale dhe plotësojnë $1=\lambda_1>\lambda_2\ge\cdots\ge-1$. Komponentët jo stacionarë shuhen si $\lambda_k^n$. Boshllëku spektral $1-\max_{k>1}|\lambda_k|$ kontrollon relaksimin më të ngadaltë.
+
+Për një observabël që projektohet fort mbi modin e dytë, autokorrelacioni mund të sillet si $\rho(n)\simeq\lambda_2^n$. Atëherë
+\begin{equation}
+ \tau_{\mathrm{int}}\simeq\frac12+\frac{\lambda_2}{1-\lambda_2}
+ =\frac{1+\lambda_2}{2(1-\lambda_2)}.
+\end{equation}
+Kjo tregon lidhjen ndërmjet përzierjes, boshllëkut spektral dhe gabimit të mesatares.
+
+\subsubsection{Vlerësimi praktik i autokorrelacionit}
+Vlerësuesi i autokovariancës në vonesën $k$ është
+\begin{equation}
+ \widehat C(k)=\frac{1}{N-k}\sum_{n=1}^{N-k}
+ (A_n-\overline A)(A_{n+k}-\overline A).
+\end{equation}
+Për $k$ të madh mbeten pak çifte dhe vlerësuesi bëhet i zhurmshëm. Shuma naive deri në $N$ mund të luhatet fort. Përdoret një dritare vetëkonsistente: shuma ndalet kur $k$ është disa herë më i madh se $\widehat\tau_{\mathrm{int}}$, ose kur autokorrelacioni hyn në një rajon të pajtueshëm me zhurmën.
+
+Metoda e blloqeve ndan serinë në blloqe me gjatësi $B$ dhe llogarit mesataren e çdo blloku. Kur $B\gg\tau$, mesataret e blloqeve janë afërsisht të pavarura. Gabimi i vlerësuar duhet të arrijë një pllajë me rritjen e $B$, para se numri i blloqeve të bëhet tepër i vogël.
+
+\subsubsection{Ergodiciteti dhe kurthet}
+Stacionariteti nuk mjafton nëse zinxhiri nuk mund të arrijë të gjithë mbështetjen. Një zinxhir i reduktueshëm mund të ketë disa shpërndarje stacionare dhe rezultati varet nga gjendja fillestare. Periodiciteti mund të shkaktojë alternim pa konvergjencë pikë për pikë, edhe kur mesataret kohore sillen më mirë.
+
+Në hapësira me moda të ndara nga barriera, zinxhiri mund të jetë teorikisht ergodik, por praktikisht të mos kalojë barrierën gjatë simulimit. Trajektorja duket e qëndrueshme brenda një mode dhe jep pacaktueshmëri artificialisht të vogël. Nisja e shumë zinxhirëve, propozimet globale, temperimi ose metodat e grupimeve përdoren për të zbuluar dhe zbutur këtë problem.
+
+\subsubsection{Renditja e faqeve dhe zinxhiri Markov}
+Në renditjen e faqeve, kalimi ndjek një lidhje me probabilitet $\alpha$ dhe ``teleportohet'' me probabilitet $1-\alpha$. Termi i teleportimit e bën matricën pozitive, kështu që teorema Perron--Frobenius garanton një vektor stacionar unik pozitiv. Parametri $\alpha$ balancon respektimin e strukturës së lidhjeve me shpejtësinë e përzierjes.
+
+Faqet pa dalje duhet të trajtohen: kolona përkatëse zëvendësohet me një shpërndarje probabilitare. Pa këtë hap, matrica nuk është stohastike dhe masa humbet. Ky shembull tregon se pastrimi i të dhënave është pjesë e modelit matematik, jo vetëm detaj programimi.

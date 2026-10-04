@@ -1,0 +1,85 @@
+\chapter{Probabiliteti dhe variablat e rastit}
+\begin{qellime}
+Studenti interpreton probabilitetin, shpërndarjen, pritjen dhe variancën; punon me ndryshore diskrete e të vazhdueshme; përdor ligjin e numrave të mëdhenj dhe teoremën qendrore kufitare; raporton gabimin statistik.
+\end{qellime}
+
+\section{Ngjarjet dhe probabiliteti}
+Hapësira e mostrave $\Omega$ përmban rezultatet elementare. Probabiliteti plotëson $P(A)\ge0$, $P(\Omega)=1$ dhe aditivitetin për ngjarje të papajtueshme. Probabiliteti kushtor është
+\begin{equation}
+ P(A|B)=\frac{P(A\cap B)}{P(B)}.
+\end{equation}
+Pavarësia kërkon $P(A\cap B)=P(A)P(B)$. Ajo është supozim i fortë dhe nuk duhet ngatërruar me korrelacionin zero.
+
+Teorema e Bayes-it,
+\begin{equation}
+ P(A|B)=\frac{P(B|A)P(A)}{P(B)},
+\end{equation}
+ndan informacionin paraprak nga informacioni i të dhënave. Në fizikën eksperimentale ajo shfaqet në klasifikim, zbulim sinjali dhe vlerësim parametrash.
+
+\section{Ndryshoret e rastit}
+Për ndryshore diskrete $X$, funksioni masor $p(x)$ plotëson $\sum_xp(x)=1$. Për ndryshore të vazhdueshme, dendësia $f(x)$ plotëson $\int f(x)\dd x=1$ dhe probabiliteti merret nga integrali. Funksioni kumulativ është $F(x)=P(X\le x)$.
+
+Pritja dhe varianca janë
+\begin{equation}
+ \E[X]=\sum_xxp(x)\quad\text{ose}\quad\int xf(x)\dd x,
+ \qquad \Var(X)=\E[(X-\E X)^2].
+\end{equation}
+Për një funksion $g$, $\E[g(X)]$ llogaritet mbi shpërndarjen e $X$; në përgjithësi $g(\E X)\ne\E[g(X)]$.
+
+\section{Shpërndarje të rëndësishme}
+Bernoulli përshkruan një provë me sukses $p$. Shuma e $n$ provave të pavarura është binomiale,
+\begin{equation}
+ P(K=k)=\binom nk p^k(1-p)^{n-k},\quad \E K=np,\quad \Var K=np(1-p).
+\end{equation}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{14_shperndarja_binomiale.pdf}
+\caption{Shpërndarja e numrit të stemave në 20 hedhje të një monedhe të paanshme.}
+\end{figure}
+
+Poisson përshkruan numërime të rralla me normë $\lambda$: $P(K=k)=e^{-\lambda}\lambda^k/k!$. Eksponencialja përshkruan kohën ndërmjet ngjarjeve Poisson dhe ka vetinë pa kujtesë. Gauss-i del nga mbledhja e shumë kontributeve të vogla; parametrat e tij janë mesatarja dhe varianca.
+
+\section{Kovarianca dhe përhapja e pacaktueshmërisë}
+\begin{equation}
+ \Cov(X,Y)=\E[(X-\E X)(Y-\E Y)],\qquad
+ \rho=\frac{\Cov(X,Y)}{\sigma_X\sigma_Y}.
+\end{equation}
+Për $z=f(\vect x)$ dhe pacaktueshmëri të vogla,
+\begin{equation}
+ \Var(z)\approx \nabla f^T\Sigma\nabla f,
+\end{equation}
+ku $\Sigma$ është matrica e kovariancës. Termat jashtë diagonales nuk mund të hiqen kur hyrjet janë të korreluara.
+
+\section{Ligji i numrave të mëdhenj dhe CLT}
+Mesatarja e mostrës
+\begin{equation}
+ \bar X_N=\frac1N\sum_{i=1}^NX_i
+\end{equation}
+afrohet te $\mu$. Për variancë të fundme, teorema qendrore kufitare jep
+\begin{equation}
+ \frac{\sqrt N(\bar X_N-\mu)}{\sigma}\Rightarrow\mathcal N(0,1).
+\end{equation}
+Gabimi standard është $s/\sqrt N$. Katërfishimi i mostrave përgjysmon gabimin, një ligj që përcakton koston e Monte Carlo-s.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\textwidth]{15_teorema_qendrore.pdf}
+\caption{Shpërndarja e mesatares së ndryshoreve uniforme afrohet me formën Gauss kur rritet numri i termave.}
+\end{figure}
+
+\begin{kujdes}
+Formula $s/\sqrt N$ kërkon mostra të pavarura ose një korrigjim për korrelacionin. Në seri Markov, madhësia efektive e mostrës mund të jetë shumë më e vogël se $N$.
+\end{kujdes}
+
+\begin{lidhje}
+Laboratori simulon hedhjen e monedhës, ndërton intervale besimi dhe kontrollon shkallëzimin $N^{-1/2}$. Diskutohet dallimi ndërmjet luhatjes fizike dhe gabimit të vlerësuesit.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Dalloni devijimin standard të popullatës nga gabimi standard i mesatares.
+\item Kur kovarianca është thelbësore në përhapjen e pacaktueshmërisë?
+\item Pse CLT nuk garanton konvergjencë të shpejtë për çdo shpërndarje?
+\end{enumerate}
+\input{chapters/alg_08}
+\input{chapters/zhvillim_08}
+\input{chapters/thellim_08}

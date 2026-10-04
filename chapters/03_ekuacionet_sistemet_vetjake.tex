@@ -1,0 +1,109 @@
+\chapter{Ekuacionet jolineare, sistemet lineare dhe vlerat vetjake}
+\begin{qellime}
+Studenti zbaton përgjysmimin, pikën fikse, Njutonin dhe sekanten; zgjidh sisteme lineare me eliminim e faktorizim; interpreton kushtëzimin; llogarit vlera e vektorë vetjakë me metodën fuqi dhe algoritmin QR.
+\end{qellime}
+
+\section{Ekuacioni skalar $f(x)=0$}
+Rrënja është pikë ku modeli plotëson një kusht fizik: ekuilibër force, energji e caktuar, kohë goditjeje ose parametër kalibrimi. Metoda duhet zgjedhur sipas informacionit të disponueshëm, intervalit të sigurt dhe kostos së vlerësimit të funksionit.
+
+\subsection{Përgjysmimi}
+Nëse $f$ është e vazhdueshme dhe $f(a)f(b)<0$, ekziston të paktën një rrënjë në $[a,b]$. Pas $n$ hapash,
+\begin{equation}
+ |x_n-x_*|\le \frac{b-a}{2^{n+1}}.
+\end{equation}
+Metoda është e ngadaltë, por robuste. Ajo nuk dallon rrënjët me shumëfish çift, sepse shenja mund të mos ndryshojë.
+
+\begin{shembull}[Algoritmi i përgjysmimit]
+Jepen $f$, $a$, $b$ dhe toleranca $\tau$, me $f(a)f(b)<0$. Për sa kohë $(b-a)/2>\tau$, vendoset $c=(a+b)/2$. Nëse $f(a)f(c)\le0$, zëvendësohet $b$ me $c$; përndryshe zëvendësohet $a$ me $c$. Në fund kthehet $(a+b)/2$.
+\end{shembull}
+
+\subsection{Pika fikse dhe Njutoni}
+Shkrimi $x=g(x)$ jep iteracionin $x_{n+1}=g(x_n)$. Konvergjenca lokale kërkon $|g'(x_*)|<1$. Përzgjedhja e $g$ është pjesë e metodës; forma algjebrike e papërshtatshme mund të divergojë.
+
+Linearizimi i $f$ rreth $x_n$ jep metodën e Njutonit,
+\begin{equation}
+ x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.
+\end{equation}
+Pranë një rrënje të thjeshtë, gabimi është kuadratik: $|e_{n+1}|\approx C|e_n|^2$. Megjithatë, derivati i vogël, pika fillestare e keqe ose dalja nga domeni mund ta dështojnë metodën. Një strategji praktike kombinon intervalin e përgjysmimit me hapin e Njutonit.
+
+Sekantja zëvendëson derivatin me pjerrësinë ndërmjet dy pikave. Ajo nuk kërkon derivat dhe ka rend konvergjence $\varphi=(1+\sqrt5)/2$.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.75\textwidth]{03_konvergjenca_rrenjeve.pdf}
+\caption{Konvergjenca lineare e përgjysmimit dhe konvergjenca e shpejtë e Njutonit për $\cos x-x=0$.}
+\end{figure}
+
+\section{Sistemet jolineare}
+Për $\vect F(\vect x)=\vect0$, linearizimi përdor Jakobin $J_{ij}=\partial F_i/\partial x_j$:
+\begin{equation}
+ J(\vect x_k)\Delta\vect x_k=-\vect F(\vect x_k),\qquad
+ \vect x_{k+1}=\vect x_k+\Delta\vect x_k.
+\end{equation}
+Në çdo hap zgjidhet një sistem linear; inversi nuk formohet. Shkallëzimi i ndryshoreve është i rëndësishëm kur komponentët kanë njësi ose madhësi shumë të ndryshme. Në probleme të vështira përdoret amortizimi $\vect x_{k+1}=\vect x_k+\lambda\Delta\vect x_k$, $0<\lambda\le1$.
+
+\begin{shembull}[Ekuilibri mekanik]
+Për dy masa të lidhura me susta jolineare, $\vect F(\vect x)$ përmbledh forcat neto. Jakobiani është matrica e ngurtësisë tangjente. Konvergjenca e Njutonit tregon jo vetëm zgjidhjen, por edhe afërsinë ndaj humbjes së stabilitetit kur $J$ bëhet pothuaj singular.
+\end{shembull}
+
+\section{Sistemet lineare}
+Eliminimi i Gausit e shndërron $A$ në formë trekëndore. Pivotimi i pjesshëm zgjedh elementin me modul më të madh në kolonën aktive dhe shmang pjesëtimin me numra të vegjël. Faktorizimi shkruhet
+\begin{equation}
+ PA=LU,
+\end{equation}
+ku $P$ është matricë permutimi, $L$ trekëndore e poshtme dhe $U$ trekëndore e sipërme. Për shumë anë të djathta, faktorizimi kryhet një herë dhe zëvendësimet përsëriten.
+
+Për matrica simetrike pozitivisht të përcaktuara përdoret Cholesky,
+\begin{equation}
+ A=LL^T,
+\end{equation}
+që shfrytëzon simetrinë dhe ka rreth gjysmën e kostos së LU. Kostoja e faktorizimit të një matrice të dendur $n\times n$ është $\Oh(n^3)$; ruajtja është $\Oh(n^2)$.
+
+\begin{kujdes}
+Determinanti i vogël nuk është masë e mirë e kushtëzimit, sepse varet nga shkalla. Përdoret $\kappa(A)$ ose vlera singulare më e vogël. Gjithashtu, një mbetje e vogël $\vect r=\vect b-A\tilde{\vect x}$ nuk garanton gabim të vogël kur $A$ është e keqkushtëzuar.
+\end{kujdes}
+
+\section{Vlerat dhe vektorët vetjakë}
+Problemi
+\begin{equation}
+ A\vect v=\lambda\vect v
+\end{equation}
+shfaqet në modet normale, stabilitet, mekanikë kuantike dhe analiza të rrjeteve. Për një sistem masë--sustë,
+\begin{equation}
+ K\vect u=\omega^2 M\vect u.
+\end{equation}
+Vektorët vetjakë janë format modale; vlerat vetjake japin frekuencat katrore.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.72\textwidth]{05_modet_normale.pdf}
+\caption{Mode normale të një sistemi njëpërmasor me skaje të fiksuara.}
+\end{figure}
+
+\subsection{Metoda fuqi}
+Iteracioni $\vect x_{k+1}=A\vect x_k/\|A\vect x_k\|$ izolon vektorin e lidhur me vlerën vetjake me modul më të madh, nëse komponenti fillestar përkatës nuk është zero. Shpejtësia përcaktohet nga $|\lambda_2/\lambda_1|$. Vlera vlerësohet me kuocientin Rayleigh
+\begin{equation}
+ \rho(\vect x)=\frac{\vect x^T A\vect x}{\vect x^T\vect x}.
+\end{equation}
+
+\subsection{Algoritmi QR}
+Faktorizimi $A_k=Q_kR_k$ dhe përditësimi $A_{k+1}=R_kQ_k$ prodhojnë matrica të ngjashme, pra me të njëjtat vlera vetjake. Për matrica simetrike, $A_k$ afrohet drejt formës diagonale. Në praktikë përdoren reduktimi Hessenberg/tridiagonal dhe zhvendosjet për konvergjencë të shpejtë.
+
+\section{Renditja e faqeve si problem vetjak}
+Një matricë kalimi $P$ përshkruan probabilitetin e kalimit ndërmjet faqeve. Vektori stacionar plotëson $\vect p=P\vect p$. Faktori i amortizimit shmang nyjet pa dalje dhe komponentët e shkëputur:
+\begin{equation}
+ G=\alpha P+(1-\alpha)\frac{\vect1\vect1^T}{n}.
+\end{equation}
+Metoda fuqi mbi $G$ jep renditjen. Ky shembull lidh algjebrën lineare, zinxhirët Markov dhe simulimin.
+
+\begin{lidhje}
+Laboratori ndërton sistemin masë--sustë, verifikon simetrinë, llogarit frekuencat dhe vizaton modet. Një ushtrim shtesë ndërton një rrjet të vogël faqesh dhe krahason iteracionin e fuqisë me zgjidhjen e drejtpërdrejtë.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Kur preferohet përgjysmimi ndaj Njutonit?
+\item Pse pivotimi është pjesë e qëndrueshmërisë së eliminimit?
+\item Çfarë përcakton shpejtësinë e metodës fuqi?
+\end{enumerate}
+\input{chapters/alg_03}
+\input{chapters/zhvillim_03}
+\input{chapters/thellim_03}

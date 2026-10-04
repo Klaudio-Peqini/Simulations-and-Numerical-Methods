@@ -1,0 +1,54 @@
+\section{Algoritmi me diferenca të fundme për valën}
+\subsection{Zbatimi vektorial}
+\begin{lstlisting}[language=Python,caption={Skema eksplicite e valës me skaje të fiksuara.}]
+def vale_1d(u0, v0, c, dx, dt, n_hapa):
+    r = c*dt/dx
+    if r > 1.0:
+        raise ValueError("Shkelet kushti CFL: c*dt/dx <= 1.")
+    u0 = np.asarray(u0, float)
+    u_prev = u0.copy()
+    lap = u0[2:] - 2*u0[1:-1] + u0[:-2]
+    u = u0.copy()
+    u[1:-1] = u0[1:-1] + dt*v0[1:-1] + 0.5*r*r*lap
+    u[[0, -1]] = 0.0
+    historia = [u_prev.copy(), u.copy()]
+    for _ in range(1, n_hapa):
+        u_next = np.zeros_like(u)
+        u_next[1:-1] = (2*u[1:-1] - u_prev[1:-1]
+                          + r*r*(u[2:] - 2*u[1:-1] + u[:-2]))
+        u_prev, u = u, u_next
+        historia.append(u.copy())
+    return np.asarray(historia)
+\end{lstlisting}
+
+\subsection{Kontrollet numerike}
+Skema kontrollohet në katër nivele:
+\begin{enumerate}
+\item kufijtë plotësohen në çdo hap;
+\item amplituda nuk rritet pa shkak për $r\le1$;
+\item shpejtësia e pulsit afrohet me $c$ kur rafinohet rrjeta;
+\item energjia diskrete mbetet afërsisht konstante për kufij reflektues.
+\end{enumerate}
+Një energji diskrete e dobishme është
+\begin{equation}
+ E^n=\frac12\sum_j\left(\frac{u_j^{n+1}-u_j^n}{\Delta t}\right)^2\Delta x
+ +\frac{c^2}{2}\sum_j\left(\frac{u_{j+1}^n-u_j^n}{\Delta x}\right)^2\Delta x.
+\end{equation}
+
+\subsection{Matja e reflektimit}
+Në dy sonda, një para dhe një pas ndërfaqes, regjistrohet $u(t)$. Amplituda incidente merret para mbërritjes së reflektimit, ndërsa amplituda e reflektuar në një dritare të vonuar. Koeficienti i amplitudës është $R_A=A_r/A_i$ dhe ai i energjisë $R_E\approx R_A^2$ vetëm kur impedancat janë të njëjta.
+
+\begin{lstlisting}[language=Python]
+def amplitude_dritare(sinjal, i0, i1):
+    segment = sinjal[i0:i1]
+    return 0.5*(segment.max() - segment.min())
+\end{lstlisting}
+
+\subsection{Reflektimi nga plazma}
+Për një frekuencë të vetme, së pari llogaritet $\omega_p$ dhe parashikohet nëse vala duhet të përhapet. Simulimi nuk interpretohet para se të testohet vakumi dhe kufiri thithës. Në notebook, dendësia elektronike ndryshohet gradualisht dhe ndërtohet grafiku $R(\omega/\omega_p)$.
+
+\begin{lidhje}
+I njëjti funksion duhet të përdoret për valën bredhëse, valën e qëndrueshme dhe ndërfaqen e plazmës; ndryshojnë vetëm hyrjet dhe kushtet kufitare. Kjo e bën krahasimin fizik të kontrolluar.
+\end{lidhje}
+
+Diskretizimi dhe terminologjia e ekuacioneve me derivate të pjesshme mbështeten te tradita e analizës numerike në shqip \cite{hoxha,hanelli,naco}; pjesa e valëve dhe plazmës plotësohet me tekstet e fizikës llogaritëse \cite{giordano,landau}.

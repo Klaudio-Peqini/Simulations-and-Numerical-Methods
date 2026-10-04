@@ -1,0 +1,90 @@
+\subsection{Ndërtimi i Metropolis--Hastings nga balanca e detajuar}
+Synohet shpërndarja $\pi(x)$, e njohur deri në një konstante normalizimi. Nga gjendja $x$ propozohet $y\sim q(y|x)$ dhe pranohet me probabilitet
+\begin{equation}
+ \alpha(x,y)=\min\left\{1,
+ \frac{\pi(y)q(x|y)}{\pi(x)q(y|x)}\right\}.
+\end{equation}
+Për $x\ne y$, kerneli i kalimit është $T(x,y)=q(y|x)\alpha(x,y)$. Nëse raporti është më i vogël se një,
+\begin{equation}
+ \pi(x)T(x,y)=\pi(x)q(y|x)
+ \frac{\pi(y)q(x|y)}{\pi(x)q(y|x)}
+ =\pi(y)q(x|y),
+\end{equation}
+ndërsa kalimi i kundërt pranohet me probabilitet një. Rasti tjetër është simetrik; kështu vlen balanca e detajuar. Probabiliteti i refuzimit vendos masën e mbetur në $T(x,x)$ dhe siguron normalizimin.
+
+Kur $q(y|x)=q(x|y)$, raporti i propozimit anulohet. Për shpërndarjen Boltzmann $\pi(x)\propto e^{-\beta E(x)}$ merret
+\begin{equation}
+ \alpha=\min\{1,e^{-\beta\Delta E}\}.
+\end{equation}
+Konstantja e ndarjes nuk llogaritet: ky është një nga avantazhet kryesore të MCMC.
+
+\subsection{Zgjedhja e propozimit, pranimi dhe përzierja}
+Një hap shumë i vogël pranohet shpesh, por lëviz ngadalë; një hap shumë i madh refuzohet shpesh. Norma e pranimit nuk është objektivi i vetëm. Duhet parë largësia e përshkuar, autokorrelacioni dhe $N_{\mathrm{eff}}$ për koston llogaritëse. Propozimi duhet të ruajë mbështetjen e synuar dhe ta bëjë zinxhirin të pakthyeshëm e aperiodik.
+
+Termalizimi hiqet vetëm pas kontrollit të trajektoreve nga gjendje të shpërndara. Pastaj maten observablat në pjesën stacionare. Përfundimi shoqërohet me kohën e integruar të autokorrelacionit, madhësinë efektive dhe, kur është e mundur, krahasimin e shumë zinxhirëve.
+
+\subsection{Modeli Ising dydimensional}
+Në një rrjet katror me $N=L^2$ spine $s_i=\pm1$ dhe kufij periodikë,
+\begin{equation}
+ E=-J\sum_{\langle i,j\rangle}s_is_j-H\sum_i s_i,
+ \qquad M=\sum_i s_i.
+\end{equation}
+Çdo lidhje numërohet një herë. Kur përmbyset spini $s_i$, vetëm lidhjet lokale ndryshojnë dhe
+\begin{equation}
+ \Delta E=2s_i\left(J\sum_{j\in\mathrm{fq}(i)}s_j+H\right).
+\end{equation}
+Ky rezultat shmang rillogaritjen e energjisë së gjithë rrjetit dhe ul koston e një prove nga $\Oh(N)$ në $\Oh(1)$. Një sweep përmban $N$ prova, pra kushton $\Oh(N)$.
+
+Observablat termodinamike për spin janë
+\begin{equation}
+ e=\frac{\langle E\rangle}{N},\qquad
+ m=\frac{\langle |M|\rangle}{N},
+\end{equation}
+\begin{equation}
+ C_V=\frac{\beta^2}{N}\left(\langle E^2\rangle-\langle E\rangle^2\right),
+ \qquad
+ \chi=\frac{\beta}{N}\left(\langle M^2\rangle-\langle M\rangle^2\right).
+\end{equation}
+Përdorimi i $|M|$ në magnetizim shmang anulimin ndërmjet dy fazave të simetrisë në një rrjet të fundëm, por për susceptibilitetin duhet deklaruar qartë nëse përdoret $M$ apo $|M|$.
+
+\subsection{Gabimet e matjeve të korreluara}
+Mesatarja e energjisë nuk ka gabim $s_E/\sqrt{N_{\mathrm{matjeve}}}$ kur konfigurimet vijnë nga i njëjti zinxhir. Përdoret
+\begin{equation}
+ \operatorname{SE}(\overline E)=
+ \sqrt{\frac{2\tau_{\mathrm{int},E}\Var(E)}{N_{\mathrm{matjeve}}}}.
+\end{equation}
+Për $C_V$ dhe $\chi$, që janë funksione jolineare të momenteve, bllokimi ose jackknife ruan korrelacionet dhe përhap pacaktueshmërinë. Madhësia e bllokut duhet të jetë dukshëm më e madhe se koha e autokorrelacionit; qëndrueshmëria e gabimit ndaj rritjes së bllokut është diagnostikë.
+
+\subsection{Ngadalësimi kritik dhe madhësia e fundme}
+Pranë temperaturës kritike, gjatësia e korrelacionit rritet dhe përditësimet lokale ndryshojnë vetëm ngadalë domenet e mëdha. Koha e autokorrelacionit rritet afërsisht si $\tau\sim L^z$. Ky ngadalësim kritik ul rëndë $N_{\mathrm{eff}}$. Algoritmet e grupimeve Wolff ose Swendsen--Wang përmbysin rajone të korreluara dhe mund ta zvogëlojnë këtë efekt, por Metropolis-i mbetet themeli pedagogjik për balancën e detajuar.
+
+Për rrjet të fundëm nuk ka singularitet të vërtetë. Kulmet e $C_V$ dhe $\chi$ zhvendosen dhe mprehen me $L$. Prandaj një temperaturë kritike e vlerësuar nga një rrjet i vetëm është rezultat me efekt madhësie të fundme, jo kufiri termodinamik.
+
+\begin{lstlisting}[language=Python,caption={Një sweep Metropolis për modelin Ising.}]
+import numpy as np
+
+def sweep_metropolis(spin, beta, rng, J=1.0, H=0.0):
+    L = spin.shape[0]
+    for _ in range(L * L):
+        i = rng.integers(L); j = rng.integers(L)
+        fqinjet = (spin[(i+1) % L, j] + spin[(i-1) % L, j]
+                 + spin[i, (j+1) % L] + spin[i, (j-1) % L])
+        delta_E = 2.0 * spin[i, j] * (J * fqinjet + H)
+        if delta_E <= 0.0 or rng.random() < np.exp(-beta * delta_E):
+            spin[i, j] *= -1
+    return spin
+\end{lstlisting}
+
+\subsection{Protokolli i një studimi të riprodhueshëm}
+Një studim termik duhet të deklarojë $L$, $J$, $H$, temperaturat, farat, gjendjet fillestare, numrin e sweeps të termalizimit, numrin e matjeve dhe mënyrën e vlerësimit të autokorrelacionit. Duhet provuar energjia lokale ndaj rillogaritjes së plotë në rrjete të vogla, të krahasohen kufijtë $T\to0$ dhe $T\to\infty$, dhe të kontrollohet simetria $M\leftrightarrow-M$ kur $H=0$.
+
+\subsection{Përmbledhje dhe ushtrime}
+Metropolis--Hastings ndërton një dinamikë artificiale me shpërndarje stacionare të zgjedhur. Koha Monte Carlo nuk është domosdoshmërisht kohë fizike; interpretimi termodinamik vjen nga shpërndarja e ekuilibrit.
+\begin{enumerate}
+\item Provoni balancën e detajuar për raportin e përgjithshëm Hastings.
+\item Nxirrni $\Delta E$ për përmbysjen e një spini dhe kontrolloni numërimin e dyfishtë të lidhjeve.
+\item Matni $\tau_{\mathrm{int}}$ të energjisë dhe magnetizimit në disa temperatura.
+\item Krahasoni nisjen e renditur dhe të çrregullt për të përcaktuar termalizimin.
+\item Kryeni studim me disa $L$ dhe diskutoni zhvendosjen e kulmit të susceptibilitetit.
+\item Implementoni bllokimin ose jackknife për pacaktueshmërinë e kapacitetit termik.
+\end{enumerate}

@@ -1,0 +1,61 @@
+\section{Algoritmet e diferencimit dhe kuadraturës}
+\subsection{Derivati qendror dhe studimi i hapit}
+\begin{lstlisting}[language=Python,caption={Gabimi i derivatit qendror për një varg hapash.}]
+import numpy as np
+
+def derivat_qendror(f, x, h):
+    return (f(x + h) - f(x - h)) / (2.0*h)
+
+f = np.sin
+x0 = 1.0
+h = np.logspace(-16, -1, 200)
+D = derivat_qendror(f, x0, h)
+gabimi = np.abs(D - np.cos(x0))
+h_opt = h[np.argmin(gabimi)]
+print("h optimal empirik =", h_opt)
+\end{lstlisting}
+Grafiku $E(h)$ duhet të paraqitet në bosht log--log. Në zonën e këputjes pritet pjerrësi afërsisht 2; në zonën e rrumbullakimit gabimi rritet kur $h$ zvogëlohet.
+
+\subsection{Rregulli i përbërë i Simpsonit}
+\begin{lstlisting}[language=Python,caption={Integrimi Simpson me kontrollin e numrit çift të nënintervaleve.}]
+def simpson(f, a, b, n):
+    if n <= 0 or n % 2 != 0:
+        raise ValueError("n duhet te jete numer pozitiv çift.")
+    x = np.linspace(a, b, n + 1)
+    y = f(x)
+    h = (b - a) / n
+    return h/3 * (y[0] + y[-1]
+                  + 4*np.sum(y[1:-1:2])
+                  + 2*np.sum(y[2:-2:2]))
+
+for n in [4, 8, 16, 32, 64]:
+    I = simpson(np.sin, 0.0, np.pi, n)
+    print(n, I, abs(I - 2.0))
+\end{lstlisting}
+
+\subsection{Vlerësimi Runge i gabimit}
+Nëse metoda ka rend $p$, dy llogaritje me $h$ dhe $h/2$ japin
+\begin{equation}
+ E_{h/2}\approx\frac{|A(h/2)-A(h)|}{2^p-1}.
+\end{equation}
+Ky vlerësim është i vlefshëm vetëm në regjimin asimptotik. Prandaj kontrollohet edhe raporti i gabimeve për tri hapa radhazi.
+
+\begin{lstlisting}[language=Python]
+def studim_konvergjence(llogarit, ns, p):
+    v = np.array([llogarit(n) for n in ns])
+    e_runge = np.abs(v[1:] - v[:-1]) / (2**p - 1)
+    return v, e_runge
+\end{lstlisting}
+
+\subsection{Kuadratura e Gausit}
+\begin{lstlisting}[language=Python,caption={Gauss--Legendre në një interval të përgjithshëm.}]
+from numpy.polynomial.legendre import leggauss
+
+def gauss_legendre(f, a, b, n):
+    xi, w = leggauss(n)
+    x = 0.5*(b-a)*xi + 0.5*(a+b)
+    return 0.5*(b-a) * np.sum(w * f(x))
+\end{lstlisting}
+Në notebook krahasohen numri i vlerësimeve të funksionit, gabimi dhe koha e ekzekutimit. Kjo e lidh kuadraturën klasike me motivimin për Monte Carlo në dimension të lartë.
+
+Formulat dhe emërtimet shqip të diferencimit e integrimit numerik mbështeten te \cite{hanelli,hoxha,datja}; interpretimi fizik dhe krahasimi me Monte Carlo plotësohen nga \cite{newman,press}.

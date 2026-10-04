@@ -1,0 +1,92 @@
+\subsection{Interpolimi i Lagranzhit dhe termi i mbetjes}
+Për nyje të ndryshme $x_0,\ldots,x_n$, polinomi interpolues është
+\begin{equation}
+ p_n(x)=\sum_{i=0}^{n}f(x_i)L_i(x),\qquad
+ L_i(x)=\prod_{j\ne i}\frac{x-x_j}{x_i-x_j}.
+\end{equation}
+Vërtetimi është i drejtpërdrejtë: $L_i(x_j)=\delta_{ij}$, prandaj $p_n(x_j)=f(x_j)$. Uniciteti rrjedh sepse diferenca e dy polinomeve interpoluese do të kishte $n+1$ rrënjë, por gradë jo më të madhe se $n$.
+
+Nëse $f\in C^{n+1}$, gabimi në një pikë $x$ është
+\begin{equation}
+ f(x)-p_n(x)=\frac{f^{(n+1)}(\xi_x)}{(n+1)!}
+ \omega_{n+1}(x),\qquad
+ \omega_{n+1}(x)=\prod_{i=0}^{n}(x-x_i).
+\end{equation}
+Kjo formulë ndan dy burime: lëmueshmërinë e funksionit dhe gjeometrinë e nyjeve. Nyjet e baraslarguara mund ta bëjnë $\omega_{n+1}$ shumë të madhe pranë skajeve; nyjet e Çebishevit e kontrollojnë këtë faktor dhe zbusin dukurinë Runge.
+
+Forma baricentrike
+\begin{equation}
+ p_n(x)=\frac{\sum_i w_i f_i/(x-x_i)}{\sum_i w_i/(x-x_i)},
+ \qquad w_i=\left[\prod_{j\ne i}(x_i-x_j)\right]^{-1},
+\end{equation}
+është numerikisht më e përshtatshme se zgjerimi i polinomit në fuqi. Nëse $x$ përkon me një nyje, kthehet drejtpërdrejt $f_i$ për të shmangur pjesëtimin me zero.
+
+\subsection{Interpolimi Hermitian dhe ekstrapolimi i Richardson-it}
+Interpolimi Hermitian përdor jo vetëm $f(x_i)$, por edhe derivate. Për dy nyje dhe vlera të derivateve ndërtohet një polinom kub. Në formë të përgjithshme, nyjet përsëriten në tabelën e diferencave të pjesëtuara dhe diferenca e parë në një nyje të përsëritur zëvendësohet nga $f'(x_i)$.
+
+Ekstrapolimi nis nga një përafrim me zhvillim asimptotik
+\begin{equation}
+ A(h)=A+c_ph^p+c_{p+1}h^{p+1}+\cdots.
+\end{equation}
+Dy vlera me hapa $h$ dhe $h/r$ japin
+\begin{equation}
+ A_{\mathrm{R}}=\frac{r^pA(h/r)-A(h)}{r^p-1}
+ =A+\Oh(h^{p+1}),
+\end{equation}
+ose rend edhe më të lartë kur zhvillimi përmban vetëm fuqi çifte. Kjo është ideja pas derivimit të përmirësuar dhe integrimit Romberg. Ekstrapolimi nuk duhet zbatuar jashtë regjimit asimptotik; nëse hapi është shumë i madh, modeli i gabimit nuk vlen, ndërsa për hap tepër të vogël dominon rrumbullakimi.
+
+\subsection{Katrorët më të vegjël dhe QR}
+Për modelin linear $\vect y=X\vect\beta+\vect\varepsilon$, minimizohet
+\begin{equation}
+ S(\vect\beta)=\|\vect y-X\vect\beta\|_2^2.
+\end{equation}
+Gradienti është $\nabla S=-2X^T(\vect y-X\vect\beta)$. Kushti $\nabla S=0$ jep ekuacionet normale
+\begin{equation}
+ X^TX\widehat{\vect\beta}=X^T\vect y.
+\end{equation}
+Gjeometrikisht, mbetja është ortogonale me hapësirën e kolonave të $X$. Megjithatë, $\kappa(X^TX)=\kappa(X)^2$, prandaj formimi i ekuacioneve normale përkeqëson kushtëzimin. Me $X=QR$, ku $Q^TQ=I$, zgjidhet
+\begin{equation}
+ R\widehat{\vect\beta}=Q^T\vect y,
+\end{equation}
+pa katrorëzuar numrin e kushtëzimit.
+
+Nëse gabimet kanë kovariancë $\Sigma$, kriteri i peshuar është
+\begin{equation}
+ (\vect y-X\vect\beta)^T\Sigma^{-1}(\vect y-X\vect\beta).
+\end{equation}
+Kjo formulë tregon se peshat nuk janë dekorim: ato përfaqësojnë modelin probabilitar të matjeve. Kur gabimet kanë shpërndarje Gauss, katrorët më të vegjël përkojnë me vlerësimin e gjasës më të madhe.
+
+\subsection{Shmangiet minimale absolute}
+Kriteri
+\begin{equation}
+ \min_{\vect\beta}\sum_{i=1}^{n}|y_i-\vect x_i^T\vect\beta|
+\end{equation}
+është më pak i ndjeshëm ndaj vlerave ekstreme se kriteri kuadratik. Duke futur $u_i\ge0$ me
+\begin{equation}
+ -u_i\le y_i-\vect x_i^T\vect\beta\le u_i,
+\end{equation}
+problemi bëhet programim linear me objektiv $\min\sum_i u_i$. Funksioni absolut nuk është i derivueshëm në zero, prandaj nuk duhet trajtuar verbërisht me ekuacionet normale.
+
+\begin{lstlisting}[language=Python,caption={Përshtatje lineare me QR dhe diagnostikë të mbetjeve.}]
+import numpy as np
+
+def pershtatje_qr(x, y):
+    x = np.asarray(x, float); y = np.asarray(y, float)
+    X = np.column_stack((np.ones_like(x), x))
+    Q, R = np.linalg.qr(X, mode="reduced")
+    beta = np.linalg.solve(R, Q.T @ y)
+    mbetje = y - X @ beta
+    sigma2 = (mbetje @ mbetje) / (len(y) - X.shape[1])
+    kov_beta = sigma2 * np.linalg.inv(R) @ np.linalg.inv(R).T
+    return beta, mbetje, kov_beta
+\end{lstlisting}
+
+\subsection{Përmbledhje dhe ushtrime}
+Interpolimi supozon se të dhënat duhet të kalohen saktësisht; regresi pranon mbetje dhe kërkon një model të tyre. Zgjedhja nuk është thjesht numerike, por lidhet me kuptimin e të dhënave.
+\begin{enumerate}
+\item Vërtetoni formulën e mbetjes së Lagranzhit duke ndërtuar një funksion me $n+2$ zero.
+\item Krahasoni nyjet e baraslarguara dhe të Çebishevit për funksionin Runge.
+\item Nxirrni Richardson-in për një metodë të rendit të dytë dhe ndërtoni tabelën Romberg.
+\item Përshtatni ligjin e tretë të Keplerit në shkallë lineare dhe logaritmike; diskutoni modelin e gabimit në secilin rast.
+\item Formuloni regresin me shmangie minimale absolute si program linear.
+\end{enumerate}

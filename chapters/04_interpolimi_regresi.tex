@@ -1,0 +1,78 @@
+\chapter{Interpolimi, regresi dhe përshtatja e modeleve}
+\begin{qellime}
+Studenti ndërton polinomin e Lagranzhit dhe interpolimin Hermitian; dallon interpolimin nga regresi; zbaton katrorët më të vegjël linearë e jolinearë; interpreton mbetjet, peshat dhe pacaktueshmërinë e parametrave.
+\end{qellime}
+
+\section{Interpolimi polinomial}
+Për nyje të dallueshme $(x_i,y_i)$ ekziston një polinom unik me gradë jo më të madhe se $n$ që kalon në $n+1$ pika. Forma e Lagranzhit është
+\begin{equation}
+ p_n(x)=\sum_{i=0}^{n}y_iL_i(x),\qquad
+ L_i(x)=\prod_{j\ne i}\frac{x-x_j}{x_i-x_j}.
+\end{equation}
+Gabimi për $f\in C^{n+1}$ është
+\begin{equation}
+ f(x)-p_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x-x_i).
+\end{equation}
+Formula tregon rolin e lëmueshmërisë dhe të vendosjes së nyjeve. Rritja e gradës në nyje të baraslarguara mund të përkeqësojë përafrimin pranë skajeve: fenomeni Runge.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\textwidth]{06_interpolimi_runge.pdf}
+\caption{Interpolimi i funksionit Runge. Nyjet e Çebishevit zvogëlojnë lëkundjet në skaje.}
+\end{figure}
+
+Në llogaritje përdoret forma baricentrike, jo prodhimi i drejtpërdrejtë i polinomeve bazë. Për grupe të mëdha të dhënash preferohen splinet kubike, të cilat përdorin polinome lokale dhe ruajnë vazhdimësinë e dy derivateve të para.
+
+\section{Interpolimi Hermitian dhe ekstrapolimi}
+Interpolimi Hermitian përdor edhe vlerat e derivateve. Për dy pika, polinomi kubik përcaktohet nga $f(x_0)$, $f'(x_0)$, $f(x_1)$ dhe $f'(x_1)$. Kjo është bazë për trajektore të lëmuara dhe skema integrimi.
+
+Ekstrapolimi vlerëson jashtë intervalit të të dhënave dhe është shumë më i rrezikshëm. Ekstrapolimi Richardson shfrytëzon një zhvillim të njohur të gabimit,
+\begin{equation}
+ A(h)=A+c h^p+\Oh(h^{p+1}),qquad
+ A\approx\frac{2^pA(h/2)-A(h)}{2^p-1}.
+\end{equation}
+Ai përdoret për të rritur rendin ose për të vlerësuar kufirin $h\to0$.
+
+\section{Regresi linear}
+Në regres, pikat nuk kërkohet të kalohen saktësisht. Modeli $\vect y=X\vect\beta+\vect\varepsilon$ përshtatet duke minimizuar
+\begin{equation}
+ S(\vect\beta)=\|X\vect\beta-\vect y\|_2^2.
+\end{equation}
+Ekuacionet normale janë $X^TX\hat{\vect\beta}=X^T\vect y$, por formimi i $X^TX$ katrorëzon numrin e kushtëzimit. Faktorizimi QR është më i qëndrueshëm. Kur devijimet standarde $\sigma_i$ njihen, minimizohet
+\begin{equation}
+ \chi^2=\sum_i\frac{[y_i-f(x_i;\vect\beta)]^2}{\sigma_i^2}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.72\textwidth]{07_regresioni_kepler.pdf}
+\caption{Linearizimi logaritmik i $T^2\propto a^3$. Pjerrësia e pritur për $\ln T$ kundrejt $\ln a$ është $3/2$.}
+\end{figure}
+
+\begin{shembull}[Ligji i tretë i Keplerit]
+Modeli $T=C a^p$ bëhet $\ln T=\ln C+p\ln a$. Përshtatja jep $p$ dhe pacaktueshmërinë e tij. Transformimi logaritmik ndryshon strukturën e gabimit; nëse gabimi është aditiv në $T$, përshtatja jolineare në shkallën origjinale mund të jetë më e përshtatshme.
+\end{shembull}
+
+\section{Mbetjet dhe diagnostika}
+Mbetjet $r_i=y_i-\hat y_i$ nuk janë mbeturina; ato testojnë modelin. Një strukturë sistematike në $r_i$ tregon jolinearitet të munguar, heteroskedasticitet, korrelacion ose pikë jashtë modelit. Koeficienti $R^2$ nuk mjafton për vleftësim dhe nuk duhet përdorur si provë shkakësie.
+
+Për gabime Gauss të pavarura me variancë $\sigma^2$, kovarianca e parametrave është afërsisht
+\begin{equation}
+ \Cov(\hat{\vect\beta})=\sigma^2(X^TX)^{-1}.
+\end{equation}
+Në modele jolineare përdoret Jakobiani në optimum, bootstrap-i ose kampionimi probabilitar.
+
+\section{Shmangiet minimale absolute}
+Minimizimi $\sum_i|r_i|$ është më robust ndaj pikave ekstreme se katrorët më të vegjël. Funksioni nuk është i derivueshëm në zero, por problemi mund të formulohet si program linear. Zgjedhja e humbjes shpreh një supozim statistik: $L_2$ lidhet me gabimin Gauss, ndërsa $L_1$ me shpërndarje me bishta më të rëndë.
+
+\begin{lidhje}
+Laboratori përdor të dhëna planetare, përshtat $T=C a^p$, vizaton mbetjet dhe krahason regresin e papeshuar, të peshuar dhe një përshtatje robuste.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Pse interpolimi me gradë të lartë mund të dështojë edhe për funksion të lëmuar?
+\item Kur linearizimi logaritmik ndryshon interpretimin statistik të gabimit?
+\item Çfarë informacioni japin mbetjet që nuk e jep $R^2$?
+\end{enumerate}
+\input{chapters/alg_04}
+\input{chapters/zhvillim_04}
+\input{chapters/thellim_04}

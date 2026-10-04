@@ -1,0 +1,70 @@
+\section{Algoritmet kryesore dhe zbatimi në Python}
+Ky kapitull përmban tri familje problemesh. Secila kërkon një kriter ndalimi të lidhur me mbetjen, jo vetëm me ndryshimin ndërmjet dy iteracioneve.
+
+\subsection{Përgjysmimi dhe Njutoni i mbrojtur}
+\begin{lstlisting}[language=Python,caption={Përgjysmimi me kontroll të intervalit.}]
+def pergjysmimi(f, a, b, tol=1e-12, max_iter=200):
+    fa, fb = f(a), f(b)
+    if fa * fb > 0:
+        raise ValueError("Intervali nuk kufizon nje ndryshim shenje.")
+    for _ in range(max_iter):
+        c = 0.5 * (a + b)
+        fc = f(c)
+        if abs(fc) < tol or 0.5*(b-a) < tol:
+            return c
+        if fa * fc <= 0:
+            b, fb = c, fc
+        else:
+            a, fa = c, fc
+    raise RuntimeError("Nuk u arrit konvergjenca.")
+\end{lstlisting}
+
+\begin{lstlisting}[language=Python,caption={Njutoni me kontroll të derivatit.}]
+def njutoni(f, df, x, tol=1e-12, max_iter=50):
+    for _ in range(max_iter):
+        fx, dfx = f(x), df(x)
+        if abs(fx) < tol:
+            return x
+        if abs(dfx) < np.sqrt(np.finfo(float).eps):
+            raise ArithmeticError("Derivat shume i vogel.")
+        hapi = -fx / dfx
+        x = x + hapi
+        if abs(hapi) < tol * (1 + abs(x)):
+            return x
+    raise RuntimeError("Nuk u arrit konvergjenca.")
+\end{lstlisting}
+Në një zbatim robust, hapi i Njutonit pranohet vetëm nëse qëndron brenda intervalit dhe zvogëlon mbetjen; përndryshe kryhet një përgjysmim.
+
+\subsection{Zgjidhja e sistemit linear}
+\begin{lstlisting}[language=Python,caption={Zgjidhja dhe diagnostika pa formuar inversin.}]
+A = np.array([[4., -1., 0.], [-1., 4., -1.], [0., -1., 3.]])
+b = np.array([15., 10., 10.])
+x = np.linalg.solve(A, b)
+r = b - A @ x
+print("x =", x)
+print("mbetja relative =", np.linalg.norm(r)/np.linalg.norm(b))
+print("kappa_2 =", np.linalg.cond(A))
+\end{lstlisting}
+Operatori \texttt{solve} përdor faktorizime të përshtatshme. Shkrimi \texttt{inv(A) @ b} shmanget.
+
+\subsection{Metoda fuqi}
+\begin{lstlisting}[language=Python,caption={Vlera vetjake dominante dhe kuocienti Rayleigh.}]
+def metoda_fuqi(A, tol=1e-11, max_iter=10_000):
+    x = np.ones(A.shape[0])
+    x /= np.linalg.norm(x)
+    lam_old = 0.0
+    for k in range(max_iter):
+        y = A @ x
+        x = y / np.linalg.norm(y)
+        lam = x @ A @ x
+        if abs(lam - lam_old) < tol * (1 + abs(lam)):
+            return lam, x, k + 1
+        lam_old = lam
+    raise RuntimeError("Metoda fuqi nuk konvergoi.")
+\end{lstlisting}
+Kontrolli përfundimtar është norma $\|A\vect x-\lambda\vect x\|$. Shenja e vektorit vetjak nuk ka kuptim fizik më vete: $\vect x$ dhe $-\vect x$ përfaqësojnë të njëjtin mod.
+
+\subsection{Lidhja me modet normale}
+Për $K\vect u=\omega^2M\vect u$, përdoret \texttt{scipy.linalg.eigh(K, M)} kur $K$ dhe $M$ janë simetrike dhe $M$ pozitivisht e përcaktuar. Frekuencat renditen, normalizohen dhe kontrollohet ortogonaliteti $U^TMU=I$.
+
+Rendi i paraqitjes së metodave të rrënjëve, sistemeve dhe vlerave vetjake ndjek traditën e teksteve shqip \cite{hanelli,hoxha,datja}; termat e algjebrës lineare numerike kontrollohen edhe kundrejt punimeve të Departamentit të Matematikës së Aplikuar të UT-së \cite{zeqiri2020}.

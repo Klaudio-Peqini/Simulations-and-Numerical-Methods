@@ -1,0 +1,34 @@
+\subsection{Kuadratura adaptive dhe vlerësimi lokal i gabimit}
+Një rrjet uniform harxhon pika në rajone ku funksioni është i lëmuar dhe mund të mos zgjidhë rajone me ndryshim të shpejtë. Kuadratura adaptive e ndan intervalin aty ku gabimi i vlerësuar është i madh. Për Simpsonin, le të jenë $S(a,b)$ vlerësimi në të gjithë intervalin dhe
+\begin{equation}
+ S_2=S(a,m)+S(m,b),\qquad m=\frac{a+b}{2}.
+\end{equation}
+Meqë gabimi kryesor shkallëzohet si $h^4$ globalisht, vlerësimi i Richardson-it është
+\begin{equation}
+ E\approx\frac{S_2-S(a,b)}{2^4-1}.
+\end{equation}
+Nëse $|E|$ është nën tolerancën lokale, pranohet $S_2+E$; përndryshe të dy gjysmat ndahen rekursivisht. Toleranca globale ndahet ndërmjet intervaleve, për shembull përgjysmohet në çdo degë. Duhet vendosur thellësi maksimale për të shmangur rekursion të pafundëm pranë singulariteteve ose zhurmës.
+
+Vlerësimi mund të dështojë kur dy rregullat japin rastësisht të njëjtin rezultat, kur funksioni ka një kulm shumë të ngushtë që nuk kapet nga pikat ose kur ka ndërprerje. Një algoritëm profesional kombinon rregulla të futura Gauss--Kronrod, zbulim të sjelljes së keqe dhe raport të statusit, jo vetëm një numër.
+
+\subsubsection{Integralet e papërshtatshme}
+Për një kufi të pafundëm, transformimi
+\begin{equation}
+ x=\frac{t}{1-t},\qquad \dd x=\frac{\dd t}{(1-t)^2},\qquad 0\le t<1,
+\end{equation}
+e kthen $[0,\infty)$ në $[0,1)$. Transformimi duhet zgjedhur sipas shuarjes së integrandit; Jakobi mund të krijojë një funksion të vështirë pranë $t=1$. Një alternativë është prerja në $R$ dhe kufizimi analitik i bishtit.
+
+Për singularitetin integrueshëm $x^{-1/2}$ në zero, zëvendësimi $x=t^2$ jep
+\begin{equation}
+ \int_0^1\frac{g(x)}{\sqrt x}\dd x
+ =2\int_0^1g(t^2)\dd t,
+\end{equation}
+që është i rregullt nëse $g$ është i lëmuar. Njohja e strukturës analitike është më efikase se zvogëlimi brutal i hapit.
+
+\subsubsection{Integralet shumëpërmasore}
+Rregulli tensorial me $n$ pika për bosht kërkon $n^d$ vlerësime në $d$ përmasa. Kjo është mallkimi i dimensionalitetit. Për dimensione të ulëta dhe integrandë të lëmuar, kuadratura tensoriale ose rrjetet e rralla mund të jenë shumë të sakta. Për dimensione të larta, Monte Carlo me gabim $N^{-1/2}$ bëhet konkurrues sepse eksponenti nuk varet shprehimisht nga $d$.
+
+Megjithatë, dimensioni ndikon përmes variancës dhe gjeometrisë. Nëse rajoni $D$ zë një pjesë jashtëzakonisht të vogël të kutisë kufizuese, metoda hit-or-miss ka variancë të madhe. Një parametrizim që gjeneron pika drejtpërdrejt në $D$ është shumë më efikas. Për një disk, përdorimi i $r=R\sqrt U$ dhe $\theta=2\pi V$ prodhon shpërndarje uniforme në sipërfaqe; zgjedhja $r=RU$ do të grumbullonte pika pranë qendrës.
+
+\subsubsection{Verifikimi me funksione prove}
+Një rutinë integrimi testohet me polinome të gradës së saktësisë, funksione periodike, kulme të ngushta dhe raste me zgjidhje të njohur. Rendi matet duke vizatuar gabimin ndaj hapit në shkallë log--log. Pjerrësia duhet të jetë pranë rendit teorik vetëm para se rrumbullakimi të dominojë. Raporti duhet të përmbajë numrin e vlerësimeve të funksionit; dy metoda me të njëjtin gabim mund të kenë kosto shumë të ndryshme.

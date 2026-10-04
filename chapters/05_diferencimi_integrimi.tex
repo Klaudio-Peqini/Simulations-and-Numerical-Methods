@@ -1,0 +1,83 @@
+\chapter{Diferencimi dhe integrimi numerik}
+\begin{qellime}
+Studenti nxjerr formulat e diferencave të fundme; analizon gabimin e këputjes dhe rrumbullakimit; zbaton trapezin, Simpsonin dhe kuadraturën e Gausit; zgjedh metodën sipas lëmueshmërisë dhe dimensionit.
+\end{qellime}
+
+\section{Derivatet nga zhvillimi Taylor}
+Nga
+\begin{equation}
+ f(x+h)=f(x)+hf'(x)+\frac{h^2}{2}f''(x)+\cdots
+\end{equation}
+merret diferenca përpara
+\begin{equation}
+ f'(x)=\frac{f(x+h)-f(x)}{h}+\Oh(h),
+\end{equation}
+ndërsa kombinimi simetrik jep
+\begin{equation}
+ f'(x)=\frac{f(x+h)-f(x-h)}{2h}+\Oh(h^2).
+\end{equation}
+Për derivatin e dytë,
+\begin{equation}
+ f''(x)=\frac{f(x+h)-2f(x)+f(x-h)}{h^2}+\Oh(h^2).
+\end{equation}
+Koeficientët mund të ndërtohen sistematikisht duke kërkuar që kombinimi linear të riprodhojë polinomet deri në një gradë të caktuar.
+
+\section{Hapi optimal}
+Gabimi i këputjes ulet me $h$, por zbritja $f(x+h)-f(x)$ humbet shifra kur $h$ është shumë i vogël. Për diferencën përpara,
+\begin{equation}
+ E(h)\approx C_1h+C_2\frac{u}{h},
+\end{equation}
+prandaj ekziston një hap optimal i rendit $\sqrt{u}$. Për diferencën qendrore, kompromisi tipik jep $h\sim u^{1/3}$.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{08_gabimi_derivimit.pdf}
+\caption{Gabimi total ka formë U: këputja dominon për hapa të mëdhenj, rrumbullakimi për hapa tepër të vegjël.}
+\end{figure}
+
+\section{Kuadratura e përbërë}
+Integrali ndahet në nënintervale. Rregulla e trapezit është
+\begin{equation}
+ T_n=h\left[\frac{f(a)+f(b)}2+\sum_{i=1}^{n-1}f(a+ih)\right],\qquad h=\frac{b-a}{n},
+\end{equation}
+me gabim global $\Oh(h^2)$. Rregulla e Simpsonit për $n$ çift është
+\begin{equation}
+ S_n=\frac h3\left[f_0+f_n+4\sum_{i\text{ tek}}f_i+2\sum_{i\text{ çift},\,i\ne0,n}f_i\right],
+\end{equation}
+me gabim global $\Oh(h^4)$ për funksione mjaft të lëmuara.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{09_kuadratura_konvergjenca.pdf}
+\caption{Konvergjenca e trapezit dhe Simpsonit për një integral me zgjidhje të njohur.}
+\end{figure}
+
+\section{Kuadratura e Gausit}
+Rregulli me $n$ nyje
+\begin{equation}
+ \int_{-1}^{1}f(x)\dd x\approx\sum_{i=1}^{n}w_if(x_i)
+\end{equation}
+zgjedh nyjet si zerot e polinomit Legendre $P_n$. Ai integron saktë çdo polinom me gradë deri $2n-1$. Një transformim afin e çon intervalin $[a,b]$ në $[-1,1]$. Kuadratura Gauss është e fuqishme kur funksioni është i lëmuar dhe dimensioni i vogël.
+
+\section{Integrale të papërshtatshme dhe shumëfishta}
+Singularitetet e integrueshme trajtohen me ndryshim ndryshoreje ose ndarje të intervalit. Intervali i pafund mund të hartohet në interval të fundmë. Në $d$ përmasa, prodhimi tensorial i $n$ nyjeve kërkon $n^d$ vlerësime: mallkimi i dimensionalitetit. Kjo është pika ku metodat Monte Carlo bëhen konkurruese, sepse gabimi i tyre bazë varet nga numri i mostrave dhe jo drejtpërdrejt nga $d$.
+
+\begin{shembull}[Perioda e lavjerrësit]
+Për amplitudë $\theta_0$, perioda e saktë e modelit ideal është
+\begin{equation}
+ T=4\sqrt{\frac Lg}\int_0^{\pi/2}\frac{\dd\phi}{\sqrt{1-k^2\sin^2\phi}},\qquad k=\sin(\theta_0/2).
+\end{equation}
+Integrali eliptik mund të llogaritet me Simpson ose Gauss dhe të krahasohet me $T_0=2\pi\sqrt{L/g}$. Diferenca mat kufirin e përafrimit të këndit të vogël.
+\end{shembull}
+
+\begin{lidhje}
+Laboratori llogarit periodën për disa amplituda, kryen studim konvergjence dhe ndan gabimin e kuadraturës nga gabimi i modelit $\sin\theta\approx\theta$.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Pse derivati numerik nuk përmirësohet pafundësisht kur $h\to0$?
+\item Çfarë kushti duhet për rendin e katërt të Simpsonit?
+\item Pse prodhimi tensorial bëhet i papërshtatshëm në dimension të lartë?
+\end{enumerate}
+\input{chapters/alg_05}
+\input{chapters/zhvillim_05}
+\input{chapters/thellim_05}

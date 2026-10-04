@@ -1,0 +1,72 @@
+\subsection{Diskretizimi i ekuacionit të valës}
+Për
+\begin{equation}
+ u_{tt}=c^2u_{xx},
+\end{equation}
+vendosim $x_j=j\Delta x$ dhe $t^n=n\Delta t$. Diferencat qendrore japin
+\begin{equation}
+ \frac{u_j^{n+1}-2u_j^n+u_j^{n-1}}{\Delta t^2}
+ =c^2\frac{u_{j+1}^n-2u_j^n+u_{j-1}^n}{\Delta x^2}
+ +\Oh(\Delta t^2+\Delta x^2).
+\end{equation}
+Pas zgjidhjes për shtresën e re,
+\begin{equation}
+ u_j^{n+1}=2u_j^n-u_j^{n-1}
+ +\lambda^2(u_{j+1}^n-2u_j^n+u_{j-1}^n),
+ \qquad \lambda=\frac{c\Delta t}{\Delta x}.
+\end{equation}
+Skema është eksplicite dhe e rendit të dytë në hapësirë e kohë. Për të nisur, nga $u_t(x,0)=v_0(x)$ merret
+\begin{equation}
+ u_j^1=u_j^0+\Delta t\,v_{0,j}
+ +\frac{\lambda^2}{2}(u_{j+1}^0-2u_j^0+u_{j-1}^0).
+\end{equation}
+
+\subsection{Analiza von Neumann dhe kushti CFL}
+Provojmë një mod Fourier $u_j^n=G^ne^{\mathrm{i}j\theta}$. Zëvendësimi në skemë jep
+\begin{equation}
+ G^2-2\left(1-2\lambda^2\sin^2\frac\theta2\right)G+1=0.
+\end{equation}
+Qëndrueshmëria kërkon që të dy rrënjët të kenë modul jo më të madh se një. Kjo ndodh kur
+\begin{equation}
+ \lambda=\frac{c\Delta t}{\Delta x}\le1.
+\end{equation}
+Interpretimi është kauzal: gjatë një hapi kohor, informacioni fizik përshkon largësinë $c\Delta t$, e cila nuk duhet të tejkalojë shtrirjen $\Delta x$ që skema përdor për komunikim ndërmjet nyjeve.
+
+\subsection{Dispersimi numerik}
+Duke vendosur $G=e^{-\mathrm{i}\omega\Delta t}$ merret lidhja e dispersimit
+\begin{equation}
+ \sin^2\left(\frac{\omega\Delta t}{2}\right)
+ =\lambda^2\sin^2\left(\frac{k\Delta x}{2}\right).
+\end{equation}
+Në vazhdësi $\omega=ck$, por në rrjet raporti $\omega/k$ varet nga $k$. Modet me gjatësi vale të krahasueshme me $\Delta x$ përhapen me shpejtësi fazore të gabuar. Prandaj kushti CFL garanton qëndrueshmëri, jo saktësi. Një rregull praktik është të përdoren shumë pika për gjatësi vale dhe të kryhet studim rrjeti.
+
+\subsection{Kushtet kufitare dhe energjia}
+Kufiri i fiksuar përdor $u=0$ dhe reflekton me ndryshim shenje. Kufiri i lirë përdor $u_x=0$. Një kusht dalës i rendit të parë,
+\begin{equation}
+ u_t+cu_x=0,
+\end{equation}
+lejon kalimin e valës djathtas, por diskretizimi i tij mund të reflektojë pjesërisht. Energjia e vazhdueshme
+\begin{equation}
+ E(t)=\frac12\int\left(u_t^2+c^2u_x^2\right)\dd x
+\end{equation}
+është konstante për kufij pa fluks. Një energji diskrete e qëndrueshme është provë e fortë e implementimit.
+
+\subsection{Valët dhe reflektimi nga plazma}
+Zgjidhja e d'Alembert-it $u(x,t)=F(x-ct)+G(x+ct)$ ndan valët bredhëse djathtas e majtas. Në një interval me skaje të fiksuara, kushtet kufitare zgjedhin numra valorë diskretë $k_n=n\pi/L$ dhe frekuenca $\omega_n=ck_n$, duke formuar valë të qëndrueshme.
+
+Në një plazmë të ftohtë pa fushë magnetike, permitiviteti relativ është
+\begin{equation}
+ \varepsilon_r(\omega)=1-\frac{\omega_p^2}{\omega^2},\qquad
+ \omega_p=\sqrt{\frac{n_ee^2}{m_e\varepsilon_0}}.
+\end{equation}
+Për $\omega<\omega_p$, numri valor bëhet imagjinar dhe fusha shuhet brenda plazmës; vala reflektohet. Në modelin me përplasje, $\omega^2$ zëvendësohet në mënyrë efektive nga $\omega(\omega+\mathrm{i}\nu)$ dhe shfaqet absorbimi. Simulimi duhet të dallojë reflektimin fizik nga ai artificial i kufirit numerik.
+
+\subsection{Përmbledhje dhe ushtrime}
+Diskretizimi i valëve kërkon njëkohësisht konsistencë, CFL, rezolucion spektral dhe kushte kufitare fizikisht të përshtatshme.
+\begin{enumerate}
+\item Nxirrni formulën e shtresës së parë nga Taylor-i dhe shpejtësia fillestare.
+\item Provoni kushtin CFL me analizën von Neumann.
+\item Matni shpejtësinë fazore numerike për disa numra valorë.
+\item Ndërtoni një valë të qëndrueshme dhe verifikoni frekuencat normale.
+\item Simuloni kalimin nga vakumi në plazmë dhe ndani reflektimin fizik nga ai i kufirit të djathtë.
+\end{enumerate}

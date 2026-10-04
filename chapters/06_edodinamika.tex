@@ -1,0 +1,92 @@
+\chapter{Ekuacionet diferenciale dhe dinamika numerike}
+\begin{qellime}
+Studenti zbaton Eulerin, Runge--Kutta dhe skemat me shumë hapa; analizon gabimin lokal, global dhe stabilitetin; simulon rënien e lirë, lavjerrësin dhe problemin e dy trupave; dallon probleme fillestare e kufitare.
+\end{qellime}
+
+\section{Problemi i vlerës fillestare}
+Për
+\begin{equation}
+ \dot{\vect y}=\vect f(t,\vect y),\qquad \vect y(t_0)=\vect y_0,
+\end{equation}
+metoda e Eulerit është
+\begin{equation}
+ \vect y_{n+1}=\vect y_n+h\vect f(t_n,\vect y_n).
+\end{equation}
+Gabimi lokal është $\Oh(h^2)$ dhe gabimi global $\Oh(h)$. Euler-i është i dobishëm pedagogjikisht, por rrallë është zgjedhja përfundimtare.
+
+Metoda e mesit dhe Heun janë të rendit të dytë. Metoda klasike RK4 përdor katër pjerrësi,
+\begin{align}
+ \vect k_1&=\vect f(t_n,\vect y_n),\\
+ \vect k_2&=\vect f(t_n+h/2,\vect y_n+h\vect k_1/2),\\
+ \vect k_3&=\vect f(t_n+h/2,\vect y_n+h\vect k_2/2),\\
+ \vect k_4&=\vect f(t_n+h,\vect y_n+h\vect k_3),\\
+ \vect y_{n+1}&=\vect y_n+\frac h6(\vect k_1+2\vect k_2+2\vect k_3+\vect k_4).
+\end{align}
+Çiftet e futura Runge--Kutta me dy rende japin vlerësim të gabimit dhe hap adaptiv.
+
+\section{Stabiliteti}
+Për ekuacionin provë $y'=\lambda y$, Euler-i jep $y_{n+1}=(1+h\lambda)y_n$. Stabiliteti kërkon $|1+h\lambda|<1$. Një metodë mund të ketë rend të lartë dhe përsëri të jetë e papërshtatshme për problem të ngurtë. Ngurtësia shfaqet kur shkallë kohore shumë të ndryshme imponojnë hap shumë të vogël për metoda eksplicite.
+
+\section{Metodat me shumë hapa}
+Adams--Bashforth përdor pjerrësi të mëparshme, për shembull
+\begin{equation}
+ y_{n+1}=y_n+\frac h2(3f_n-f_{n-1}).
+\end{equation}
+Këto metoda janë ekonomike pas nisjes, por kërkojnë histori dhe kujdes kur ndryshon hapi. Metodat implícite Adams--Moulton dhe BDF kanë zona stabiliteti më të favorshme për probleme të ngurta.
+
+\section{Dinamikë Hamiltoniane}
+Në mekanikë, ruajtja afatgjatë e strukturës mund të jetë më e rëndësishme se gabimi lokal minimal. Skema leapfrog/Verlet është simplektike:
+\begin{align}
+ \vect v_{n+1/2}&=\vect v_n+\frac h2\vect a(\vect r_n),\\
+ \vect r_{n+1}&=\vect r_n+h\vect v_{n+1/2},\\
+ \vect v_{n+1}&=\vect v_{n+1/2}+\frac h2\vect a(\vect r_{n+1}).
+\end{align}
+Ajo është e kthyeshme në kohë dhe mban energjinë të kufizuar rreth vlerës së saktë, në vend që të krijojë drift sistematik.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{10_energjia_lavjerresit.pdf}
+\caption{Euler-i krijon drift energjie, ndërsa Verlet ruan më mirë strukturën afatgjatë.}
+\end{figure}
+
+\section{Shembuj fizikë}
+\subsection{Rënia në ajër}
+Për bosht pozitiv lart,
+\begin{equation}
+ \dot y=v,\qquad m\dot v=-mg-c_1v-c_2v|v|.
+\end{equation}
+Modeli lejon krahasimin e rezistencës lineare dhe kuadratike, shpejtësisë terminale dhe ndjeshmërisë ndaj parametrave.
+
+\subsection{Lavjerrësi jolinear}
+\begin{equation}
+ \ddot\theta+\gamma\dot\theta+\frac gL\sin\theta=A\cos\Omega t.
+\end{equation}
+Pa forcim dhe fërkim, energjia ruhet. Me forcim mund të shfaqen rezonancë, shumëstabilitet dhe kaos; hapi duhet kontrolluar ndaj periodës më të shkurtër.
+
+\subsection{Problemi i dy trupave}
+Në njësi të shkallëzuara,
+\begin{equation}
+ \ddot{\vect r}=-\mu\frac{\vect r}{r^3}.
+\end{equation}
+Kontrollet janë energjia, momenti këndor dhe ligji i tretë i Keplerit. Një orbitë që duket e mbyllur për pak perioda mund të ketë drift të ngadalshëm numerik.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.60\textwidth]{11_orbita_dy_trupave.pdf}
+\caption{Orbitë e integruar me skemë simplektike.}
+\end{figure}
+
+\section{Problemet e vlerave kufitare}
+Në një problem kufitar, kushtet jepen në skaje të ndryshme. Metoda e qitjes e kthen problemin në një kërkim të kushtit fillestar që plotëson skajin tjetër. Diferencat e fundme e kthejnë ekuacionin në sistem algjebrik. Qitja mund të jetë e ndjeshme; formulimi matricor është shpesh më robust.
+
+\begin{lidhje}
+Laboratori krahason Euler, RK4 dhe Verlet për rënien, lavjerrësin dhe orbitën. Për çdo metodë vizatohen gabimi, energjia dhe kostoja kundrejt hapit.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Dalloni rendin nga stabiliteti.
+\item Pse një metodë simplektike mund të jetë më e mirë për orbita afatgjata?
+\item Si verifikohet numerikisht një integrues orbital?
+\end{enumerate}
+\input{chapters/alg_06}
+\input{chapters/zhvillim_06}
+\input{chapters/thellim_06}

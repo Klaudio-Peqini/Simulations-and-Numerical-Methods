@@ -1,0 +1,80 @@
+\chapter{Numrat pseudorastësorë dhe kampionimi}
+\begin{qellime}
+Studenti shpjegon gjeneratorët pseudorastësorë, farën dhe gjendjen; zbaton transformimin e anasjelltë, Box--Muller dhe kampionimin me refuzim; teston shpërndarjen dhe pavarësinë; shmang përdorimin e gabuar paralel.
+\end{qellime}
+
+\section{Pseudo-rastësia}
+Një gjenerator pseudorastësor është algoritëm determinist që prodhon një varg me veti statistike të ngjashme me mostrat e pavarura uniforme. Gjeneratori kongruencial linear është
+\begin{equation}
+ x_{n+1}=(ax_n+c)\bmod m,\qquad u_n=x_n/m.
+\end{equation}
+Zgjedhja e parametrave përcakton periodën dhe korrelacionet. Gjeneratorët modernë kanë gjendje më të madhe dhe teste më të mira, por nuk janë automatikisht kriptografikisht të sigurt.
+
+Fara përcakton vargun. Ruajtja e saj mundëson riprodhim. Megjithatë, përdorimi i të njëjtës farë në procese paralele mund të krijojë vargje identike; duhen nënrryma të pavarura ose mekanizma \emph{spawn}.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.90\textwidth]{16_testi_cifteve_prng.pdf}
+\caption{Grafiku $(u_n,u_{n+1})$ zbulon strukturë rrjete në një gjenerator të dobët.}
+\end{figure}
+
+\section{Testet statistike}
+Histogrami kontrollon uniformitetin njëpërmasor, por nuk zbulon çdo varësi. Përdoren testi $\chi^2$, Kolmogorov--Smirnov, autokorrelacioni dhe teste spektrale. Një vlerë-$p$ nuk provon rastësinë; ajo vetëm mat përputhjen me një statistikë të zgjedhur. Testimi duhet të përfshijë shumë struktura dhe gjatësi vargu.
+
+\section{Transformimi i anasjelltë}
+Nëse $U\sim\mathcal U(0,1)$ dhe $F$ është kumulativi i synuar, atëherë
+\begin{equation}
+ X=F^{-1}(U)
+\end{equation}
+ka shpërndarje $F$. Për eksponencialen me normë $\lambda$,
+\begin{equation}
+ X=-\frac1\lambda\ln(1-U).
+\end{equation}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{17_kampionimi_eksponencial.pdf}
+\caption{Mostrat e gjeneruara me transformimin e anasjelltë dhe dendësia teorike.}
+\end{figure}
+
+\section{Mostrat Gauss}
+Transformimi Box--Muller përdor dy uniforme të pavarura:
+\begin{align}
+ Z_1&=\sqrt{-2\ln U_1}\cos(2\pi U_2),\\
+ Z_2&=\sqrt{-2\ln U_1}\sin(2\pi U_2).
+\end{align}
+Kjo rrjedh nga kalimi në koordinata polare të dendësisë Gauss dydimensionale. Bibliotekat moderne mund të përdorin algoritme më të shpejta, por parimi mbetet shembull i rëndësishëm i transformimit të ndryshoreve.
+
+\section{Kampionimi me refuzim}
+Le të jetë $f(x)$ dendësia synuar dhe $g(x)$ propozimi, me $f(x)\le Mg(x)$. Gjenerohet $X\sim g$ dhe pranohet nëse
+\begin{equation}
+ U\le\frac{f(X)}{Mg(X)}.
+\end{equation}
+Norma mesatare e pranimit është $1/M$. Propozimi duhet të mbulojë të gjithë mbështetjen e $f$ dhe bishtat e tij nuk duhet të jenë më të lehtë. Në dimension të lartë, refuzimi global bëhet shpesh joefikas.
+
+\section{Kampionimi i rëndësisë}
+Për një pritje nën $p$,
+\begin{equation}
+ \E_p[h(X)]=\int h(x)\frac{p(x)}{q(x)}q(x)\dd x
+ \approx\frac1N\sum_{i=1}^Nh(X_i)w(X_i),\quad X_i\sim q.
+\end{equation}
+Propozimi $q$ duhet të vendosë mostra atje ku $|h|p$ është i madh. Peshat shumë të pabarabarta japin madhësi të vogël efektive të mostrës,
+\begin{equation}
+ N_{\mathrm{eff}}\approx\frac{(\sum_iw_i)^2}{\sum_iw_i^2}.
+\end{equation}
+
+\begin{kujdes}
+Ndryshimi i farës nuk zëvendëson analizën statistike. Rezultati duhet të jetë i qëndrueshëm ndaj disa farave, ndërsa raportimi duhet të japë vlerësuesin dhe gabimin standard.
+\end{kujdes}
+
+\begin{lidhje}
+Laboratori gjeneron uniforme, eksponenciale dhe Gauss; përdor histogramin, CDF empirike dhe autokorrelacionin; krahason transformimin e anasjelltë me refuzimin.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Pse një histogram uniform nuk provon pavarësinë?
+\item Çfarë ndodh nëse $Mg(x)<f(x)$ në një zonë?
+\item Si organizohen vargjet pseudorastësore në llogaritje paralele?
+\end{enumerate}
+\input{chapters/alg_09}
+\input{chapters/zhvillim_09}
+\input{chapters/thellim_09}

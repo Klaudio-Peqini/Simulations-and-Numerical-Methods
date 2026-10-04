@@ -1,0 +1,44 @@
+\subsection{Kampionimi i shtresëzuar}
+Le të ndahet domeni në rajone pa mbivendosje $D_k$ me probabilitete $p_k$. Integrali shkruhet
+\begin{equation}
+ I=\sum_{k=1}^{K}p_k\mu_k,
+ \qquad \mu_k=\E[h(X)\mid X\in D_k].
+\end{equation}
+Nëse në shtresën $k$ përdoren $n_k$ mostra të pavarura,
+\begin{equation}
+ \widehat I=\sum_kp_k\overline h_k,qquad
+ \Var(\widehat I)=\sum_k\frac{p_k^2\sigma_k^2}{n_k}.
+\end{equation}
+Me kosto të njëjtë për mostër dhe $\sum_kn_k=N$, minimizimi jep ndarjen Neyman $n_k\propto p_k\sigma_k$. Pra më shumë mostra vendosen në shtresa me peshë ose variancë të madhe. Kur $\sigma_k$ nuk njihet, përdoret një fazë pilot.
+
+Edhe ndarja proporcionale $n_k=Np_k$ zakonisht nuk është më e keqe se kampionimi i thjeshtë, sepse heq luhatjen e rastësishme të numrit të pikave në çdo shtresë. Në një integral njëpërmasor, ndarja e intervalit në qeliza dhe zgjedhja e një pike të rastit për qelizë kombinon mbulim të rregullt me paanshmëri.
+
+\subsubsection{Mesatarizimi kushtor}
+Nëse $Y$ varet nga $X$ dhe një burim tjetër rastësie, atëherë
+\begin{equation}
+ \E[Y]=\E[\E(Y\mid X)].
+\end{equation}
+Zëvendësimi i $Y$ me $g(X)=\E(Y\mid X)$ ruan pritjen dhe, nga ligji total i variancës,
+\begin{equation}
+ \Var(g(X))\le\Var(Y).
+\end{equation}
+Kjo teknikë quhet Rao--Blackwellizim ose mesatarizim kushtor. Në një model transporti, nëse një pjesë e dinamikës mund të integrohet analitikisht për një trajektore të dhënë, është më mirë të përdoret pritja kushtore sesa të simulohet një hedhje shtesë.
+
+\subsubsection{Sekuencat me mospërputhje të ulët}
+Kuazi-Monte Carlo zëvendëson pikat e pavarura me sekuenca që mbulojnë kubin në mënyrë më uniforme, si Halton ose Sobol. Për funksione me variacion të kufizuar, pabarazia Koksma--Hlawka lidh gabimin me mospërputhjen e pikave. Shkallëzimi teorik mund t'i afrohet $N^{-1}(\log N)^d$, më i mirë se $N^{-1/2}$ për dimension efektiv të moderuar.
+
+Pikat nuk janë të rastit, prandaj gabimi standard i zakonshëm nuk zbatohet. Randomizimi i sekuencës, për shembull scrambling, ruan mbulimin dhe lejon disa përsëritje të pavarura për vlerësimin e gabimit. Në dimension shumë të lartë, renditja e ndryshoreve ka rëndësi: dimensionet e para të një sekuence zakonisht kanë cilësi më të mirë dhe duhet t'u caktohen drejtimet më të rëndësishme.
+
+\subsubsection{Ngjarjet e rralla}
+Për një probabilitet $p\ll1$, vlerësuesi binomial ka gabim relativ
+\begin{equation}
+ \frac{\sqrt{p(1-p)/N}}{p}\simeq\frac{1}{\sqrt{Np}}.
+\end{equation}
+Për të marrë gabim relativ $10\%$ duhen rreth $100/p$ realizime. Nëse $p=10^{-8}$, kjo kërkon rreth $10^{10}$ realizime dhe është e papërshtatshme. Kampionimi i rëndësisë zhvendos shpërndarjen drejt dështimit dhe korrigjon me peshën e gjasës.
+
+Një propozim tepër agresiv mund të japë pesha me variancë të pafundme ose disa mostra dominuese. Diagnostika përfshin madhësinë efektive të peshave, maksimumin e peshës së normalizuar dhe përsëritjen me propozime alternative. Rezultati i ngjarjes së rrallë nuk duhet raportuar pa këto kontrolle.
+
+\subsubsection{Buxheti i gabimit në Monte Carlo}
+Gabimi total mund të përfshijë diskretizimin e trajektores, animin e modelit, gabimin e kampionimit dhe gabimin nga vlerësimi i peshave. Rritja e $N$ ul vetëm komponentin e kampionimit. Nëse ODE-ja brenda çdo realizimi zgjidhet me hap $h$, një strategji e balancuar zgjedh $h$ që gabimi numerik të jetë dukshëm më i vogël, por jo shumë më i vogël, se gabimi Monte Carlo.
+
+Për të kontrolluar këtë ndarje kryhen dy eksperimente: në një $N$ të madh ndryshohet $h$ për të matur animin numerik; në një $h$ të vogël ndryshohet $N$ dhe fara për të matur variancën. Raporti final jep të dy komponentët dhe koston në vlerësime modeli ose kohë procesori.

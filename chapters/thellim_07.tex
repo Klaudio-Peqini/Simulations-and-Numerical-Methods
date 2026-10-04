@@ -1,0 +1,50 @@
+\subsection{Koeficientët e reflektimit dhe transmetimit}
+Kur një valë harmonike bie normalisht mbi një ndërfaqe, fusha në anën e parë shkruhet si shumë e valës rënëse dhe të reflektuar,
+\begin{equation}
+ E_1(z)=E_i e^{\mathrm{i}k_1z}+E_r e^{-\mathrm{i}k_1z},
+\end{equation}
+ndërsa në mjedisin e dytë $E_2(z)=E_t e^{\mathrm{i}k_2z}$. Vazhdimësia e komponentëve tangjencialë të fushave elektrike dhe magnetike në $z=0$ jep
+\begin{equation}
+ 1+r=t,
+ \qquad
+ \frac{1-r}{Z_1}=\frac{t}{Z_2},
+\end{equation}
+ku $r=E_r/E_i$, $t=E_t/E_i$ dhe $Z_j$ është impedanca e mjedisit. Zgjidhja është
+\begin{equation}
+ r=\frac{Z_2-Z_1}{Z_2+Z_1},
+ \qquad
+ t=\frac{2Z_2}{Z_2+Z_1}.
+\end{equation}
+Koeficienti energjetik i reflektimit është $R=|r|^2$; transmetimi duhet të përfshijë raportin e flukseve dhe nuk është gjithmonë thjesht $|t|^2$.
+
+Për plazmën e ftohtë pa përplasje, $\varepsilon_r=1-\omega_p^2/\omega^2$. Kur $\omega>\omega_p$, numri valor është real dhe vala transmetohet pjesërisht. Kur $\omega<\omega_p$, $k$ është imagjinar: fusha depërton vetëm me një gjatësi karakteristike dhe nuk transporton fuqi në thellësi në modelin ideal. Në plazmë me përplasje, permitiviteti bëhet kompleks; pjesa imagjinare përfaqëson humbjen dhe ndan absorbimin nga reflektimi.
+
+\subsubsection{Ndërfaqja në rrjet dhe gabimi numerik}
+Në diferencat e fundme, koeficienti material mund të ndryshojë ndërmjet nyjeve. Vendosja e ndërfaqes pikërisht në një nyje ose gjysmëhapi ndikon në rendin lokal. Një diskretizim konservativ i ekuacionit
+\begin{equation}
+ u_{tt}=\partial_x\left(c(x)^2u_x\right)
+\end{equation}
+përdor flukse në gjysmënyje,
+\begin{equation}
+ \left[\partial_x(c^2u_x)\right]_j
+ \approx\frac{c_{j+1/2}^2(u_{j+1}-u_j)-c_{j-1/2}^2(u_j-u_{j-1})}{\Delta x^2}.
+\end{equation}
+Mesatarja e koeficientit në ndërfaqe duhet zgjedhur nga kushtet e vazhdimësisë; në probleme fluksi, mesatarja harmonike shpesh ruan më mirë fizikën se mesatarja aritmetike.
+
+Për të matur reflektimin numerik, sinjali regjistrohet në një sondë para ndërfaqes. Simulimi referencë pa ndërfaqe jep pulsin rënës; diferenca izolon pulsin e reflektuar. Dritaret kohore duhet të ndajnë pulset dhe kufiri i majtë nuk duhet të reflektojë para përfundimit të matjes. Koeficienti mund të nxirret nga amplituda, energjia ose transformimi Fourier, por përkufizimi duhet të përputhet me formulën teorike.
+
+\subsubsection{Absorbimi kufitar}
+Një domen i fundëm duhet të imitojë hapësirën e pafundme. Kushti $u_t+cu_x=0$ është i saktë për valë njëdrejtimëshe në një përmasë dhe incidencë normale, por jo për të gjitha frekuencat dhe këndet. Një shtresë amortizuese shton termin $-\sigma(x)u_t$, me $\sigma$ që rritet gradualisht drejt kufirit. Rritja e menjëhershme e $\sigma$ krijon vetë një ndërfaqe dhe reflektim.
+
+Shtresa e përputhur në mënyrë të përsosur (PML) projektohet që impedanca të mbetet e përputhur në hyrje dhe vala të shuhet brenda shtresës. Implementimi i saj është më i ndërlikuar, por shërben si shembull se kushti kufitar është pjesë e modelit numerik. Në laborator mund të krahasohen kufiri i fiksuar, kushti dalës i rendit të parë dhe shtresa amortizuese duke matur energjinë e kthyer.
+
+\subsubsection{Bilanci diskret i energjisë}
+Për skemën qendrore, shpejtësia diskrete mund të vendoset në gjysmëhapa. Një energji e përshtatshme është
+\begin{equation}
+ E^{n+1/2}=\frac{\Delta x}{2}\sum_j
+ \left(\frac{u_j^{n+1}-u_j^n}{\Delta t}\right)^2
+ +\frac{c^2\Delta x}{2}\sum_j
+ \left(\frac{u_{j+1}^{n+1}-u_j^{n+1}}{\Delta x}\right)
+ \left(\frac{u_{j+1}^{n}-u_j^{n}}{\Delta x}\right).
+\end{equation}
+Për kufij të përshtatshëm dhe CFL të plotësuar, kjo madhësi mbetet e kufizuar. Monitorimi i saj zbulon paqëndrueshmërinë shumë më herët se inspektimi vizual i animacionit.

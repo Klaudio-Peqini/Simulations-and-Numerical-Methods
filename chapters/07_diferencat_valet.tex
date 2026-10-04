@@ -1,0 +1,77 @@
+\chapter{Diferencat e fundme dhe simulimi i valëve}
+\begin{qellime}
+Studenti diskretizon derivatet hapësinore; ndërton skemën për ekuacionin e valës; zbaton kushte fillestare e kufitare; analizon kushtin CFL, dispersimin dhe reflektimin; interpreton valët bredhëse e të qëndrueshme.
+\end{qellime}
+
+\section{Nga PDE te rrjeti}
+Në rrjetin $x_j=j\Delta x$, $t^n=n\Delta t$, fusha përfaqësohet nga $u_j^n\approx u(x_j,t^n)$. Për ekuacionin e valës
+\begin{equation}
+ \frac{\partial^2u}{\partial t^2}=c^2\frac{\partial^2u}{\partial x^2},
+\end{equation}
+diferencat qendrore japin
+\begin{equation}
+ u_j^{n+1}=2u_j^n-u_j^{n-1}+r^2(u_{j+1}^n-2u_j^n+u_{j-1}^n),
+ \qquad r=\frac{c\Delta t}{\Delta x}.
+\end{equation}
+Skema është eksplicite dhe e rendit të dytë në kohë e hapësirë.
+
+\section{Kushtet fillestare dhe kufitare}
+Nevojiten zhvendosja $u(x,0)$ dhe shpejtësia $u_t(x,0)$. Hapi i parë ndërtohet me zhvillim Taylor. Skaji i fiksuar përdor Dirichlet, $u=0$; skaji i lirë përdor Neumann, $u_x=0$; një skaj thithës synon të minimizojë valën e reflektuar.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.82\textwidth]{12_vala_bredhese.pdf}
+\caption{Evolucioni i një pulsi bredhës dhe përafrimi te kufiri reflektues.}
+\end{figure}
+
+\section{Stabiliteti CFL}
+Analiza von Neumann zëvendëson $u_j^n$ me një mod Fourier $G^n e^{ikj\Delta x}$. Për skemën standarde në një përmasë merret kushti
+\begin{equation}
+ r=\frac{c\Delta t}{\Delta x}\le1.
+\end{equation}
+Ky kusht ka interpretim kauzal: domeni numerik i varësisë duhet të përmbajë domenin fizik. Shkelja e tij prodhon rritje eksponenciale të gabimeve.
+
+\section{Dispersimi numerik}
+Edhe kur skema është stabile, frekuenca numerike nuk përputhet saktësisht me $\omega=ck$. Për rrjetin hapësinor,
+\begin{equation}
+ k_{\mathrm{eff}}=\frac{2}{\Delta x}\sin\frac{k\Delta x}{2}.
+\end{equation}
+Modet me gjatësi vale pranë $2\Delta x$ përhapen gabim. Një rregull praktik kërkon shumë pika për gjatësi vale, jo vetëm dy.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.73\textwidth]{13_dispersimi_numerik.pdf}
+\caption{Shpejtësia fazore numerike zvogëlohet për numra valorë të lartë.}
+\end{figure}
+
+\section{Valët e qëndrueshme}
+Për skaje të fiksuara, zgjidhjet modale janë
+\begin{equation}
+ u_n(x,t)=A_n\sin\frac{n\pi x}{L}\cos(\omega_nt+\phi_n),\qquad
+ \omega_n=\frac{n\pi c}{L}.
+\end{equation}
+Simulimi mund të nxjerrë spektrin përmes transformimit Fourier të sinjalit në një pikë. Krahasimi me $\omega_n$ verifikon rrjetin dhe kushtet kufitare.
+
+\section{Reflektimi nga plazma}
+Në një plazmë të ftohtë pa fushë magnetike,
+\begin{equation}
+ \varepsilon_r(\omega)=1-\frac{\omega_p^2}{\omega^2},\qquad
+ \omega_p=\sqrt{\frac{n_e e^2}{m_e\varepsilon_0}}.
+\end{equation}
+Kur $\omega<\omega_p$, numri valor bëhet imagjinar dhe vala zbehet: plazma reflekton. Për $\omega>\omega_p$, vala përhapet me dispersim. Në model numerik, fusha elektromagnetike mund të lidhet me lëvizjen e elektroneve; ruajtja e energjisë dhe reflektimi teorik shërbejnë si kontrolle.
+
+\begin{kujdes}
+Një kufi i rrjetit mund të krijojë reflektim artificial që ngatërrohet me reflektimin fizik nga plazma. Së pari testohet skaji thithës në vakum, pastaj shtohet mjedisi dispersiv.
+\end{kujdes}
+
+\begin{lidhje}
+Laboratori krijon valë bredhëse dhe të qëndrueshme, mat shpejtësinë, teston CFL dhe realizon një ndërfaqe vakum--plazmë. Studentët krahasojnë koeficientin numerik të reflektimit me parashikimin teorik.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Çfarë dallimi ka stabiliteti nga dispersimi numerik?
+\item Pse duhen më shumë se dy pika për gjatësi vale?
+\item Si ndahet reflektimi fizik nga reflektimi artificial i kufirit?
+\end{enumerate}
+\input{chapters/alg_07}
+\input{chapters/zhvillim_07}
+\input{chapters/thellim_07}

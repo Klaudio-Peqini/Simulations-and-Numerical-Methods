@@ -1,0 +1,26 @@
+\subsection{Analiza pa përmasa dhe projektimi i simulimit}
+Para se të zgjidhet një metodë numerike, është e dobishme të identifikohen shkallët karakteristike të problemit. Në modelin e rënies me rezistencë lineare,
+\begin{equation}
+ m\frac{\dd v}{\dd t}=mg-cv,
+\end{equation}
+shpejtësia karakteristike është $V=mg/c$ dhe koha karakteristike është $T=m/c$. Duke vendosur $u=v/V$ dhe $\tau=t/T$, ekuacioni bëhet
+\begin{equation}
+ \frac{\dd u}{\dd\tau}=1-u.
+\end{equation}
+Të tre parametrat dimensionalë janë reduktuar në një ekuacion universal. Kjo formë tregon se çdo trup që i bindet të njëjtit model ka të njëjtën kurbë $u(\tau)$; parametrat vetëm ndryshojnë shkallët e boshteve. Në simulim, analiza pa përmasa ndihmon në zgjedhjen e hapit: $\Delta\tau=\Delta t/T$ duhet të jetë mjaft i vogël për të përshkruar relaksimin. Ajo ndihmon edhe në testim, sepse rezultatet për grupe të ndryshme parametrash duhet të bien mbi të njëjtën kurbë të reduktuar.
+
+Në modelin kuadratik $m\dot v=mg-cv|v|$, shpejtësia kufitare është $V=\sqrt{mg/c}$ dhe një shkallë kohe është $T=V/g$. Përsëri merret një ekuacion pa përmasa, por struktura jolineare mbetet. Krahasimi i dy modeleve duhet bërë në të njëjtat madhësi të reduktuara; përndryshe ndryshimi i njësive ose i shkallëve mund të ngatërrohet me ndryshim fizik.
+
+\subsubsection{Nga kërkesa shkencore te kriteri i pranimit}
+Një simulim duhet të fillojë me një kërkesë të matshme. Pohimi ``të simulohet lavjerrësi'' nuk përcakton as produktin, as saktësinë. Një kërkesë operative mund të jetë: ``të përcaktohet perioda për $0\le\theta_0\le1.2$ rad me gabim relativ nën $10^{-3}$ dhe të kontrollohet ruajtja e energjisë për njëqind perioda''. Kjo fjali përcakton madhësinë dalëse, domenin e parametrave, tolerancën dhe një invariant verifikimi.
+
+Kriteri i pranimit nuk duhet të jetë vetëm ``kodi ekzekutohet''. Për një metodë të rendit $p$, raporti
+\begin{equation}
+ R_h=\frac{\|y_h-y_{h/2}\|}{\|y_{h/2}-y_{h/4}\|}
+\end{equation}
+duhet të afrohet me $2^p$ në regjimin asimptotik. Nëse kjo nuk ndodh, mund të ketë gabim implementimi, hap ende të madh, zgjidhje jo të lëmuar ose dominim të rrumbullakimit. Kriteret fizike përfshijnë shenjat, kufijtë, njësitë dhe ligjet e ruajtjes. Kriteret statistike përfshijnë përsëritjen me fara të ndryshme dhe intervalin e besimit.
+
+\subsubsection{Hierarkia e pacaktueshmërive}
+Në një raport të plotë dallohen së paku katër nivele. Pacaktueshmëria e hyrjeve vjen nga matjet e parametrave. Gabimi i modelit vjen nga mekanizmat e neglizhuar. Gabimi numerik vjen nga diskretizimi dhe aritmetika me saktësi të fundme. Gabimi i kampionimit vjen nga përdorimi i një numri të fundmë realizimesh. Zvogëlimi i hapit kontrollon vetëm një pjesë të nivelit të tretë; rritja e numrit të mostrave kontrollon vetëm nivelin e katërt. Një grafik me shumë shifra nuk mund të kompensojë një model fizik të papërshtatshëm.
+
+Për laboratorin rekomandohet që çdo notebook të përmbajë një tabelë të shkurtër me kolonat: burimi i pacaktueshmërisë, mënyra e vlerësimit, madhësia e efektit dhe prova e kontrollit. Kjo e kthen notebook-un nga një demonstrim kodi në dokument shkencor.

@@ -1,0 +1,67 @@
+\subsection{Gabimi lokal dhe global i Eulerit}
+Për problemin $\vect y'=\vect f(t,\vect y)$, Taylor-i i zgjidhjes së saktë është
+\begin{equation}
+ \vect y(t_n+h)=\vect y(t_n)+h\vect f(t_n,\vect y(t_n))
+ +\frac{h^2}{2}\vect y''(\xi_n).
+\end{equation}
+Euler-i heq termin e fundit; defekti lokal është $\Oh(h^2)$. Nëse $\vect f$ është Lipschitz në $\vect y$ me konstante $L$, gabimet plotësojnë afërsisht
+\begin{equation}
+ \|\vect e_{n+1}\|\le(1+hL)\|\vect e_n\|+Ch^2.
+\end{equation}
+Pas $N=T/h$ hapash dhe përdorimit të pabarazisë diskrete të Grönwall-it merret $\|\vect e_N\|\le C_T h$: rendi global është një më i ulët se rendi i defektit lokal.
+
+\subsection{Qëndrueshmëria absolute}
+Ekuacioni provë $y'=\lambda y$ ndan metodën nga problemi. Euler-i jep
+\begin{equation}
+ y_{n+1}=(1+h\lambda)y_n.
+\end{equation}
+Për një zgjidhje fizike që shuhet, $\Re\lambda<0$, kërkohet $|1+h\lambda|<1$. Bashkësia $\{z:|1+z|<1\}$ është rajoni i qëndrueshmërisë absolute. Për $\lambda<0$ real, kushti bëhet $0<h<2/|\lambda|$. Një hap mund të jetë mjaft i vogël për saktësi dhe përsëri i papërshtatshëm për qëndrueshmëri, ose anasjelltas.
+
+Problemet e shtyllura përmbajnë shkallë kohore shumë të ndryshme. Metodat eksplicite detyrohen të ndjekin shkallën më të shpejtë edhe kur interesi fizik është te evolucioni i ngadaltë. Euler-i i prapëm ka faktor $1/(1-h\lambda)$ dhe është i qëndrueshëm për të gjithë gjysmëplanin $\Re(h\lambda)<0$, por kërkon zgjidhje algjebrike në çdo hap.
+
+\subsection{Runge--Kutta i rendit të katërt}
+Metodat Runge--Kutta përputhin zhvillimin Taylor pa llogaritur derivate të larta të $\vect f$. Skema klasike është
+\begin{align}
+ \vect k_1&=\vect f(t_n,\vect y_n),\\
+ \vect k_2&=\vect f(t_n+h/2,\vect y_n+h\vect k_1/2),\\
+ \vect k_3&=\vect f(t_n+h/2,\vect y_n+h\vect k_2/2),\\
+ \vect k_4&=\vect f(t_n+h,\vect y_n+h\vect k_3),\\
+ \vect y_{n+1}&=\vect y_n+\frac{h}{6}(\vect k_1+2\vect k_2+2\vect k_3+\vect k_4).
+\end{align}
+Koeficientët plotësojnë kushtet e rendit që barazojnë zhvillimin e skemës me Taylor-in deri në $h^4$. Gabimi lokal është $\Oh(h^5)$ dhe globali $\Oh(h^4)$. Katër vlerësime të funksionit kushtojnë më shumë se Euler-i, por për një tolerancë të dhënë zakonisht lejojnë hapa shumë më të mëdhenj.
+
+\subsection{Metodat me shumë hapa}
+Integrimi i identitetit
+\begin{equation}
+ \vect y(t_{n+1})=\vect y(t_n)+\int_{t_n}^{t_{n+1}}\vect f(t,\vect y(t))\dd t
+\end{equation}
+dhe interpolimi i $\vect f$ në pika të mëparshme jep Adams--Bashforth. Për dy hapa,
+\begin{equation}
+ \vect y_{n+1}=\vect y_n+h\left(\frac32\vect f_n-\frac12\vect f_{n-1}\right).
+\end{equation}
+Metoda kursen vlerësime të funksionit, por nuk nis vetë: nevojitet një metodë njëhapëshe për gjendjet fillestare. Stabiliteti dhe rrënjët e polinomit karakteristik duhet të kontrollohen; një formulë me rend formal të lartë mund të jetë zero-e-paqëndrueshme.
+
+\subsection{Leapfrog, Verlet dhe dinamika Hamiltoniane}
+Për $\ddot q=a(q)$, velocity Verlet shkruhet
+\begin{align}
+ v_{n+1/2}&=v_n+\frac h2a(q_n),\\
+ q_{n+1}&=q_n+hv_{n+1/2},\\
+ v_{n+1}&=v_{n+1/2}+\frac h2a(q_{n+1}).
+\end{align}
+Skema është e kthyeshme në kohë dhe simplektike. Ajo nuk e ruan energjinë pikë për pikë, por ruan një Hamiltonian të modifikuar pranë atij të vërtetë; prandaj gabimi i energjisë lëkundet pa drift sistematik për kohë të gjata. Kjo është arsyeja strukturore pse Verlet-i mund të jetë më i mirë se një metodë me rend lokal më të lartë për orbita afatgjata.
+
+\subsection{Problemet kufitare}
+Për $y''=f(x,y,y')$ me $y(a)=\alpha$, $y(b)=\beta$, metoda e qitjes e zëvendëson pjerrësinë e panjohur $s=y'(a)$ me parametër. Integrohet problemi fillestar dhe zgjidhet ekuacioni skalar
+\begin{equation}
+ \Phi(s)=y(b;s)-\beta=0.
+\end{equation}
+Qitja është intuitive, por mund të jetë e keqkushtëzuar. Diferencat e fundme ndërtojnë një sistem algjebrik për të gjitha nyjet dhe janë më të përshtatshme kur zgjidhja rritet ose shuhet shumë shpejt.
+
+\subsection{Përmbledhje dhe ushtrime}
+Zgjedhja e integruesit varet jo vetëm nga rendi, por nga stabiliteti, struktura e sistemit dhe horizonti kohor.
+\begin{enumerate}
+\item Nxirrni rajonin e qëndrueshmërisë së Eulerit të përmirësuar.
+\item Verifikoni rendet e Eulerit dhe RK4 me metodën e përgjysmimit të hapit.
+\item Krahasoni RK4 dhe Verlet për orbitën e Keplerit duke matur energjinë dhe momentin këndor.
+\item Zgjidhni një problem kufitar me qitje dhe me diferenca të fundme; diskutoni kushtëzimin.
+\end{enumerate}

@@ -1,0 +1,57 @@
+\section{Algoritmet Monte Carlo në Python}
+\subsection{Integruesi bazë me gabim standard}
+\begin{lstlisting}[language=Python,caption={Integrimi uniform në një kuti shumëpërmasore.}]
+def integral_mc(f, kufijte, N, seed=2026):
+    rng = np.random.default_rng(seed)
+    kufijte = np.asarray(kufijte, float)
+    a, b = kufijte[:, 0], kufijte[:, 1]
+    x = rng.uniform(a, b, size=(N, len(a)))
+    fx = np.asarray(f(x), float)
+    vellimi = np.prod(b - a)
+    vleresimi = vellimi * fx.mean()
+    se = vellimi * fx.std(ddof=1) / np.sqrt(N)
+    return vleresimi, se
+
+f = lambda x: np.exp(x.sum(axis=1))
+I, se = integral_mc(f, [(0, 1)]*4, N=200_000)
+print(f"I = {I:.6f} +/- {se:.6f}")
+\end{lstlisting}
+
+\subsection{Kontrolli i ligjit $N^{-1/2}$}
+Për secilin $N$ kryhen $R$ simulime të pavarura. Llogaritet RMSE kundrejt një reference dhe përshtatet pjerrësia në koordinata logaritmike.
+\begin{lstlisting}[language=Python]
+Ns = 2**np.arange(8, 18)
+rmse = []
+for N in Ns:
+    v = [integral_mc(f, [(0, 1)]*4, N, seed=s)[0]
+         for s in range(40)]
+    rmse.append(np.sqrt(np.mean((np.array(v) - I_ref)**2)))
+pjerrtesia = np.polyfit(np.log(Ns), np.log(rmse), 1)[0]
+\end{lstlisting}
+Pjerrësia pritet afër $-1/2$. Devijimi mund të vijë nga numër i pamjaftueshëm përsëritjesh ose nga variancë e madhe e integrandit.
+
+\subsection{Variabli kontrollues}
+\begin{lstlisting}[language=Python,caption={Reduktimi i variancës me një madhësi të korreluar.}]
+def kontrolli(fx, gx, Eg):
+    cov = np.cov(fx, gx, ddof=1)
+    c = cov[0, 1] / cov[1, 1]
+    korrigjuar = fx - c*(gx - Eg)
+    return korrigjuar.mean(), korrigjuar.std(ddof=1)/np.sqrt(len(fx)), c
+\end{lstlisting}
+Raportohet faktori i reduktimit të variancës $\Var(f)/\Var(f_c)$. Nëse korrelacioni është i dobët, metoda mund të mos sjellë përfitim.
+
+\subsection{Pacaktueshmëria e zbritjes së mjetit}
+Algoritmi i plotë është i folezuar: jashtë kampionohen parametrat; brenda integrohet dinamika për çdo realizim. Rezultati është shpërndarja e shpejtësisë së kontaktit dhe probabiliteti i tejkalimit të kufirit.
+\begin{lstlisting}[language=Python]
+rng = np.random.default_rng(12)
+parametra = rng.multivariate_normal(mu, Sigma, size=20_000)
+v_kontakt = np.array([simulo_zbritjen(p) for p in parametra])
+rreziku = np.mean(v_kontakt < v_kufi)
+se_rreziku = np.sqrt(rreziku*(1-rreziku)/len(v_kontakt))
+\end{lstlisting}
+
+\begin{kujdes}
+Në shqip dallohen \emph{vlerësuesi} (estimator), \emph{vlerësimi} (estimate), \emph{varianca} dhe \emph{gabimi standard}. Shprehja ``gabimi Monte Carlo'' duhet të shoqërohet me përkufizimin konkret.
+\end{kujdes}
+
+Literatura shqip për Monte Carlo është më e kufizuar; për terminologjinë probabilitare dhe të rizgjedhjes janë përdorur \cite{butka,tasho,hyka}, ndërsa baza algoritmike mbështetet te \cite{newman,robert,press}.

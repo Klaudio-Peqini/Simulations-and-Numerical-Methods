@@ -1,0 +1,91 @@
+\chapter{Integrimi Monte Carlo}
+\begin{qellime}
+Studenti formulon integralin si pritje; ndërton vlerësuesin Monte Carlo dhe gabimin e tij; përdor kampionim të rëndësisë, variabla antitetike dhe variabla kontrolli; trajton integrale shumëdimensionale dhe pacaktueshmëri në modele fizike.
+\end{qellime}
+
+\section{Integrali si pritje}
+Për domen $D$ me vëllim $V_D$ dhe mostra uniforme $X_i$,
+\begin{equation}
+ I=\int_Df(\vect x)\dd\vect x=V_D\E[f(X)],
+\qquad
+ \hat I_N=\frac{V_D}{N}\sum_{i=1}^Nf(X_i).
+\end{equation}
+Vlerësuesi është i paanshëm dhe
+\begin{equation}
+ \operatorname{SE}(\hat I_N)=V_D\frac{\sigma_f}{\sqrt N}.
+\end{equation}
+Avantazhi kryesor është se rendi $N^{-1/2}$ nuk përkeqësohet drejtpërdrejt me dimensionin. Disavantazhi është konvergjenca e ngadaltë në dimension të ulët krahasuar me kuadraturat me rend të lartë.
+
+\section{Shembulli gjeometrik i $\pi$}
+Në katrorin njësi, probabiliteti që $x^2+y^2\le1$ është $\pi/4$. Prandaj
+\begin{equation}
+ \hat\pi_N=4\frac{N_{\mathrm{brenda}}}{N}.
+\end{equation}
+Ky shembull është intuitiv, por jo metodë efikase për llogaritjen e $\pi$; shërben për të demonstruar treguesit, ligjin binomial dhe intervalin e besimit.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\textwidth]{18_monte_carlo_pi.pdf}
+\caption{Vlerësimi gjeometrik i $\pi$ dhe konvergjenca e vlerësuesit.}
+\end{figure}
+
+\section{Gabimi statistik}
+Varianca vlerësohet nga mostrat,
+\begin{equation}
+ s_f^2=\frac1{N-1}\sum_{i=1}^N(f_i-\bar f)^2,
+\qquad \widehat{\operatorname{SE}}(\hat I_N)=V_D\frac{s_f}{\sqrt N}.
+\end{equation}
+Raportimi $\hat I\pm\mathrm{SE}$ pa treguar $N$, metodën e kampionimit dhe korrelacionin është i paplotë. Për integrandë me variancë të pafundme, CLT standard mund të mos zbatohet.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{19_gabimi_monte_carlo.pdf}
+\caption{Shkallëzimi $N^{-1/2}$ në një integral katërpërmasor.}
+\end{figure}
+
+\section{Reduktimi i variancës}
+\subsection{Kampionimi i rëndësisë}
+Nëse $p$ është dendësia e synuar dhe $q$ dendësia e kampionimit,
+\begin{equation}
+ I=\E_q\left[f(X)\frac{p(X)}{q(X)}\right].
+\end{equation}
+Zgjedhja ideale vendos më shumë mostra ku kontributi është i madh. Peshat duhet të monitorohen për degenerim.
+
+\subsection{Variablat antitetike}
+Për $U\sim\mathcal U(0,1)$, çiftet $U$ dhe $1-U$ janë të korreluara negativisht për funksione monotone. Mesatarja e çiftit mund të ketë variancë më të vogël se dy mostra të pavarura.
+
+\subsection{Variablat kontrolli}
+Nëse $g$ ka pritje të njohur,
+\begin{equation}
+ \hat I_c=\bar f-c(\bar g-\E g).
+\end{equation}
+Koeficienti optimal është $c^*=\Cov(f,g)/\Var(g)$. Metoda përdor korrelacionin me një model të thjeshtë për të korrigjuar modelin e shtrenjtë.
+
+\section{Integrale shumëfishta dhe rajone të ndërlikuara}
+Një tregues $\mathbf1_D(\vect x)$ e kthen integrimin mbi rajon të parregullt në pritje mbi një kuti. Efikasiteti bie kur $D$ zë fraksion shumë të vogël. Atëherë përdoret parametrizim i rajonit, kampionim i rëndësisë ose ndarje stratifikore.
+
+Quasi-Monte Carlo zëvendëson rastësinë me vargje me diskrepancë të ulët. Për integrandë të rregullt mund të tejkalojë $N^{-1/2}$, por vlerësimi i gabimit kërkon randomizim ose analiza të tjera.
+
+\section{Përhapja Monte Carlo e pacaktueshmërisë}
+Kur dalja $Y=g(\vect X)$ varet jolinearisht nga hyrje të pacaktuara, kampionohen hyrjet sipas shpërndarjes së tyre dhe llogaritet $Y$ për çdo realizim. Kjo ruan jo-Gaussianitetin, kufijtë dhe korrelacionet. Shpërndarja e daljes jep kuantile dhe probabilitete rreziku, jo vetëm mesatare.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{20_zbritja_mjetit_monte_carlo.pdf}
+\caption{Shpërndarja e shpejtësisë së uljes kur lartësia, shpejtësia fillestare dhe shtytja kanë pacaktueshmëri.}
+\end{figure}
+
+\begin{shembull}[Zbritja e mjetit hapësinor]
+Për çdo realizim kampionohen masa, shtytja, lartësia dhe shpejtësia fillestare. Integruesi dinamik jep shpejtësinë e kontaktit. Probabiliteti $P(v_{\mathrm{kontakt}}<v_{\mathrm{kufi}})$ është madhësi më informative se një trajektore me parametra mesatarë.
+\end{shembull}
+
+\begin{lidhje}
+Laboratori krahason kuadraturën dhe Monte Carlo-n, verifikon $N^{-1/2}$, përdor një teknikë reduktimi variance dhe zbaton përhapjen e pacaktueshmërisë në zbritjen e mjetit.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Pse Monte Carlo bëhet më tërheqës në dimension të lartë?
+\item Si zgjidhet një variabël kontrolli e mirë?
+\item Pse simulimi me parametrat mesatarë nuk jep domosdoshmërisht daljen mesatare?
+\end{enumerate}
+\input{chapters/alg_10}
+\input{chapters/zhvillim_10}
+\input{chapters/thellim_10}

@@ -1,0 +1,58 @@
+\section{Algoritmet për diagnostikimin e gabimeve numerike}
+Qëllimi praktik është të dallohen katër burime: gabimi i të dhënave, kushtëzimi i problemit, gabimi i algoritmit dhe rrumbullakimi. Një diagnozë e mirë ndryshon vetëm një faktor në çdo provë.
+
+\subsection{Matja e saktësisë së makinës}
+\begin{lstlisting}[language=Python,caption={Vlerësimi empirik i distancës pranë njësisë.}]
+eps = 1.0
+while 1.0 + eps/2.0 != 1.0:
+    eps /= 2.0
+print(eps, np.finfo(float).eps)
+\end{lstlisting}
+Vlera e marrë është epsilon-i i makinës sipas konventës së NumPy. Njësia e rrumbullakimit është afërsisht gjysma e saj.
+
+\subsection{Shuma Kahan}
+Në mbledhjen e shumë termave, një kompensim ruan pjesën e humbur nga rrumbullakimi.
+\begin{lstlisting}[language=Python,caption={Mbledhja e kompensuar Kahan.}]
+def shuma_kahan(x):
+    s = 0.0
+    c = 0.0
+    for value in x:
+        y = value - c
+        t = s + y
+        c = (t - s) - y
+        s = t
+    return s
+
+x = np.r_[1e16, np.ones(1_000_000), -1e16]
+print(np.sum(x), shuma_kahan(x))
+\end{lstlisting}
+Ky test duhet përsëritur me renditje të ndryshme. Rezultati tregon se asociativiteti algjebrik nuk ruhet plotësisht në pikë të lëvizshme.
+
+\subsection{Kushtëzimi dhe mbetja}
+\begin{lstlisting}[language=Python,caption={Krahasimi i gabimit me mbetjen.}]
+def diagnostiko(A, b, x_ref):
+    x = np.linalg.solve(A, b)
+    mbetja = np.linalg.norm(b - A @ x) / np.linalg.norm(b)
+    gabimi = np.linalg.norm(x - x_ref) / np.linalg.norm(x_ref)
+    return np.linalg.cond(A), mbetja, gabimi
+
+for e in [1e-2, 1e-6, 1e-10]:
+    A = np.array([[1.0, 1.0], [1.0, 1.0 + e]])
+    x_ref = np.array([1.0, 1.0])
+    b = A @ x_ref
+    print(e, diagnostiko(A, b, x_ref))
+\end{lstlisting}
+Mbetja mund të mbetet e vogël edhe kur gabimi i zgjidhjes rritet. Prandaj raportohen të dyja bashkë me $\kappa(A)$.
+
+\subsection{Algoritmi i auditimit}
+\begin{enumerate}
+\item Përcaktohet një zgjidhje reference me saktësi të lartë ose analitike.
+\item Ndryshohet hapi, toleranca ose rendi i veprimeve.
+\item Vizatohet gabimi në shkallë logaritmike.
+\item Kontrollohet pjerrësia e pritur e konvergjencës.
+\item Përsëritet me të dhëna pak të perturbura për të matur kushtëzimin.
+\end{enumerate}
+
+Terminologjia \emph{gabim i përparmë}, \emph{gabim i prapëm}, \emph{kushtëzim} dhe \emph{qëndrueshmëri} përdoret sipas traditës së analizës numerike në shqip, veçanërisht në tekstet e Hanellit--Osmanit dhe Hoxhës.
+
+Për trajtimin në shqip të gabimeve, sistemeve lineare dhe qëndrueshmërisë janë përdorur \cite{hanelli,hoxha,datja}; analiza moderne e qëndrueshmërisë krahasohet me \cite{higham}.

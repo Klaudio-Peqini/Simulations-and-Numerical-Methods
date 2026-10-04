@@ -1,0 +1,95 @@
+\chapter{Bredhjet e rastit, difuzioni dhe zinxhirët Markov}
+\begin{qellime}
+Studenti lidh bredhjen e rastit me difuzionin; nxjerr ligjin e zhvendosjes katrore mesatare; simulon bredhje në një dhe dy përmasa; përkufizon zinxhirin Markov, shpërndarjen stacionare, kthyeshmërinë dhe kohën e korrelacionit.
+\end{qellime}
+
+\section{Bredhja simetrike në një përmasë}
+Le të jenë hapat $S_i=\pm\ell$ me probabilitet $1/2$. Pas $N$ hapash,
+\begin{equation}
+ X_N=\sum_{i=1}^{N}S_i,qquad \E[X_N]=0,qquad \E[X_N^2]=N\ell^2.
+\end{equation}
+Zhvendosja tipike rritet si $\sqrt N$, jo si $N$. Nëse çdo hap zgjat $\Delta t$, atëherë
+\begin{equation}
+ \avg{X^2}=2Dt,qquad D=\frac{\ell^2}{2\Delta t}.
+\end{equation}
+Në $d$ përmasa, $\avg{r^2}=2dDt$.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\textwidth]{21_bredhja_e_rastit.pdf}
+\caption{Realizime të bredhjes dhe rritja lineare e zhvendosjes katrore mesatare.}
+\end{figure}
+
+\section{Kufiri i vazhdueshëm dhe difuzioni}
+Probabiliteti diskret plotëson ekuacionin master
+\begin{equation}
+ p_j^{n+1}=\tfrac12p_{j-1}^n+\tfrac12p_{j+1}^n.
+\end{equation}
+Zhvillimi Taylor dhe kufiri $\ell,\Delta t\to0$ me $\ell^2/(2\Delta t)=D$ japin
+\begin{equation}
+ \frac{\partial p}{\partial t}=D\frac{\partial^2p}{\partial x^2}.
+\end{equation}
+Për një grimcë fillimisht në origjinë,
+\begin{equation}
+ p(x,t)=\frac1{\sqrt{4\pi Dt}}\exp\left(-\frac{x^2}{4Dt}\right).
+\end{equation}
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{22_difuzioni_gaussian.pdf}
+\caption{Profili i difuzionit zgjerohet, ndërsa normalizimi ruhet.}
+\end{figure}
+
+\section{Kufij, drift dhe kohë e parë kalimi}
+Një kufi reflektues ruan grimcën; një kufi thithës e heq kur arrihet. Koha e parë e kalimit është koha kur trajektorja prek për herë të parë një objektiv. Me drift $v$,
+\begin{equation}
+ \frac{\partial p}{\partial t}=-v\frac{\partial p}{\partial x}+D\frac{\partial^2p}{\partial x^2}.
+\end{equation}
+Kjo lidh transportin determinist me luhatjet. Në mjedise heterogjene, hapi ose probabiliteti mund të varen nga pozicioni.
+
+\section{Zinxhirët Markov}
+Një proces diskret është Markov nëse e ardhmja, me kusht gjendjen e tanishme, nuk varet nga historia:
+\begin{equation}
+ P(X_{n+1}=j|X_n=i,X_{n-1},\ldots)=P_{ij}.
+\end{equation}
+Matrica $P$ ka elemente jo-negative dhe rreshta me shumë një. Shpërndarja evoluon si $\vect p_{n+1}=\vect p_nP$. Shpërndarja stacionare plotëson
+\begin{equation}
+ \vect\pi=\vect\pi P.
+\end{equation}
+Një zinxhir i fundmë, i pareduktueshëm dhe aperiodik ka shpërndarje stacionare unike dhe konvergon drejt saj.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.74\textwidth]{23_zinxhiri_markov.pdf}
+\caption{Humbja graduale e kujtesës së gjendjes fillestare në një zinxhir me dy gjendje.}
+\end{figure}
+
+\section{Kthyeshmëria dhe balanca e detajuar}
+Kushti
+\begin{equation}
+ \pi_iP_{ij}=\pi_jP_{ji}
+\end{equation}
+quhet balancë e detajuar. Ajo garanton stacionaritetin, por nuk është kusht i domosdoshëm. Interpretimi është ekuilibër i fluksit probabilitar ndërmjet çdo çifti gjendjesh.
+
+\section{Korrelacioni dhe madhësia efektive}
+Në një zinxhir, mostrat pasuese janë të korreluara. Për një observabël $A$,
+\begin{equation}
+ \rho_A(k)=\frac{\Cov(A_n,A_{n+k})}{\Var(A)},\qquad
+ \tau_{\mathrm{int}}=\frac12+\sum_{k=1}^{\infty}\rho_A(k).
+\end{equation}
+Varianca e mesatares sillet afërsisht si
+\begin{equation}
+ \Var(\bar A)\approx\frac{2\tau_{\mathrm{int}}}{N}\Var(A),
+\end{equation}
+pra $N_{\mathrm{eff}}\approx N/(2\tau_{\mathrm{int}})$. Rritja e numrit të hapave nuk ndihmon shumë kur zinxhiri përzihet ngadalë.
+
+\begin{lidhje}
+Laboratori simulon bredhje 1D dhe 2D, mat $\avg{r^2}$, zbaton kufij thithës e reflektues dhe vlerëson kohën e korrelacionit të një zinxhiri të vogël.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Si del ekuacioni i difuzionit nga ekuacioni master?
+\item Çfarë dallimi ka stacionariteti nga pavarësia?
+\item Pse $N$ hapa Markov nuk japin $N$ mostra të pavarura?
+\end{enumerate}
+\input{chapters/alg_11}
+\input{chapters/zhvillim_11}
+\input{chapters/thellim_11}

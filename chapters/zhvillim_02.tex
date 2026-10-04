@@ -1,0 +1,83 @@
+\subsection{Modeli standard i rrumbullakimit dhe përhapja e gabimit}
+Le të jetë $\operatorname{fl}(x)$ numri i përfaqësueshëm më i afërt me $x$. Për numrat normalë dhe rrumbullakimin drejt më të afërtit shkruhet
+\begin{equation}
+ \operatorname{fl}(x)=x(1+\delta),\qquad |\delta|\le u.
+\end{equation}
+Ky model është relativ dhe prandaj nuk përshkruan drejtpërdrejt sjelljen pranë nënmbushjes. Për një varg veprimesh, çdo hap fut një faktor të ri $(1+\delta_i)$. Prodhimi plotëson
+\begin{equation}
+ \prod_{i=1}^{n}(1+\delta_i)=1+\theta_n,qquad
+ |\theta_n|\le\gamma_n=\frac{nu}{1-nu},
+\end{equation}
+kur $nu<1$. Formula $\gamma_n\simeq nu$ është e dobishme, por nuk duhet interpretuar si parashikim i saktë i gabimit: ajo është kufi në rastin më të pafavorshëm.
+
+Për $f(x_1,\ldots,x_p)$, linearizimi jep
+\begin{equation}
+ \Delta f\simeq\sum_{j=1}^{p}\frac{\partial f}{\partial x_j}\Delta x_j.
+\end{equation}
+Nëse perturbimet trajtohen si të pavarura me devijime standarde $\sigma_j$, përhapja probabilitare e rendit të parë është
+\begin{equation}
+ \sigma_f^2\simeq\sum_{j=1}^{p}\left(\frac{\partial f}{\partial x_j}\right)^2\sigma_j^2,
+\end{equation}
+ndërsa për hyrje të korreluara shfaqen termat $2(\partial_i f)(\partial_j f)\operatorname{Cov}(x_i,x_j)$. Analiza deterministe e rrumbullakimit dhe përhapja probabilitare e pacaktueshmërisë nuk janë e njëjta gjë, megjithëse përdorin të njëjtin mjet të linearizimit.
+
+\subsection{Kushtëzimi absolut dhe relativ}
+Për një hartë $f:\R^n\to\R^m$, perturbimi i rendit të parë është $\Delta\vect y\simeq J_f(\vect x)\Delta\vect x$. Numri absolut i kushtëzimit në normat e zgjedhura është
+\begin{equation}
+ \kappa_{\mathrm{abs}}(\vect x)=\|J_f(\vect x)\|,
+\end{equation}
+kurse numri relativ mund të shkruhet
+\begin{equation}
+ \kappa_{\mathrm{rel}}(\vect x)=
+ \frac{\|J_f(\vect x)\|\,\|\vect x\|}{\|f(\vect x)\|}.
+\end{equation}
+Kjo formulë tregon pse kushtëzimi rritet pranë një rezultati zero: një ndryshim absolut i moderuar bëhet ndryshim relativ i madh. Për sistemin linear, nga
+\begin{equation}
+ (A+\Delta A)(\vect x+\Delta\vect x)=\vect b+\Delta\vect b
+\end{equation}
+dhe neglizhimi i produkteve të rendit të dytë merret
+\begin{equation}
+ A\Delta\vect x\simeq\Delta\vect b-\Delta A\vect x.
+\end{equation}
+Prandaj
+\begin{equation}
+ \frac{\|\Delta\vect x\|}{\|\vect x\|}
+ \lesssim\kappa(A)\left(
+ \frac{\|\Delta A\|}{\|A\|}+\frac{\|\Delta\vect b\|}{\|\vect b\|}
+ \right),
+\end{equation}
+me kusht që perturbimi i matricës të jetë mjaft i vogël.
+
+\subsection{Mbetja dhe kufiri i gabimit të zgjidhjes}
+Për një përafrim $\widehat{\vect x}$, mbetja është $\vect r=\vect b-A\widehat{\vect x}$. Gabimi i vërtetë $\vect e=\vect x-\widehat{\vect x}$ plotëson $A\vect e=\vect r$, kështu që
+\begin{equation}
+ \|\vect e\|\le\|A^{-1}\|\,\|\vect r\|.
+\end{equation}
+Duke normalizuar dhe përdorur $\|\vect b\|\le\|A\|\|\vect x\|$ merret kufiri praktik
+\begin{equation}
+ \frac{\|\vect e\|}{\|\vect x\|}
+ \le \kappa(A)\frac{\|\vect r\|}{\|\vect b\|}.
+\end{equation}
+Pra mbetja e vogël është e nevojshme, por jo e mjaftueshme për saktësi të lartë kur $\kappa(A)$ është e madhe.
+
+\begin{lstlisting}[language=Python,caption={Raport diagnostik për një sistem linear.}]
+import numpy as np
+
+def raport_sistemi(A, b, x_hat):
+    r = b - A @ x_hat
+    mbetje_relative = np.linalg.norm(r) / np.linalg.norm(b)
+    kappa = np.linalg.cond(A)
+    kufi_gabimi = kappa * mbetje_relative
+    return {"kappa": kappa,
+            "mbetje_relative": mbetje_relative,
+            "kufi_i_perafert": kufi_gabimi}
+\end{lstlisting}
+Funksioni nuk pretendon se kufiri është gabimi real; ai jep një alarm të arsyetuar. Në MATLAB/Octave përdoren \texttt{norm}, \texttt{cond} dhe prodhimi \texttt{A*x\_hat}.
+
+\subsection{Përmbledhje dhe ushtrime}
+Gabimi i të dhënave, kushtëzimi i problemit dhe qëndrueshmëria e algoritmit duhet të analizohen veçmas. Një raport numerik pa mbetje, kushtëzim dhe studim të saktësisë është i paplotë.
+\begin{enumerate}
+\item Nxirrni numrin relativ të kushtëzimit të $f(x)=1/(1-x)$ dhe interpretojeni pranë $x=1$.
+\item Provoni kufirin $|\theta_n|\le\gamma_n$ për $n=2$ dhe diskutoni rolin e termit $u^2$.
+\item Krahasoni shumën naive, shumën nga termi më i vogël dhe shumën Kahan për një varg me shkallë të ndryshme.
+\item Ndërtoni matrica me numër kushtëzimi të kontrolluar nga vlerat singulare dhe studioni gabimin përpara.
+\end{enumerate}

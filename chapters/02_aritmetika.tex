@@ -1,0 +1,96 @@
+\chapter{Aritmetika kompjuterike dhe analiza e gabimeve}
+\begin{qellime}
+Studenti përshkruan numrat me pikë të lëvizshme; dallon gabimin absolut e relativ, gabimin e përparmë e të prapmë; analizon kushtëzimin dhe qëndrueshmërinë; njeh anulimin, humbjen e rëndësisë dhe grumbullimin e gabimeve.
+\end{qellime}
+
+\section{Përfaqësimi me saktësi të fundme}
+Një numër normal binar përfaqësohet si
+\begin{equation}
+ x=(-1)^s(1.b_1b_2\ldots b_p)_2\,2^e.
+\end{equation}
+Në standardin IEEE 754, formati double ka 53 bita saktësi në mantisë. Distanca relative ndërmjet numrave pranë njësisë është afërsisht $2^{-52}$. Madhësia
+\begin{equation}
+ u=\tfrac12\,\beta^{1-p}
+\end{equation}
+quhet njësia e rrumbullakimit. Modeli bazë është
+\begin{equation}
+ \operatorname{fl}(x\circ y)=(x\circ y)(1+\delta),\qquad |\delta|\le u,
+\end{equation}
+për një veprim $\circ$, me kusht që të mos ndodhë tejmbushje ose nënmbushje.
+
+Numrat \texttt{Inf}, \texttt{-Inf} dhe \texttt{NaN} sinjalizojnë rezultate jashtë bashkësisë së numrave të fundmë ose veprime të papërcaktuara. Krahasimi i numrave realë nuk duhet të mbështetet verbërisht në barazinë bit për bit; përdoret një tolerancë që merr parasysh shkallën e problemit.
+
+\section{Gabimi absolut dhe relativ}
+Nëse $x$ është vlera e saktë dhe $\tilde x$ përafrimi,
+\begin{equation}
+ e_a=|\tilde x-x|,\qquad e_r=\frac{|\tilde x-x|}{|x|}.
+\end{equation}
+Gabimi relativ nuk ka kuptim kur $x=0$ dhe bëhet i paqëndrueshëm pranë zeros. Në vektorë përdoret një normë, për shembull
+\begin{equation}
+ e_r=\frac{\|\tilde{\vect x}-\vect x\|_2}{\|\vect x\|_2}.
+\end{equation}
+
+\section{Anulimi dhe humbja e shifrave}
+Zbritja e dy numrave pothuaj të barabartë heq shifrat kryesore të përbashkëta dhe zmadhon gabimin relativ të mbetjes. Shprehja $\sqrt{x+1}-\sqrt{x}$ për $x\gg1$ llogaritet më mirë si
+\begin{equation}
+ \frac{1}{\sqrt{x+1}+\sqrt{x}}.
+\end{equation}
+Të dyja janë algjebrikisht të njëjta, por jo numerikisht të barasvlershme.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.75\textwidth]{02_anulimi_katastrofik.pdf}
+\caption{Gabimi i shkaktuar nga anulimi kur $x$ bëhet i krahasueshëm me saktësinë e makinës.}
+\end{figure}
+
+\begin{kujdes}
+Renditja e veprimeve ka rëndësi. Në një shumë me terma me madhësi shumë të ndryshme, termat e vegjël mund të humbasin. Mbledhja nga moduli më i vogël te më i madhi ose algoritmi Kahan redukton humbjen.
+\end{kujdes}
+
+\section{Kushtëzimi i problemit}
+Kushtëzimi është veti e problemit matematik. Për $y=f(x)$, numri relativ i kushtëzimit lokal është
+\begin{equation}
+ \kappa_f(x)=\left|\frac{x f'(x)}{f(x)}\right|.
+\end{equation}
+Në sistemin $A\vect x=\vect b$,
+\begin{equation}
+ \frac{\|\delta\vect x\|}{\|\vect x\|}\lesssim \kappa(A)\frac{\|\delta\vect b\|}{\|\vect b\|},
+ \qquad \kappa(A)=\|A\|\,\|A^{-1}\|.
+\end{equation}
+Një matricë me $\kappa\gg1$ është e keqkushtëzuar: perturbime të vogla në të dhëna mund të prodhojnë ndryshime të mëdha në zgjidhje.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=.75\textwidth]{04_kushtzimi_matrices.pdf}
+\caption{Rritja e numrit të kushtëzimit kur dy rreshta të matricës bëhen pothuaj linearë të varur.}
+\end{figure}
+
+\section{Gabimi i përparmë dhe i prapmë}
+Gabimi i përparmë mat distancën ndërmjet rezultatit numerik dhe zgjidhjes së saktë. Analiza e prapme kërkon problemin pak të perturbur që zgjidhet saktësisht nga rezultati i llogaritur. Një algoritëm është i qëndrueshëm në kuptimin e prapëm nëse perturbimi i kërkuar është i vogël. Marrëdhënia konceptuale është
+\begin{equation}
+ \text{gabimi i përparmë}\ \lesssim\ \text{kushtëzimi}\times\text{gabimi i prapëm}.
+\end{equation}
+Prandaj, edhe algoritmi më i mirë nuk mund ta shpëtojë një problem intrinsikisht të keqkushtëzuar.
+
+\section{Gabimet matricore}
+Shumëzimi matricor kryen shumë mbledhje dhe shumëzime. Kufiri klasik për një produkt skalar me $n$ terma ka faktor
+\begin{equation}
+ \gamma_n=\frac{nu}{1-nu}\approx nu.
+\end{equation}
+Invertimi eksplicit i matricës për të zgjidhur $A\vect x=\vect b$ është zakonisht më i shtrenjtë dhe më pak i qëndrueshëm se faktorizimi i drejtpërdrejtë. Në kod përdoret operatori i zgjidhjes, jo $A^{-1}\vect b$.
+
+\begin{shembull}[Shuma e energjive]
+Nëse energjia totale merret si diferencë e dy energjive të mëdha, gabimi relativ mund të jetë i lartë edhe kur secila energji është llogaritur me shumë shifra. Një formulim që llogarit drejtpërdrejt madhësinë e vogël mund të jetë numerikisht më i sigurt.
+\end{shembull}
+
+\begin{lidhje}
+Në laborator maten $u$, anulimi dhe ndikimi i rendit të mbledhjes. Pastaj ndërtohet një familje sistemesh $2\times2$ dhe krahasohet gabimi i zgjidhjes me $\kappa(A)$.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Dalloni një problem të keqkushtëzuar nga një algoritëm i paqëndrueshëm.
+\item Pse $A^{-1}\vect b$ nuk është mënyra e rekomanduar për të zgjidhur sistemin?
+\item Jepni një reformulim që shmang anulimin katastrofik.
+\end{enumerate}
+\input{chapters/alg_02}
+\input{chapters/zhvillim_02}
+\input{chapters/thellim_02}

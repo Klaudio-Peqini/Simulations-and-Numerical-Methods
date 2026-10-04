@@ -1,0 +1,62 @@
+\section{Integruesit kohorë në Python}
+\subsection{Euler dhe Runge--Kutta i rendit të katërt}
+\begin{lstlisting}[language=Python,caption={Dy integrues të përgjithshëm për sisteme ODE.}]
+def euler(f, t, y0):
+    y = np.empty((len(t), len(np.atleast_1d(y0))), float)
+    y[0] = y0
+    for n, h in enumerate(np.diff(t)):
+        y[n+1] = y[n] + h*f(t[n], y[n])
+    return y
+
+def rk4(f, t, y0):
+    y = np.empty((len(t), len(np.atleast_1d(y0))), float)
+    y[0] = y0
+    for n, h in enumerate(np.diff(t)):
+        k1 = f(t[n], y[n])
+        k2 = f(t[n]+h/2, y[n]+h*k1/2)
+        k3 = f(t[n]+h/2, y[n]+h*k2/2)
+        k4 = f(t[n]+h, y[n]+h*k3)
+        y[n+1] = y[n] + h*(k1+2*k2+2*k3+k4)/6
+    return y
+\end{lstlisting}
+
+\subsection{Modeli i lavjerrësit}
+\begin{lstlisting}[language=Python]
+def lavjerresi(t, y, g=9.81, L=1.0, gamma=0.0):
+    theta, omega = y
+    return np.array([omega, -g/L*np.sin(theta) - gamma*omega])
+
+def energjia(y, g=9.81, L=1.0):
+    theta, omega = y.T
+    return 0.5*(L*omega)**2 + g*L*(1-np.cos(theta))
+\end{lstlisting}
+Për rastin pa fërkim, drift-i i energjisë mat cilësinë afatgjatë. Për rastin me fërkim, energjia duhet të bjerë; ruajtja nuk është më kontrolli i duhur.
+
+\subsection{Velocity Verlet për gravitetin}
+\begin{lstlisting}[language=Python,caption={Skema simplektike për orbitën.}]
+def verlet_orbite(r0, v0, dt, n, mu=1.0):
+    r = np.empty((n, 2)); v = np.empty((n, 2))
+    r[0], v[0] = r0, v0
+    def a(q):
+        return -mu*q/np.linalg.norm(q)**3
+    for k in range(n-1):
+        v_half = v[k] + 0.5*dt*a(r[k])
+        r[k+1] = r[k] + dt*v_half
+        v[k+1] = v_half + 0.5*dt*a(r[k+1])
+    return r, v
+\end{lstlisting}
+
+\subsection{Protokolli i verifikimit}
+\begin{enumerate}
+\item Euler-i testohet te $y'=\lambda y$, ku zgjidhja njihet.
+\item RK4 testohet me përgjysmim hapi dhe pritet faktor gabimi afërsisht $2^4$.
+\item Për orbitën kontrollohen energjia dhe momenti këndor.
+\item Për lavjerrësin e këndit të vogël krahasohet perioda me $2\pi\sqrt{L/g}$.
+\item Koha dhe memoria raportohen bashkë me gabimin.
+\end{enumerate}
+
+\begin{kujdes}
+Në terminologjinë numerike shqipe përdoren \emph{metodë e shtjelluar} dhe \emph{metodë e pashtjelluar} për explicit dhe implicit. Në tekst jepen edhe termat ndërkombëtarë kur ndihmojnë studentin të lexojë dokumentacionin e bibliotekave.
+\end{kujdes}
+
+Për terminologjinë \emph{problem i vlerës fillestare}, \emph{gabim lokal}, \emph{gabim global}, \emph{metodë e shtjelluar} dhe \emph{qëndrueshmëri} janë përdorur gjerësisht burimet shqip \cite{dishmema,hanelli,hoxha,datja,dishmemaArticle}.

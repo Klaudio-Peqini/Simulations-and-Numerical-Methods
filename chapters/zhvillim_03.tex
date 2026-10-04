@@ -1,0 +1,82 @@
+\subsection{Konvergjenca e metodave për rrënjët}
+Le të jetë $x_*$ rrënjë e thjeshtë. Në iteracionin e pikës fikse $x_{k+1}=g(x_k)$, teorema e vlerës mesatare jep
+\begin{equation}
+ e_{k+1}=x_{k+1}-x_*=g'(\xi_k)(x_k-x_*)=g'(\xi_k)e_k.
+\end{equation}
+Nëse $|g'(x)|\le q<1$ në një interval që ruhet nga $g$, atëherë $|e_k|\le q^k|e_0|$. Ky është konvergjim linear. Për Njutonin, zhvillimi Taylor rreth $x_k$ jep
+\begin{equation}
+ 0=f(x_*)=f(x_k)+f'(x_k)(x_*-x_k)+\frac{f''(\xi_k)}{2}(x_*-x_k)^2.
+\end{equation}
+Pas zëvendësimit të hapit të Njutonit merret
+\begin{equation}
+ e_{k+1}=\frac{f''(\xi_k)}{2f'(x_k)}e_k^2.
+\end{equation}
+Konvergjenca kuadratike vlen vetëm pasi iteracioni ka hyrë në fqinjësinë e rrënjës dhe kur $f'(x_*)\ne0$. Për një rrënjë me shumëfish $m$, Njutoni standard bëhet linear; formula e modifikuar $x_{k+1}=x_k-mf(x_k)/f'(x_k)$ rikthen rendin kuadratik kur $m$ dihet.
+
+Metoda e Müller-it ndërton një polinom kuadratik në tri pika dhe zgjedh rrënjën e tij që vazhdon trajektoren e iteracionit. Ajo mund të prodhojë rrënjë komplekse edhe nga pika fillestare reale, çka është avantazh për polinomet, por kërkon trajtim të kujdesshëm të degës së rrënjës katrore dhe të anulimit në emërues.
+
+\subsection{Eliminimi i Gausit dhe pivotimi}
+Në hapin $k$, elementi $a_{kk}^{(k)}$ përdoret si pivot dhe shumëzuesit janë
+\begin{equation}
+ \ell_{ik}=\frac{a_{ik}^{(k)}}{a_{kk}^{(k)}},\qquad i=k+1,\ldots,n.
+\end{equation}
+Rreshti $i$ përditësohet me $a_{ij}^{(k+1)}=a_{ij}^{(k)}-\ell_{ik}a_{kj}^{(k)}$. Në aritmetikë të saktë, kjo është një sekuencë transformimesh elementare. Në aritmetikë me saktësi të fundme, pivot i vogël prodhon shumëzues të mëdhenj dhe zmadhon gabimet. Pivotimi i pjesshëm zgjedh
+\begin{equation}
+ p=\arg\max_{i\ge k}|a_{ik}^{(k)}|
+\end{equation}
+dhe këmben rreshtat $p$ dhe $k$. Rezultati ruhet si $PA=LU$. Faktorizimi kushton afërsisht $2n^3/3$ veprime me presje të lëvizshme, kurse dy zëvendësimet për çdo anë të djathtë kushtojnë $\Oh(n^2)$.
+
+Formimi i $A^{-1}$ kërkon zgjidhjen e $n$ sistemeve dhe pastaj një shumëzim tjetër me $\vect b$; ai shton punë dhe rrumbullakime pa nevojë. Për këtë arsye \texttt{solve(A,b)} është zgjedhja standarde.
+
+\subsection{Njutoni për sisteme dhe kriteret e ndalimit}
+Nga zhvillimi shumëpërmasor
+\begin{equation}
+ \vect F(\vect x+\Delta\vect x)=\vect F(\vect x)+J(\vect x)\Delta\vect x+\Oh(\|\Delta\vect x\|^2)
+\end{equation}
+vendosja e anës së majtë në zero jep sistemin e Njutonit. Duhet të kontrollohen njëkohësisht norma e mbetjes dhe madhësia relative e hapit,
+\begin{equation}
+ \|\vect F(\vect x_k)\|\le\tau_F,
+ \qquad
+ \|\Delta\vect x_k\|\le\tau_x(1+\|\vect x_k\|).
+\end{equation}
+Vetëm kriteri i hapit mund të pranojë stagnim; vetëm mbetja mund të mashtrojë kur ekuacionet kanë shkallë shumë të ndryshme. Shkallëzimi i secilit ekuacion me një madhësi karakteristike i bën kriteret fizikisht të krahasueshme.
+
+\begin{lstlisting}[language=Python,caption={Njutoni i amortizuar për një sistem jolinear.}]
+import numpy as np
+
+def njutoni_sistem(F, J, x0, tol=1e-10, maksimumi=50):
+    x = np.array(x0, dtype=float)
+    for k in range(maksimumi):
+        Fx = np.asarray(F(x), dtype=float)
+        if np.linalg.norm(Fx, ord=np.inf) <= tol:
+            return x, k
+        hapi = np.linalg.solve(J(x), -Fx)
+        alfa = 1.0
+        # Kërkim prapa: pranohet vetëm ulja e normës së mbetjes.
+        while np.linalg.norm(F(x + alfa*hapi)) >= np.linalg.norm(Fx):
+            alfa *= 0.5
+            if alfa < 2.0**-20:
+                raise RuntimeError("Njutoni stagnoi; kontrolloni shkallëzimin.")
+        x = x + alfa*hapi
+    raise RuntimeError("U arrit numri maksimal i iteracioneve.")
+\end{lstlisting}
+
+\subsection{Metoda fuqi dhe algoritmi QR: derivim spektral}
+Nëse $A$ ka një bazë vektorësh vetjakë dhe $\vect x_0=\sum_i c_i\vect v_i$, atëherë
+\begin{equation}
+ A^k\vect x_0=\lambda_1^k\left[c_1\vect v_1+
+ \sum_{i=2}^{n}c_i\left(\frac{\lambda_i}{\lambda_1}\right)^k\vect v_i\right].
+\end{equation}
+Kur $|\lambda_1|>|\lambda_2|$ dhe $c_1\ne0$, termat e tjerë shuhen relativisht si $|\lambda_2/\lambda_1|^k$. Normalizimi shmang tejmbushjen, por nuk ndryshon drejtimin.
+
+Në algoritmin QR, $A_k=Q_kR_k$ dhe $A_{k+1}=R_kQ_k=Q_k^TA_kQ_k$, kështu që $A_{k+1}$ është e ngjashme me $A_k$. Për matrica simetrike, transformimet ortogonale ruajnë mirë normën dhe diagonalja konvergon te vlerat vetjake. Zhvendosja $A_k-\mu_kI=Q_kR_k$, e ndjekur nga $A_{k+1}=R_kQ_k+\mu_kI$, përshpejton ndarjen e vlerave të afërta.
+
+\subsection{Përmbledhje dhe ushtrime}
+Metodat e këtij kapitulli bashkohen nga linearizimi: Njutoni linearizon funksionin, eliminimi zgjidh problemin linear dhe analiza spektrale shpjegon mënyrën si vepron matrica në drejtime të veçanta.
+\begin{enumerate}
+\item Nxirrni rendin e sekantes duke supozuar $|e_{k+1}|\simeq C|e_k e_{k-1}|$.
+\item Implementoni Müller-in me numra kompleksë dhe provojeni te $x^4+1=0$.
+\item Numëroni veprimet e eliminimit të Gausit dhe nxirrni termin $2n^3/3$.
+\item Për një sistem masë--sustë, verifikoni ortogonalitetin e modeve ndaj matricës së masës.
+\item Ndërtoni një rrjet faqesh dhe studioni ndikimin e parametrit të amortizimit në konvergjencën e renditjes.
+\end{enumerate}

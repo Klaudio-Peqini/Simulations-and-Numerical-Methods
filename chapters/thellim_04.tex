@@ -1,0 +1,43 @@
+\subsection{Ndërtimi i interpoluesit Hermitian}
+Për nyje $x_i$ ku njihen $f_i=f(x_i)$ dhe $f_i'=f'(x_i)$, interpoluesi Hermitian me $n+1$ nyje ka gradë jo më të madhe se $2n+1$. Duke përdorur bazën e Lagranzhit $L_i(x)$, përkufizohen
+\begin{equation}
+ H_i(x)=\left[1-2L_i'(x_i)(x-x_i)\right]L_i(x)^2,
+ \qquad
+ K_i(x)=(x-x_i)L_i(x)^2.
+\end{equation}
+Ato plotësojnë $H_i(x_j)=\delta_{ij}$, $H_i'(x_j)=0$, $K_i(x_j)=0$ dhe $K_i'(x_j)=\delta_{ij}$. Prandaj
+\begin{equation}
+ p(x)=\sum_{i=0}^{n}\left[f_iH_i(x)+f_i'K_i(x)\right].
+\end{equation}
+Nëse $f\in C^{2n+2}$, mbetja është
+\begin{equation}
+ f(x)-p(x)=\frac{f^{(2n+2)}(\xi_x)}{(2n+2)!}
+ \prod_{i=0}^{n}(x-x_i)^2.
+\end{equation}
+Fuqia katrore tregon se vlera dhe pjerrësia përputhen në çdo nyje. Në të dhëna eksperimentale, derivatet e vlerësuara me zhurmë mund ta përkeqësojnë rezultatin; interpolimi Hermitian është më i vlefshëm kur derivatet vijnë nga ligji fizik ose maten me cilësi të mjaftueshme.
+
+\subsubsection{Regresi, gjasa dhe pacaktueshmëria e parametrave}
+Në modelin $\vect y=X\vect\beta+\vect\varepsilon$, me $\vect\varepsilon\sim\mathcal N(0,\sigma^2I)$, logaritmi i gjasës ndryshon nga një konstante me
+\begin{equation}
+ -\frac{1}{2\sigma^2}\|\vect y-X\vect\beta\|_2^2.
+\end{equation}
+Prandaj vlerësuesi i katrorëve më të vegjël është edhe vlerësues i gjasës më të madhe. Kur $X$ ka rang të plotë,
+\begin{equation}
+ \widehat{\vect\beta}=(X^TX)^{-1}X^T\vect y,
+ \qquad
+ \Cov(\widehat{\vect\beta})=\sigma^2(X^TX)^{-1}.
+\end{equation}
+Kjo formulë përdoret për teori, por jo domosdoshmërisht për llogaritje: QR ose SVD janë më të qëndrueshme. Varianca vlerësohet me
+\begin{equation}
+ s^2=\frac{\|\vect r\|^2}{n-p},
+\end{equation}
+ku $p$ është numri i parametrave. Pjesëtimi me $n-p$ merr parasysh shkallët e lirisë të përdorura në përshtatje.
+
+Një interval për mesataren e modelit në $\vect x_*$ ka variancë $s^2\vect x_*^T(X^TX)^{-1}\vect x_*$. Një interval parashikimi për një matje të re shton edhe $s^2$, sepse matja e re ka zhurmën e vet. Ngatërrimi i këtyre dy intervaleve çon në deklarim tepër optimist të parashikimit.
+
+\subsubsection{Diagnostika dhe zgjedhja e modelit}
+Mbetjet duhet të kontrollohen ndaj vlerave të përshtatura, kohës dhe ndryshoreve shpjeguese. Një hark sistematik tregon jolinearitet të pambuluar; një hinkë tregon variancë jo konstante; grupe të ndara tregojnë ndryshore të munguar. Autokorrelacioni i mbetjeve shkel pavarësinë dhe ndryshon pacaktueshmërinë e parametrave.
+
+Shtimi i parametrave ul gjithmonë shumën e katrorëve, prandaj ajo nuk mjafton për zgjedhje modeli. Vleftësimi i kryqëzuar ndan të dhënat në pjesë trajnimi dhe kontrolli. Kriteret AIC ose BIC kombinojnë përshtatjen me penalizim të kompleksitetit, por bazohen në supozime probabilitare që duhet deklaruar. Në ligjin e Keplerit, përshtatja e $T^2=a^3$ mund të bëhet me një parametër fizik; një polinom i gradës së lartë mund të përshtatë pikat më mirë, por nuk jep interpretim dhe ekstrapolon keq.
+
+Ekstrapolimi është gjithmonë më i rrezikshëm se interpolimi sepse largohet nga mbështetja e të dhënave. Intervalet statistikë të një modeli nuk përfshijnë automatikisht gabimin nga forma e gabuar e modelit. Për këtë arsye, çdo ekstrapolim duhet të shoqërohet me arsyetim fizik dhe analizë ndjeshmërie ndaj modeleve alternative.

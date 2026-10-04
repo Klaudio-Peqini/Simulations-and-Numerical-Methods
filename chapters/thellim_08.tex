@@ -1,0 +1,44 @@
+\subsection{Vlerësuesi, animi dhe gabimi kuadratik mesatar}
+Një vlerësues $\widehat\theta$ është ndryshore rasti sepse varet nga mostra. Animi është
+\begin{equation}
+ \operatorname{Bias}(\widehat\theta)=\E[\widehat\theta]-\theta.
+\end{equation}
+Gabimi kuadratik mesatar ndahet si
+\begin{equation}
+ \E[(\widehat\theta-\theta)^2]
+ =\Var(\widehat\theta)+\operatorname{Bias}(\widehat\theta)^2.
+\end{equation}
+Ky identitet tregon se vlerësuesi i paanshëm nuk është automatikisht optimal: një anim i vogël mund të pranohet nëse ul ndjeshëm variancën. Në simulimet fizike, kjo shfaqet te rregullimi i modeleve, prerja e peshave ekstreme ose vlerësuesit me kontroll variabël.
+
+Varianca e mostrës me emërues $N-1$ është e paanshme për variancën e popullatës kur mostrat janë të pavarura,
+\begin{equation}
+ s^2=\frac{1}{N-1}\sum_{i=1}^{N}(X_i-\overline X)^2.
+\end{equation}
+Emëruesi $N-1$ vjen sepse mbetjet kanë shumën zero dhe vetëm $N-1$ shkallë lirie. Për seri të korreluara, formula ende përshkruan shpërndarjen margjinale, por $s/\sqrt N$ nuk është gabimi standard i mesatares.
+
+\subsubsection{Intervalet e besimit dhe interpretimi}
+Një interval besimi $95\%$ nuk do të thotë se, pasi të dhënat janë vëzhguar, parametri fiks ka probabilitet $95\%$ të jetë brenda atij intervali. Interpretimi frekuentist është se procedura prodhon intervale që mbulojnë parametrin në $95\%$ të përsëritjeve ideale. Ky dallim është i rëndësishëm në raportim.
+
+Për një mesatare me variancë të panjohur dhe të dhëna Gauss të pavarura,
+\begin{equation}
+ \frac{\overline X-\mu}{s/\sqrt N}\sim t_{N-1}.
+\end{equation}
+Për mostra të mëdha, kuantilet $t$ afrohen me ato normale. Për probabilitete binomiale, intervali Wilson ose një interval i bazuar në gjasë është më i qëndrueshëm se intervali Wald, sidomos pranë kufijve.
+
+\subsubsection{Bootstrap-i}
+Bootstrap-i joparametrik trajton shpërndarjen empirike si përafrim të popullatës. Nga mostra origjinale me $N$ elemente krijohen mostra të reja me rizgjedhje dhe të njëjtën madhësi. Për secilën llogaritet statistiku $T^{*(b)}$. Shpërndarja e këtyre statistikëve vlerëson variancën, animin dhe intervalet.
+
+Metoda funksionon mirë për shumë statistikë të lëmuar, por nuk është universale. Për maksimumin, bishtat ekstremë dhe mostra shumë të vogla mund të jetë e dobët. Për seri kohore nuk duhet rizgjedhur çdo pikë veçmas, sepse prishet varësia; përdoret bootstrap në blloqe. Në Monte Carlo me peshë, skema e rizgjedhjes duhet të respektojë mënyrën si u krijuan peshat.
+
+\subsubsection{Kovarianca nga burime të përbashkëta}
+Në eksperimente fizike, dy madhësi shpesh varen nga i njëjti kalibrim. Nëse $x=x_0(1+\epsilon)$ dhe $y=y_0(1+\epsilon)$ ndajnë të njëjtin gabim relativ, raporti $x/y$ anulon gabimin e përbashkët në rendin e parë. Trajtimi i $x$ dhe $y$ si të pavarura do ta mbivlerësonte pacaktueshmërinë. Në diferencën $x-y$, i njëjti korrelacion mund ta ulë ose ta rrisë efektin në varësi të shenjave.
+
+Matrica e kovariancës duhet të jetë simetrike pozitivisht gjysmë e përcaktuar. Një matricë e ndërtuar nga koeficientë korrelacioni të papajtueshëm mund të ketë vlera vetjake negative dhe të mos përfaqësojë asnjë shpërndarje. Para kampionimit shumënormal kontrollohen simetria dhe spektri; vlera të vogla negative nga rrumbullakimi mund të kërkojnë korrigjim të dokumentuar.
+
+\subsubsection{Ligji total i variancës}
+Kur modeli varet nga parametri i rastit $\Theta$ dhe nga zhurma e brendshme,
+\begin{equation}
+ \Var(Y)=\E[\Var(Y\mid\Theta)]
+ +\Var(\E[Y\mid\Theta]).
+\end{equation}
+Termi i parë mat variabilitetin brenda realizimeve për parametra të fiksuar; i dyti mat ndryshimin ndërmjet parametrave. Kjo ndarje është e dobishme në simulimin e zbritjes së mjetit hapësinor, ku mund të dallohen ndryshimet atmosferike nga zhurma e sensorit ose e kontrollit.

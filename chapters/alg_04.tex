@@ -1,0 +1,62 @@
+\section{Algoritmet e interpolimit dhe përshtatjes}
+\subsection{Interpolimi baricentrik}
+Forma baricentrike është më e qëndrueshme se vlerësimi i drejtpërdrejtë i bazës së Lagranzhit. Peshat janë
+\begin{equation}
+ w_i=\left[\prod_{j\ne i}(x_i-x_j)\right]^{-1},\qquad
+ p(x)=\frac{\sum_iw_iy_i/(x-x_i)}{\sum_iw_i/(x-x_i)}.
+\end{equation}
+Nëse $x$ përputhet me një nyje, kthehet drejtpërdrejt $y_i$.
+
+\begin{lstlisting}[language=Python,caption={Interpolimi baricentrik nga SciPy.}]
+import numpy as np
+from scipy.interpolate import BarycentricInterpolator
+
+f = lambda x: 1.0/(1.0 + 25.0*x*x)
+n = 15
+i = np.arange(n)
+x_cheb = np.cos((2*i + 1)*np.pi/(2*n))
+interp = BarycentricInterpolator(x_cheb, f(x_cheb))
+
+x = np.linspace(-1, 1, 1000)
+gabimi = np.max(np.abs(interp(x) - f(x)))
+print("gabimi maksimal =", gabimi)
+\end{lstlisting}
+
+\subsection{Katrorët më të vegjël me QR}
+\begin{lstlisting}[language=Python,caption={Përshtatja e një modeli linear në parametra.}]
+def pershtat_linearisht(X, y, sigma=None):
+    if sigma is not None:
+        W = 1.0 / np.asarray(sigma)
+        X = X * W[:, None]
+        y = y * W
+    beta, mbetje, rank, singular = np.linalg.lstsq(X, y, rcond=None)
+    return beta, mbetje, rank, singular
+
+# ln(T) = beta0 + beta1 ln(a)
+X = np.column_stack([np.ones_like(a), np.log(a)])
+beta, *_ = pershtat_linearisht(X, np.log(T))
+print("eksponenti i Keplerit =", beta[1])
+\end{lstlisting}
+\texttt{lstsq} përdor faktorizime numerikisht më të sigurta se zgjidhja eksplicite e ekuacioneve normale.
+
+\subsection{Përshtatja jolineare}
+\begin{lstlisting}[language=Python,caption={Përshtatja e modelit $T=C a^p$ në shkallën origjinale.}]
+from scipy.optimize import curve_fit
+
+def kepler(a, C, p):
+    return C * a**p
+
+param, kov = curve_fit(kepler, a, T, p0=(1.0, 1.5), sigma=sigma_T,
+                       absolute_sigma=True)
+gabim_param = np.sqrt(np.diag(kov))
+print(param, gabim_param)
+\end{lstlisting}
+
+\subsection{Diagnostika e mbetjeve}
+Pas përshtatjes vizatohen $r_i$ kundrejt $x_i$, histogrami dhe, kur rendi kohor ka rëndësi, autokorrelacioni. Një lakim sistematik tregon model të mangët; formë hinke tregon variancë jo të njëtrajtshme; pika me ndikim të madh kërkojnë kontroll fizik, jo fshirje automatike.
+
+\begin{kujdes}
+Termi \emph{përshtatje} përdoret për fitting, \emph{mbetje} për residual dhe \emph{shmangie minimale absolute} për least absolute deviations. \emph{Regres} i referohet modelit të statistikës, ndërsa \emph{interpolim} kalon saktësisht nëpër nyje.
+\end{kujdes}
+
+Për interpolimin, përafrimin dhe shembujt MATLAB/Python janë konsultuar \cite{hanelli,hoxha,datja}. Për terminologjinë e rizgjedhjes, mbetjeve dhe vlerësimit statistik janë përdorur edhe punimet doktorale të UT-së \cite{butka,tasho}.

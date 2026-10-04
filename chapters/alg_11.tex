@@ -1,0 +1,61 @@
+\section{Algoritmet e bredhjes dhe të zinxhirit Markov}
+\subsection{Bredhja dydimensionale}
+\begin{lstlisting}[language=Python,caption={Shumë realizime të bredhjes në 2D.}]
+def bredhje_2d(rng, n_realizime, n_hapa):
+    drejtimi = rng.integers(0, 4, size=(n_realizime, n_hapa))
+    dx = (drejtimi == 0) - (drejtimi == 1)
+    dy = (drejtimi == 2) - (drejtimi == 3)
+    x = np.c_[np.zeros(n_realizime), np.cumsum(dx, axis=1)]
+    y = np.c_[np.zeros(n_realizime), np.cumsum(dy, axis=1)]
+    return x, y
+
+rng = np.random.default_rng(2026)
+x, y = bredhje_2d(rng, 50_000, 2_000)
+msd = np.mean(x*x + y*y, axis=0)
+\end{lstlisting}
+Përshtatja e $\avg{r^2}$ kundrejt kohës jep $4D$ në dy përmasa. Pikat e hershme dhe efektet e kufirit trajtohen veçmas.
+
+\subsection{Kufiri thithës dhe koha e parë e kalimit}
+\begin{lstlisting}[language=Python]
+def koha_e_pare(x, prag):
+    prekje = np.abs(x) >= prag
+    ka = prekje.any(axis=1)
+    t = np.full(len(x), np.nan)
+    t[ka] = np.argmax(prekje[ka], axis=1)
+    return t
+\end{lstlisting}
+Vlerat pa prekje janë të censuruara dhe nuk duhet të zëvendësohen me kohën maksimale pa e deklaruar.
+
+\subsection{Evolucioni me matricë kalimi}
+\begin{lstlisting}[language=Python,caption={Shpërndarja stacionare e një zinxhiri të fundmë.}]
+P = np.array([[0.90, 0.10], [0.25, 0.75]])
+p = np.array([1.0, 0.0])
+for _ in range(100):
+    p = p @ P
+print(p, p @ P - p)
+
+w, V = np.linalg.eig(P.T)
+i = np.argmin(np.abs(w - 1.0))
+pi = np.real(V[:, i]); pi /= pi.sum()
+\end{lstlisting}
+
+\subsection{Autokorrelacioni dhe $N_{\mathrm{eff}}$}
+\begin{lstlisting}[language=Python,caption={Vlerësim fillestar i kohës së integruar të autokorrelacionit.}]
+def autocorr(x, max_lag):
+    x = np.asarray(x) - np.mean(x)
+    c = np.correlate(x, x, mode="full")[len(x)-1:]
+    c = c[:max_lag+1] / c[0]
+    return c
+
+rho = autocorr(observabli, 500)
+pozitive = rho[1:][rho[1:] > 0]
+tau_int = 0.5 + pozitive.sum()
+N_eff = len(observabli)/(2*tau_int)
+\end{lstlisting}
+Prerja në vonesën e parë negative është rregull i thjeshtë, jo universal. Për analiza serioze përdoret dritare automatike ose bllokim.
+
+\begin{lidhje}
+Notebook-u duhet të paraqesë njëkohësisht trajektoret, $\avg{r^2}$, shpërndarjen e pozicionit dhe kohën e parë të kalimit. Secila mat një aspekt të ndryshëm të procesit.
+\end{lidhje}
+
+Për proceset e rastit dhe terminologjinë e statistikës janë konsultuar \cite{capollari,butka,tasho}; trajtimi i zinxhirëve Markov dhe autokorrelacionit mbështetet te \cite{robert,krauth}.

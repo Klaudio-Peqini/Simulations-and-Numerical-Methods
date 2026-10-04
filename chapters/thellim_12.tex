@@ -1,0 +1,61 @@
+\subsection{Kufijtë analitikë të modelit Ising}
+Në temperaturë zero dhe $H=0$, energjia minimizohet kur të gjitha spinet janë të njëjta. Në rrjetin katror çdo spin ka katër fqinjë, por çdo lidhje numërohet një herë; ka $2N$ lidhje. Prandaj energjia bazë është
+\begin{equation}
+ E_0=-2JN,qquad e_0=-2J.
+\end{equation}
+Magnetizimi për spin ka modul një. Këto janë teste të drejtpërdrejta për kodin në temperaturë të ulët.
+
+Në temperaturë të pafundme, konfigurimet janë të barasvlershme dhe spinet janë të pavarura me mesatare zero. Atëherë $\langle E\rangle\to0$, $\langle M\rangle=0$ dhe
+\begin{equation}
+ \langle M^2\rangle=N.
+\end{equation}
+Prandaj $\langle M^2\rangle/N^2=1/N$. Një simulim me temperaturë shumë të lartë duhet t'i afrohet këtyre kufijve. Për rrjete shumë të vogla, të gjitha $2^N$ konfigurimet mund të enumerohen dhe të japin vlera të sakta të funksionit të ndarjes; ky është testi më i fortë i algoritmit dhe i observablave.
+
+\subsubsection{Pranimi dhe bilanci energjetik lokal}
+Në $H=0$, shuma e katër fqinjëve merr vlerat $-4,-2,0,2,4$. Për rrjedhojë, ndryshimi i energjisë kufizohet në bashkësinë
+\begin{equation}
+ \Delta E\in\{-8J,-4J,0,4J,8J\}.
+\end{equation}
+Faktorët $e^{-4\beta J}$ dhe $e^{-8\beta J}$ mund të parallogariten. Ky optimizim shmang eksponencialen në çdo provë dhe ruan saktësisht algoritmin.
+
+Një matje e energjisë duhet të numërojë vetëm lidhjet djathtas dhe lart, ose të ndajë me dy shumën mbi të katër fqinjët. Gabimi i numërimit të dyfishtë ndryshon energjinë dhe temperaturën efektive. Testi lokal zgjedh një spin, llogarit energjinë e plotë para dhe pas përmbysjes dhe kontrollon barazinë me formulën e $\Delta E$ për shumë konfigurime të rastit.
+
+\subsubsection{Kapaciteti termik, susceptibiliteti dhe cumulanti Binder}
+Derivimi i pritjes kanonike jep
+\begin{equation}
+ \frac{\partial\langle E\rangle}{\partial\beta}
+ =-\left(\langle E^2\rangle-\langle E\rangle^2\right).
+\end{equation}
+Me $\beta=1/(k_BT)$ merret formula e fluktuacioneve për $C_V$. Në mënyrë analoge, derivimi ndaj fushës jep susceptibilitetin nga fluktuacionet e magnetizimit. Këto marrëdhënie lidhin përgjigjen makroskopike me luhatjet mikroskopike.
+
+Cumulanti Binder për magnetizimin është
+\begin{equation}
+ U_L=1-\frac{\langle M^4\rangle}{3\langle M^2\rangle^2}.
+\end{equation}
+Në fazën e çrregullt Gauss, $U_L\to0$; në një shpërndarje me dy maja të ngushta pranë $\pm M_0$, $U_L\to2/3$. Kurbat për madhësi të ndryshme rrjeti priten pranë temperaturës kritike, duke dhënë një vlerësim më robust se maksimumi i një observable të vetëm.
+
+\subsubsection{Shkallëzimi me madhësinë e fundme}
+Pranë pikës kritike, gjatësia e korrelacionit sillet si $\xi\sim|t|^{-\nu}$, ku $t=(T-T_c)/T_c$. Në rrjet të fundëm, rritja ndalet kur $\xi\sim L$. Kjo çon në forma shkallëzimi, për shembull
+\begin{equation}
+ m(T,L)=L^{-\beta_m/\nu}\mathcal M(tL^{1/\nu}),
+\end{equation}
+ku $\beta_m$ është eksponent kritik, jo inversi i temperaturës. Në $T_c$, grafiku log--log i $m$ ndaj $L$ ka pjerrësi $-\beta_m/\nu$.
+
+Maksimumi i susceptibilitetit rritet afërsisht si $L^{\gamma/\nu}$ dhe temperatura e pseudokritike zhvendoset si $L^{-1/\nu}$. Një studim serioz përdor disa madhësi, interpolon observablat me pacaktueshmëri dhe kontrollon shembjen e të dhënave. Një kurbë e vetme magnetizimi nuk mjafton për të përcaktuar tranzicionin.
+
+\subsubsection{Jackknife për madhësi jolineare}
+Le të ndahen matjet në $B$ blloqe. Për çdo $b$ llogaritet statistiku $\theta_{(b)}$ duke hequr bllokun $b$. Mesatarja jackknife është $\overline\theta_J=B^{-1}\sum_b\theta_{(b)}$ dhe varianca vlerësohet me
+\begin{equation}
+ \widehat{\Var}_J(\theta)=\frac{B-1}{B}
+ \sum_{b=1}^{B}(\theta_{(b)}-\overline\theta_J)^2.
+\end{equation}
+Kjo metodë përhap kovariancën ndërmjet $\langle E\rangle$ dhe $\langle E^2\rangle$ në $C_V$, ose ndërmjet momenteve në cumulantin Binder. Blloqet duhet të jenë më të gjata se autokorrelacioni; përndryshe pseudo-mostrat nuk janë afërsisht të pavarura.
+
+\subsubsection{Krahasimi i algoritmeve}
+Kostoja nuk matet vetëm me sweeps. Krahasimi përdor kohën e procesorit për një mostër efektivisht të pavarur,
+\begin{equation}
+ C_{\mathrm{eff}}\propto C_{\mathrm{sweep}}\,2\tau_{\mathrm{int}}.
+\end{equation}
+Metropolis-i lokal ka sweep të lirë, por $\tau$ të madh pranë kritikës. Algoritmi Wolff ndërton një grup spinesh të lidhura dhe e përmbys; kostoja për hap ndryshon, por autokorrelacioni kritik zvogëlohet fort. Krahasimi duhet bërë për të njëjtin observable dhe të njëjtën madhësi rrjeti.
+
+Koha Monte Carlo e këtyre algoritmeve nuk është dinamika reale e magnetit, përveç rasteve kur rregullat e përditësimit janë zgjedhur si model kinetik. Për observablat e ekuilibrit mjafton shpërndarja stacionare; për koha relaksimi fizik nevojitet model dinamik me interpretim të veçantë.

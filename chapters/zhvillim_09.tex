@@ -1,0 +1,75 @@
+\subsection{Gjeneratorët pseudorastësorë si sisteme dinamike diskrete}
+Një gjenerator pseudorastësor është një algoritëm determinist me gjendje të fundme. Gjeneratori kongruencial linear,
+\begin{equation}
+ x_{n+1}=(ax_n+c)\bmod m,
+ \qquad u_n=\frac{x_n}{m},
+\end{equation}
+e bën këtë strukturë të dukshme. Për shkak se ka vetëm $m$ gjendje, vargu duhet të përsëritet; perioda dhe korrelacionet varen nga parametrat. Edhe kur histogrami i $u_n$ duket uniform, çiftet $(u_n,u_{n+1})$ mund të shtrihen në një numër të vogël hiperplanesh. Prandaj uniformiteti njëpërmasor nuk provon cilësinë shumëpërmasore.
+
+Gjeneratorët modernë kanë gjendje shumë më të madhe dhe cilësi të testuar, por mbeten deterministë. Fara përcakton trajektoren. Ruajtja e farës siguron riprodhueshmëri, ndërsa përdorimi i së njëjtës farë për eksperimente që duhet të jenë të pavarura mund të krijojë korrelacione artificiale.
+
+\subsection{Transformimi i anasjellë}
+Nëse $U\sim\mathcal U(0,1)$ dhe $F$ është funksioni kumulativ i vazhdueshëm e rritës, atëherë
+\begin{equation}
+ X=F^{-1}(U)
+\end{equation}
+ka funksion kumulativ $F$, sepse
+\begin{equation}
+ P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x).
+\end{equation}
+Për eksponencialen $F(x)=1-e^{-\lambda x}$ merret
+\begin{equation}
+ X=-\frac{1}{\lambda}\ln(1-U).
+\end{equation}
+Shkrimi $\log1p(-U)$ është më i saktë kur $U$ është i vogël. Metoda është e thjeshtë kur inversi është i njohur; për shpërndarje të tjera nevojitet zgjidhje numerike ose metodë alternative.
+
+\subsection{Box--Muller për mostrën Gauss}
+Dy ndryshore Gauss standarde kanë dendësi të përbashkët
+\begin{equation}
+ f(z_1,z_2)=\frac{1}{2\pi}\exp[-(z_1^2+z_2^2)/2].
+\end{equation}
+Në koordinata polare, elementi i sipërfaqes është $r\dd r\dd\theta$, kështu që $\Theta$ është uniforme në $[0,2\pi)$ dhe $R^2$ ka shpërndarje eksponenciale me parametër $1/2$. Me $U_1,U_2$ uniforme të pavarura,
+\begin{equation}
+ R=\sqrt{-2\ln U_1},\qquad \Theta=2\pi U_2,
+\end{equation}
+dhe
+\begin{equation}
+ Z_1=R\cos\Theta,qquad Z_2=R\sin\Theta.
+\end{equation}
+Duhet shmangur $U_1=0$. Mostrat verifikohen jo vetëm me histogram, por edhe me mesatare, variancë, kuantile dhe korrelacion ndërmjet $Z_1$ e $Z_2$.
+
+\subsection{Kampionimi me refuzim}
+Le të jetë $f$ dendësia e synuar dhe $g$ dendësia propozuese, me $f(x)\le Mg(x)$. Gjenerohet $Y\sim g$ dhe $U\sim\mathcal U(0,1)$; $Y$ pranohet kur
+\begin{equation}
+ U\le\frac{f(Y)}{Mg(Y)}.
+\end{equation}
+Dendësia e një vlere të pranuar është proporcionale me
+\begin{equation}
+ g(y)\frac{f(y)}{Mg(y)}=\frac{f(y)}{M},
+\end{equation}
+pra pas normalizimit është $f$. Probabiliteti mesatar i pranimit është $1/M$. Një mbështjellëse e dobët e bën metodën të kushtueshme, sidomos në dimension të lartë.
+
+\subsection{Kampionimi i rëndësisë dhe madhësia efektive}
+Për një pritje nën $p$,
+\begin{equation}
+ I=\int h(x)p(x)\dd x
+ =\int h(x)\frac{p(x)}{q(x)}q(x)\dd x,
+\end{equation}
+gjenerohen $X_i\sim q$ dhe përdoren peshat $w_i=p(X_i)/q(X_i)$. Kushti themelor është që $q>0$ kudo ku $|h|p$ kontribuon. Varianca mund të zvogëlohet shumë nëse $q$ vendos mostra në rajonet me kontribut të madh, por peshat shumë të pabarabarta e bëjnë vlerësimin të paqëndrueshëm. Një diagnostikë është
+\begin{equation}
+ N_{\mathrm{eff}}=\frac{(\sum_iw_i)^2}{\sum_iw_i^2}.
+\end{equation}
+Kjo nuk është identike me madhësinë efektive të një zinxhiri Markov, megjithëse të dyja matin humbjen e informacionit kundrejt $N$ mostrave ideale.
+
+\subsection{Testimi i mostrave}
+Një paketë minimale kontrollesh përfshin histogramin, CDF-në empirike, testin e momenteve dhe autokorrelacionin. Vlera-$p$ nuk provon rastësinë; ajo mat sa i pazakontë është statistiku nën një hipotezë të caktuar. Me shumë teste shfaqen rezultate të vogla edhe për një gjenerator të mirë, prandaj duhet parë modeli i përgjithshëm dhe jo vetëm minimumi i vlerave-$p$.
+
+\subsection{Përmbledhje dhe ushtrime}
+Gjenerimi i mostrës është pjesë e algoritmit shkencor. Një transformim i saktë matematikisht mund të dështojë numerikisht ose të trashëgojë korrelacionet e gjeneratorit bazë.
+\begin{enumerate}
+\item Gjeni kushtet për periodë të plotë të një gjeneratori kongruencial linear dhe testojini në parametra të vegjël.
+\item Nxirrni transformimin e anasjellë për shpërndarjen Pareto.
+\item Vërtetoni Box--Muller-in duke përfshirë Jakobinin polar.
+\item Ndërtoni një mbështjellëse refuzimi për një dendësi trekëndore dhe parashikoni normën e pranimit.
+\item Krahasoni dy propozime të kampionimit të rëndësisë me anë të variancës dhe $N_{\mathrm{eff}}$.
+\end{enumerate}

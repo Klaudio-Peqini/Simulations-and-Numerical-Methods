@@ -1,0 +1,66 @@
+\chapter{Hyrje në simulimet fizike dhe programimin shkencor}
+\begin{qellime}
+Studenti dallon sistemin real, modelin matematik, algoritmin dhe kodin; formulon hyrjet, daljet dhe supozimet; dallon simulimin determinist nga ai stokastik; organizon një eksperiment të riprodhueshëm në Python ose MATLAB/Octave.
+\end{qellime}
+
+\section{Nga modeli te eksperimenti numerik}
+Një simulim fizik është një eksperiment i kryer mbi një model. Ai nuk fillon me kodin, por me një pyetje: cilën madhësi kërkojmë, në çfarë kushtesh dhe me çfarë saktësie? Sistemi real përmban më shumë hollësi sesa mund të përfaqësohen. Modelimi zgjedh mekanizmat dominues, ndërsa simulimi zbaton pasojat e kësaj zgjedhjeje.
+
+Një problem dinamik mund të shkruhet në formën
+\begin{equation}
+ \frac{\dd \vect y}{\dd t}=\vect f(t,\vect y;\vect\theta),\qquad \vect y(t_0)=\vect y_0,
+\end{equation}
+ku $\vect y$ është gjendja dhe $\vect\theta$ përmbledh parametrat. Për një grimcë në një përmasë, $\vect y=(x,v)^T$. Në një model stokastik, evolucioni varet edhe nga një ndryshore rasti $\xi_n$,
+\begin{equation}
+ \vect Y_{n+1}=\vect G(t_n,\vect Y_n;\vect\theta,\xi_n).
+\end{equation}
+Një ekzekutim determinist jep të njëjtën trajektore për të njëjtat hyrje; një ekzekutim stokastik jep një realizim. Përfundimi stokastik merret nga bashkësia e realizimeve.
+
+\section{Hierarkia e modeleve}
+Modelet ndërtohen në nivele. Modeli minimal izolon mekanizmin kryesor dhe lehtëson kontrollin analitik. Modeli i zgjeruar shton fërkim, forcë të jashtme, zhurmë ose gjeometri reale. Modeli më kompleks nuk është domosdoshmërisht më i mirë: ai kërkon më shumë parametra, të dhëna dhe prova vleftësimi.
+
+\begin{shembull}[Rënia e lirë]
+Pa rezistencë ajri, $y(t)=y_0+v_0t-gt^2/2$. Ky rast ka zgjidhje analitike dhe përdoret për verifikim. Me rezistencë lineare, $m\dot v=-mg-cv$; me rezistencë kuadratike, $m\dot v=-mg-cv|v|$. Zgjedhja ndërmjet tyre është vendim fizik, jo programues.
+\end{shembull}
+
+\section{Diskretizimi}
+Kompjuteri ruan një numër të fundmë vlerash. Koha zëvendësohet nga rrjeti
+\begin{equation}
+ t_n=t_0+n\Delta t,\qquad n=0,1,\ldots,N.
+\end{equation}
+Hapi $\Delta t$ kontrollon rezolucionin dhe koston. Një hap më i vogël zakonisht ul gabimin e këputjes, por rrit numrin e veprimeve dhe mund të ekspozojë gabimin e rrumbullakimit. Përzgjedhja e hapit duhet të mbështetet në një studim konvergjence.
+
+\section{Programimi shkencor}
+Programimi shkencor e kthen arsyetimin në një procedurë që mund të përsëritet. Një notebook i mirë përmban: pyetjen fizike; supozimet; parametrat dhe njësitë; funksionet; eksperimentet; figurat; analizën e gabimit; përfundimin. Parametrat nuk duhen fshehur brenda funksioneve. Një funksion duhet të kryejë një detyrë të qartë dhe të kthejë rezultate që mund të testohen.
+
+\begin{table}[ht]
+\centering
+\caption{Dy rrugë teknike me të njëjtin standard shkencor.}
+\begin{tabularx}{\textwidth}{YY}
+\toprule Python & MATLAB/Octave\\ \midrule
+NumPy për vektorë dhe matrica & Vektorë dhe matrica si objekte bazë\\
+Matplotlib për figura & \texttt{plot} dhe funksionet grafike\\
+Funksione dhe module \texttt{.py} & Funksione dhe skripte \texttt{.m}\\
+Jupyter Notebook & Jupyter me kernel Octave ose Live Script\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Verifikimi, vleftësimi dhe riprodhueshmëria}
+Verifikimi pyet nëse kodi zgjidh saktë ekuacionet e zgjedhura. Vleftësimi pyet nëse ekuacionet përshkruajnë mjaftueshëm sistemin real për qëllimin e deklaruar. Verifikimi përdor zgjidhje analitike, ligje ruajtjeje, teste njësish dhe konvergjencë. Vleftësimi përdor matje, parametra të kalibruar dhe krahasim me modele alternative.
+
+Riprodhueshmëria kërkon kodin, të dhënat, versionet e paketave, parametrat, farën e gjeneratorit dhe rendin e ekzekutimit. Një figurë pa këto të dhëna është dëshmi e paplotë.
+
+\begin{lidhje}
+Laboratori 1 ndërton të njëjtin notebook në njërën prej dy gjuhëve. Versioni i instruktorit shërben për shpjegim; versioni i studentit duhet të përmbajë arsyetimin, kodin dhe interpretimin e vet.
+\end{lidhje}
+
+\section*{Pyetje kontrolli}
+\begin{enumerate}
+\item Jepni një shembull ku kodi është i saktë, por modeli fizik është i papërshtatshëm.
+\item Pse zvogëlimi i hapit nuk garanton gjithmonë përmirësim?
+\item Cilat të dhëna duhen ruajtur për një eksperiment Monte Carlo të riprodhueshëm?
+\end{enumerate}
+\input{chapters/alg_01}
+\input{chapters/zhvillim_01}
+\input{chapters/thellim_01}

@@ -1,0 +1,42 @@
+\subsection{Rrymat e pavarura dhe ekzekutimi paralel}
+Në një simulim paralel, përdorimi i farave $s,s+1,s+2,\ldots$ nuk garanton rryma të pavarura për çdo familje gjeneratorësh. Gjeneratorët modernë ofrojnë mekanizma për ndarje: kapërcim përpara, nënrryma ose ndërtim të gjendjeve fëmijë nga një sekuencë farash. Qëllimi është që asnjë punëtor të mos përdorë pjesë të mbivendosura të të njëjtit varg.
+
+Rezultati duhet të jetë i riprodhueshëm edhe kur ndryshon numri i bërthamave. Një strategji është që çdo realizim të marrë farë të derivuar nga identifikuesi i realizimit, jo nga rendi i ekzekutimit. Atëherë planifikimi paralel mund të ndryshojë pa ndryshuar mostrat. Në raport ruhen fara bazë, metoda e ndarjes dhe versioni i bibliotekës.
+
+Gjeneratori kriptografik nuk është domosdoshmërisht i nevojshëm për fizikë llogaritëse; kërkohen periodë e gjatë, cilësi statistikë, shpejtësi dhe ndarje e sigurt e rrymave. Për aplikime sigurie, parashikueshmëria deterministe është e papranueshme dhe kërkesat janë të tjera.
+
+\subsubsection{Gjenerimi i vektorëve Gauss të korreluar}
+Le të jetë $\vect Z\sim\mathcal N(0,I)$ dhe $\Sigma=LL^T$ faktorizimi Cholesky i kovariancës. Atëherë
+\begin{equation}
+ \vect X=\vect\mu+L\vect Z
+\end{equation}
+ka mesatare $\vect\mu$ dhe kovariancë
+\begin{equation}
+ \Cov(\vect X)=L\Cov(\vect Z)L^T=LL^T=\Sigma.
+\end{equation}
+Nëse $\Sigma$ është vetëm pozitivisht gjysmë e përcaktuar, Cholesky mund të dështojë; përdoret zbërthimi spektral dhe mbahen vlerat vetjake jo negative. Një vlerë vetjake zero përfaqëson kufizim të saktë linear dhe dimension efektiv më të vogël.
+
+Kontrolli empirik kërkon shumë realizime dhe krahasim të mesatares e kovariancës së mostrës me objektivat. Devijimet priten të shkallëzohen me madhësinë e mostrës; nuk duhet kërkuar barazi e saktë. Grafikët e çifteve ndihmojnë të zbulohen shenja të gabuara ose renditje e gabuar e komponentëve.
+
+\subsubsection{Metoda e përbërjes dhe shpërndarjet diskrete}
+Nëse dendësia është përzierje
+\begin{equation}
+ f(x)=\sum_{k=1}^{K}w_kf_k(x),\qquad w_k\ge0,\quad\sum_kw_k=1,
+\end{equation}
+fillimisht gjenerohet komponenti $K$ me probabilitete $w_k$, pastaj $X\sim f_K$. Kjo metodë është e saktë dhe shpesh më efikase se refuzimi. Për shembull, një model zhurme me bërthamë të ngushtë dhe bisht të gjerë mund të simulohet si përzierje e dy shpërndarjeve Gauss.
+
+Për shpërndarje diskrete me shumë kategori, kërkimi kumulativ kushton $\Oh(\log K)$ me kërkim binar. Metoda alias kryen parapërpunim $\Oh(K)$ dhe pastaj gjeneron çdo kategori në kohë $\Oh(1)$. Zgjedhja varet nga sa herë përdoret e njëjta shpërndarje.
+
+\subsubsection{Efikasiteti i refuzimit në dimension të lartë}
+Në njësi $d$-dimensionale, raporti i vëllimit të sferës ndaj kubit kufizues është
+\begin{equation}
+ \frac{V_d}{2^d}=\frac{\pi^{d/2}}{2^d\Gamma(d/2+1)},
+\end{equation}
+dhe shkon shpejt në zero. Prandaj gjenerimi uniform në kub dhe refuzimi jashtë sferës bëhet katastrofik në dimension të lartë. Ky shembull konkret tregon se një algoritëm intuitiv në dy përmasa mund të jetë i papërdorshëm në njëzet përmasa.
+
+Transformimet që respektojnë gjeometrinë, kampionimi i rëndësisë ose MCMC shmangin këtë humbje. Megjithatë, MCMC prodhon korrelacion dhe kërkon diagnostikë; nuk ka metodë universale pa kosto.
+
+\subsubsection{Testet si bateri, jo si vulë}
+Një test uniformiteti kontrollon vetëm një aspekt. Testet seriale kontrollojnë çifte ose blloqe; testet spektrale kontrollojnë strukturën e rrjetës; testet e runs kontrollojnë vargjet rritëse dhe zbritëse. Kur kryhen shumë teste në nivel $5\%$, rreth $5\%$ pritet të dështojnë rastësisht. Duhet parë shpërndarja e vlerave-$p$, përsëritja në fara të ndryshme dhe rëndësia për algoritmin konkret.
+
+Prova më bindëse për një simulim është kombinimi i një gjeneratori të njohur, testeve standarde dhe verifikimit të observablave ndaj rezultateve teorike. Një gjenerator mund të kalojë një bateri dhe përsëri të bashkëveprojë keq me strukturën periodike të një algoritmi të veçantë.

@@ -1,0 +1,93 @@
+\subsection{Nxjerrja sistematike e formulave të diferencimit}
+Nga zhvillimet Taylor
+\begin{align}
+ f(x+h)&=f(x)+hf'(x)+\frac{h^2}{2}f''(x)+\frac{h^3}{6}f'''(x)+\Oh(h^4),\\
+ f(x-h)&=f(x)-hf'(x)+\frac{h^2}{2}f''(x)-\frac{h^3}{6}f'''(x)+\Oh(h^4)
+\end{align}
+dalin dy kombinime të rëndësishme. Zbritja e barazimeve anulon termat çift dhe jep
+\begin{equation}
+ f'(x)=\frac{f(x+h)-f(x-h)}{2h}-\frac{h^2}{6}f'''(x)+\Oh(h^4),
+\end{equation}
+pra diferenca qendrore ka gabim të këputjes $\Oh(h^2)$. Mbledhja anulon termat tek dhe jep
+\begin{equation}
+ f''(x)=\frac{f(x+h)-2f(x)+f(x-h)}{h^2}-\frac{h^2}{12}f^{(4)}(x)+\Oh(h^4).
+\end{equation}
+Koeficientët e formulave me më shumë pika gjenden duke kërkuar që kombinimi linear të riprodhojë saktë monomet $1,x,x^2,\ldots$ deri në gradën e dëshiruar.
+
+Gabimi i rrumbullakimit në diferencën e parë rritet afërsisht si $u|f|/h$, ndërsa gabimi i këputjes për diferencën qendrore ulet si $C h^2$. Modeli
+\begin{equation}
+ E(h)\simeq C_1h^2+C_2\frac{u}{h}
+\end{equation}
+ka minimum për $h_{\mathrm{opt}}\sim u^{1/3}$. Kjo shpjegon formën në U të grafikut të gabimit: zvogëlimi i pakufizuar i hapit nuk rrit saktësinë.
+
+\subsection{Rregulla e trapezit dhe termi i gabimit}
+Në intervalin $[a,b]$, polinomi linear interpolues është
+\begin{equation}
+ p_1(x)=f(a)\frac{b-x}{b-a}+f(b)\frac{x-a}{b-a}.
+\end{equation}
+Integrimi i tij jep
+\begin{equation}
+ T_1=\frac{b-a}{2}[f(a)+f(b)].
+\end{equation}
+Nga mbetja e interpolimit ose nga Taylor-i rreth mesit merret
+\begin{equation}
+ \int_a^b f(x)\dd x-T_1=-\frac{(b-a)^3}{12}f''(\xi).
+\end{equation}
+Për $n$ nënintervale me hap $h=(b-a)/n$, mbledhja e gabimeve lokale jep gabim global
+\begin{equation}
+ E_T=-\frac{b-a}{12}h^2 f''(\xi),
+\end{equation}
+pra rregulla e përbërë është e rendit të dytë.
+
+\subsection{Rregulla e Simpsonit}
+Mbi dy nënintervale, integrohet polinomi kuadratik që kalon në $x_0$, $x_1=x_0+h$ dhe $x_2=x_0+2h$:
+\begin{equation}
+ S_2=\frac{h}{3}[f(x_0)+4f(x_1)+f(x_2)].
+\end{equation}
+Edhe pse interpoluesi ka gradë dy, simetria e bën rregullën të saktë edhe për polinomet kubike. Gabimi lokal është
+\begin{equation}
+ -\frac{h^5}{90}f^{(4)}(\xi),
+\end{equation}
+ndërsa përbërja në një interval të fiksuar jep gabim global $\Oh(h^4)$. Numri i nënintervaleve duhet të jetë çift. Një kod i mirë e verifikon këtë parakusht, në vend që të prodhojë në heshtje një rezultat të pakuptimtë.
+
+\subsection{Kuadratura e Gausit}
+Kërkohen nyje $x_i$ dhe pesha $w_i$ të tilla që
+\begin{equation}
+ \int_{-1}^{1}f(x)\dd x\approx\sum_{i=1}^{n}w_if(x_i)
+\end{equation}
+të jetë e saktë për gradën më të lartë të mundshme. Me $2n$ parametra përcaktohen momentet deri në gradën $2n-1$. Nyjet optimale janë rrënjët e polinomit Legendre $P_n$. Për $n=2$, simetria kërkon nyje $\pm a$ dhe pesha të barabarta $w$; saktësia për $1$ dhe $x^2$ jep $2w=2$ dhe $2wa^2=2/3$, prandaj $w=1$ dhe $a=1/\sqrt3$.
+
+Për intervalin $[a,b]$ përdoret transformimi
+\begin{equation}
+ x=\frac{a+b}{2}+\frac{b-a}{2}\xi,qquad
+ \dd x=\frac{b-a}{2}\dd\xi.
+\end{equation}
+Avantazhi është saktësia e lartë me pak vlerësime; kufizimi është se nyjet nuk janë të futura natyrshëm, prandaj kontrolli adaptiv kërkon çifte rregullash ose nënndarje.
+
+\begin{lstlisting}[language=Python,caption={Simpson i përbërë me kontroll të dyfishimit të rrjetit.}]
+import numpy as np
+
+def simpson(f, a, b, n):
+    if n <= 0 or n % 2:
+        raise ValueError("n duhet të jetë numër pozitiv çift.")
+    x = np.linspace(a, b, n + 1)
+    h = (b - a) / n
+    return (h / 3.0) * (f(x[0]) + f(x[-1])
+           + 4.0*np.sum(f(x[1:-1:2]))
+           + 2.0*np.sum(f(x[2:-1:2])))
+
+def kontroll_simpson(f, a, b, n):
+    I_h = simpson(f, a, b, n)
+    I_h2 = simpson(f, a, b, 2*n)
+    gabimi = abs(I_h2 - I_h) / (2.0**4 - 1.0)
+    return I_h2, gabimi
+\end{lstlisting}
+
+\subsection{Përmbledhje dhe ushtrime}
+Derivimi numerik është intrinsikisht më i ndjeshëm ndaj zhurmës, ndërsa integrimi ka efekt mesatarizues. Rendi formal duhet konfirmuar me një studim rrjeti dhe jo vetëm cituar.
+\begin{enumerate}
+\item Nxirrni formulën qendrore me pesë pika për $f'(x)$ dhe termin kryesor të gabimit.
+\item Vërtetoni saktësinë kubike të Simpsonit duke integruar monomet $1,x,x^2,x^3$.
+\item Ndërtoni Gauss--Legendre me tri pika nga momentet dhe simetria.
+\item Llogaritni periodën e lavjerrësit si integral dhe krahasoni Simpsonin me Gauss-in.
+\end{enumerate}

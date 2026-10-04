@@ -1,0 +1,31 @@
+\subsection{Shuma, produkti skalar dhe gabimet e grumbulluara}
+Shuma $s_n=\sum_{i=1}^{n}x_i$ duket operacion elementar, por është një nga burimet më të zakonshme të humbjes së saktësisë. Në mbledhjen naive,
+\begin{equation}
+ \widehat s_k=\operatorname{fl}(\widehat s_{k-1}+x_k),
+\end{equation}
+secili hap rrumbullakon rezultatin e pjesshëm. Analiza standarde jep
+\begin{equation}
+ |\widehat s_n-s_n|\le\gamma_{n-1}\sum_{i=1}^{n}|x_i|,
+\end{equation}
+ku $\gamma_{n-1}\simeq(n-1)u$. Kufiri varet nga shuma e moduleve, jo nga moduli i shumës. Kur ka anulim të fortë, $|s_n|\ll\sum|x_i|$, gabimi relativ mund të jetë i madh edhe pse gabimi absolut respekton kufirin.
+
+Mbledhja në çift formon një pemë binare dhe ka thellësi $\lceil\log_2n\rceil$ në vend të $n-1$; kufiri përkatës rritet afërsisht me $u\log_2n$. Kjo është e rëndësishme në llogaritjen paralele, ku rendi i reduktimit ndryshon rezultatin bit për bit. Algoritmi Kahan ruan një kompensim për pjesën e humbur dhe shpesh arrin gabim të krahasueshëm me një rrumbullakim të vetëm, megjithëse nuk është ilaç universal për të gjitha vargjet.
+
+Produkti skalar $\vect x^T\vect y$ kombinon shumëzime dhe mbledhje. Kufiri tipik është
+\begin{equation}
+ |\operatorname{fl}(\vect x^T\vect y)-\vect x^T\vect y|
+ \le\gamma_n |\vect x|^T|\vect y|.
+\end{equation}
+Ky rezultat përhapet te shumëzimi matricor element për element. Në simulime të mëdha, ndryshimi i bibliotekës BLAS, numrit të threads ose rendit të ndarjes mund të ndryshojë bitat e fundit pa ndryshuar vlefshmërinë shkencore. Riprodhueshmëria duhet të përcaktojë nëse kërkohet identitet bit për bit apo vetëm pajtim brenda një tolerance.
+
+\subsubsection{Kushtëzimi komponentor}
+Numri klasik $\kappa(A)=\|A\|\|A^{-1}\|$ mat perturbime normore. Në disa probleme, hyrjet kanë pacaktueshmëri relative komponent më komponent. Atëherë një matricë me elemente në shkallë shumë të ndryshme mund të duket keq në një normë, edhe pse struktura fizike e perturbimeve është më e kufizuar. Analiza komponentore përdor $|\Delta A|\le\varepsilon|A|$ dhe $|\Delta b|\le\varepsilon|b|$. Ky dallim është me rëndësi në rrjete rezistive, sisteme bilanci dhe matrica që përmbajnë koeficientë me njësi të ndryshme.
+
+Shkallëzimi me matrica diagonale $D_rAD_c$ mund të barazojë madhësitë e rreshtave dhe kolonave. Ai nuk ndryshon zgjidhjen fizike pasi ndryshoret rikthehen, por mund të përmirësojë sjelljen e eliminimit dhe kuptimin e tolerancave. Shkallëzimi nuk e shëron një varësi reale lineare; ai vetëm shmang që njësitë e papërshtatshme të duken si keqkushtëzim.
+
+\subsubsection{Aritmetika e intervaleve si kontroll}
+Në aritmetikën e intervaleve, një madhësi ruhet si $[a,b]$ që garanton përfshirjen e vlerës së saktë. Veprimet rrumbullakohen nga jashtë. Për shembull,
+\begin{equation}
+ [a,b]+[c,d]=[a+c,b+d].
+\end{equation}
+Avantazhi është një kufi i garantuar; kufizimi është mbivlerësimi nga varësia. Nëse $x\in[0,1]$, shprehja $x-x$ vlerësohet si $[-1,1]$, megjithëse është saktësisht zero, sepse dy paraqitjet e $x$ trajtohen si të pavarura. Aritmetika e intervaleve është e dobishme për verifikime lokale dhe kufij, por nuk zëvendëson analizën e kushtëzimit ose modelin probabilitar të pacaktueshmërisë.

@@ -1,0 +1,43 @@
+\subsection{Metoda e Müller-it dhe rrënjët komplekse}
+Metoda e Müller-it përdor tri pika $x_0,x_1,x_2$ dhe ndërton polinomin kuadratik interpolues për $f$. Duke vendosur $h_1=x_1-x_0$, $h_2=x_2-x_1$ dhe diferencat e pjesëtuara
+\begin{equation}
+ \delta_1=\frac{f(x_1)-f(x_0)}{h_1},\qquad
+ \delta_2=\frac{f(x_2)-f(x_1)}{h_2},
+\end{equation}
+koeficienti kuadratik është $d=(\delta_2-\delta_1)/(h_1+h_2)$. Polinomi rreth $x_2$ shkruhet
+\begin{equation}
+ p(x_2+s)=f(x_2)+bs+ds^2,qquad b=\delta_2+h_2d.
+\end{equation}
+Rrënja që jep hapin më të qëndrueshëm është
+\begin{equation}
+ s=-\frac{2f(x_2)}{b+\operatorname{sgn}_*(b)\sqrt{b^2-4df(x_2)}},
+\end{equation}
+ku shenja zgjidhet që emëruesi të ketë modul maksimal. Kjo zgjedhje shmang anulimin ndërmjet $b$ dhe rrënjës katrore. Pika e re është $x_3=x_2+s$, pastaj ruhet tresha më e fundit.
+
+Diskriminanti mund të jetë negativ edhe kur pikat janë reale, prandaj implementimi duhet të lejojë aritmetikë komplekse. Kjo e bën Müller-in të dobishëm për polinome pa rrënjë reale. Renditja e konvergjencës është afërsisht $1.84$, më e lartë se e sekantes, por çdo hap përdor më shumë informacion dhe mund të jetë më pak i parashikueshëm. Për probleme ku kërkohet një rrënjë reale brenda një intervali fizik, një metodë e mbrojtur me përgjysmim është zakonisht më e sigurt.
+
+\subsubsection{Refinimi iterativ i sistemeve lineare}
+Pas zgjidhjes së $A\widehat x=b$, llogaritet mbetja $r=b-A\widehat x$ dhe zgjidhet
+\begin{equation}
+ A\delta x=r,qquad \widehat x\leftarrow\widehat x+\delta x.
+\end{equation}
+Në aritmetikë të saktë, një hap do të korrigjonte të gjithë gabimin. Në praktikë, nëse mbetja llogaritet me saktësi më të lartë se faktorizimi, refinimi mund të rikuperojë disa shifra. Faktorizimi LU ripërdoret, kështu që çdo korrigjim kushton vetëm dy zëvendësime trekëndore. Procesi ndalet kur mbetja e shkallëzuar nuk ulet më ose korrigjimi bëhet i papërfillshëm.
+
+Një kriter i dobishëm komponentor është
+\begin{equation}
+ \eta=\max_i\frac{|r_i|}{(|A||\widehat x|+|b|)_i}.
+\end{equation}
+Ai interpretohet si perturbimi relativ minimal i afërt i të dhënave që e bën $\widehat x$ zgjidhje të saktë. Një $\eta$ pranë saktësisë së makinës tregon algoritëm të qëndrueshëm në prapavijë, por gabimi përpara mund të mbetet i madh kur sistemi është i keqkushtëzuar.
+
+\subsubsection{Problemi i përgjithësuar i vlerave vetjake}
+Në mekanikën e sistemeve me shumë shkallë lirie shfaqet
+\begin{equation}
+ K\vect u=\omega^2M\vect u,
+\end{equation}
+ku $M$ është matrica e masës dhe $K$ matrica e ngurtësisë. Nëse $M$ është simetrike pozitivisht e përcaktuar, faktorizimi Cholesky $M=LL^T$ e kthen problemin në
+\begin{equation}
+ L^{-1}KL^{-T}\vect z=\omega^2\vect z,qquad \vect u=L^{-T}\vect z.
+\end{equation}
+Matrica e transformuar është simetrike. Modet mund të normalizohen që $\vect u_i^TM\vect u_j=\delta_{ij}$ dhe atëherë $\vect u_i^TK\vect u_j=\omega_i^2\delta_{ij}$. Këto identitete janë prova numerike: mbetja $\|K\vect u_i-\omega_i^2M\vect u_i\|$ kontrollon çdo çift vetjak, ndërsa ortogonaliteti kontrollon të gjithë bazën.
+
+Në rrjete ose sisteme me simetri, vlera vetjake të shumëfishta nuk përcaktojnë vektorë unikë; përcaktohet vetëm nënhapësira vetjake. Krahasimi komponent më komponent i dy vektorëve nga programe të ndryshme mund të jetë i pakuptimtë. Duhet krahasuar mbetja, vlera vetjake dhe hapësira e shtrirë nga modet përkatëse.
