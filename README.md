@@ -1,4 +1,4 @@
-# Laboratorët 02–12 — Simulim dhe Metoda Numerike              
+# Laboratorët 02–12 — Simulim dhe Metoda Numerike               
 
 ## 1. Qëllimi i paketës
 
