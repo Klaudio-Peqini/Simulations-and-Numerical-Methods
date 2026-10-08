@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.8.6)  5 OCT 2026 01:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.8.6)  9 OCT 2026 00:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,7 +527,7 @@ LaTeX Info: Redefining \labelcref on input line 2370.
 LaTeX Info: Redefining \labelcpageref on input line 2370.
 Package cleveref Info: `listings' support loaded on input line 3131.
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 48
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 58
 .
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
@@ -538,34 +538,27 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count317
 \l__pdf_internal_box=\box64
 )
-(./Simulim_dhe_Metoda_Numerike_Leksione.aux (./chapters/01_hyrje.aux)
-(./chapters/02_aritmetika.aux) (./chapters/03_ekuacionet_sistemet_vetjake.aux)
-(./chapters/04_interpolimi_regresi.aux)
-(./chapters/05_diferencimi_integrimi.aux) (./chapters/06_edodinamika.aux)
-(./chapters/07_diferencat_valet.aux) (./chapters/08_probabiliteti.aux)
-(./chapters/09_numrat_kampionimi.aux) (./chapters/10_integrimi_mc.aux)
-(./chapters/11_bredhjet_markov.aux) (./chapters/12_metropolis_ising.aux)
-(./chapters/shtojca.aux))
+(./Simulim_dhe_Metoda_Numerike_Leksione.aux)
 \openout1 = `Simulim_dhe_Metoda_Numerike_Leksione.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 48.
-LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -624,18 +617,18 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count324
-LaTeX Info: Redefining \microtypecontext on input line 48.
-Package microtype Info: Applying patch `item' on input line 48.
-Package microtype Info: Applying patch `toc' on input line 48.
-Package microtype Info: Applying patch `eqnum' on input line 48.
-Package microtype Info: Applying patch `footnote' on input line 48.
+LaTeX Info: Redefining \microtypecontext on input line 58.
+Package microtype Info: Applying patch `item' on input line 58.
+Package microtype Info: Applying patch `toc' on input line 58.
+Package microtype Info: Applying patch `eqnum' on input line 58.
+Package microtype Info: Applying patch `footnote' on input line 58.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 48.
+LaTeX Info: Redefining \showhyphens on input line 58.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -647,7 +640,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 48.
+Package hyperref Info: Link coloring OFF on input line 58.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -660,9 +653,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count325
 )
-LaTeX Info: Redefining \ref on input line 48.
-LaTeX Info: Redefining \pageref on input line 48.
-LaTeX Info: Redefining \nameref on input line 48.
+LaTeX Info: Redefining \ref on input line 58.
+LaTeX Info: Redefining \pageref on input line 58.
+LaTeX Info: Redefining \nameref on input line 58.
 
 (./Simulim_dhe_Metoda_Numerike_Leksione.out)
 (./Simulim_dhe_Metoda_Numerike_Leksione.out)
@@ -677,14 +670,14 @@ LaTeX Info: Redefining \nameref on input line 48.
 <figures//01_cikli_simulimit.pdf, id=414, 633.92363pt x 209.58301pt>
 File: figures//01_cikli_simulimit.pdf Graphic file (type pdf)
 <use figures//01_cikli_simulimit.pdf>
-Package pdftex.def Info: figures//01_cikli_simulimit.pdf  used on input line 72
+Package pdftex.def Info: figures//01_cikli_simulimit.pdf  used on input line 82
 .
 (pdftex.def)             Requested size: 445.23193pt x 147.20277pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.76 \chapter
+l.86 \chapter
              *{Si tÃ« pÃ«rdoret ky tekst} [1
 
  <./figures//01_cikli_simulimit.pdf>] [2
@@ -743,426 +736,326 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 
 
 [5]
-\openout2 = `chapters/01_hyrje.aux'.
-
- (./chapters/01_hyrje.tex
 Kapitulli 1.
 [1
 
 
-
-] (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) (./chapters/alg_01.tex
+] (/usr/share/texmf/tex/latex/lm/t1lmtt.fd) [2]
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) [2]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 17.
 )
-(./chapters/zhvillim_01.tex [3] [4]) (./chapters/thellim_01.tex [5])) [6]
-\openout2 = `chapters/02_aritmetika.aux'.
-
-
-(./chapters/02_aritmetika.tex
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 205.
+ [3] [4]
+[5] [6]
 Kapitulli 2.
-<figures//02_anulimi_katastrofik.pdf, id=733, 462.28432pt x 243.25018pt>
+[7
+
+]
+<figures//02_anulimi_katastrofik.pdf, id=750, 462.28432pt x 243.25018pt>
 File: figures//02_anulimi_katastrofik.pdf Graphic file (type pdf)
 <use figures//02_anulimi_katastrofik.pdf>
 Package pdftex.def Info: figures//02_anulimi_katastrofik.pdf  used on input lin
-e 41.
+e 411.
 (pdftex.def)             Requested size: 347.83502pt x 183.02733pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 42.
+(Font)              <10> on input line 412.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 42.
+(Font)              <7> on input line 412.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 42.
-[7
-
-
-
-
-]
-<figures//04_kushtzimi_matrices.pdf, id=744, 460.90784pt x 243.78607pt>
+(Font)              <5> on input line 412.
+<figures//04_kushtzimi_matrices.pdf, id=751, 460.90784pt x 243.78607pt>
 File: figures//04_kushtzimi_matrices.pdf Graphic file (type pdf)
 <use figures//04_kushtzimi_matrices.pdf>
 Package pdftex.def Info: figures//04_kushtzimi_matrices.pdf  used on input line
- 62.
+ 432.
 (pdftex.def)             Requested size: 347.83502pt x 183.97737pt.
- [8 <./figures//02_anulimi_katastrofik.pdf>] (./chapters/alg_02.tex [9 <./figur
-es//04_kushtzimi_matrices.pdf>]) (./chapters/zhvillim_02.tex [10] [11])
-(./chapters/thellim_02.tex [12])) [13]
-\openout2 = `chapters/03_ekuacionet_sistemet_vetjake.aux'.
-
-
-(./chapters/03_ekuacionet_sistemet_vetjake.tex
+ [8 <./figures//02_anulimi_katastrofik.pdf>] [9 <./figures//04_kushtzimi_matric
+es.pdf>] [10] [11] [12] [13]
 Kapitulli 3.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 6.
+(Font)              <14.4> on input line 670.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 670.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 6.
+(hyperref)                removing `math shift' on input line 670.
 
-<figures//03_konvergjenca_rrenjeve.pdf, id=965, 462.1774pt x 245.12106pt>
+[14
+
+]
+<figures//03_konvergjenca_rrenjeve.pdf, id=982, 462.1774pt x 245.12106pt>
 File: figures//03_konvergjenca_rrenjeve.pdf Graphic file (type pdf)
 <use figures//03_konvergjenca_rrenjeve.pdf>
 Package pdftex.def Info: figures//03_konvergjenca_rrenjeve.pdf  used on input l
-ine 32.
+ine 696.
 (pdftex.def)             Requested size: 347.83502pt x 184.48366pt.
-[14
-
-
-
-
-] [15 <./figures//03_konvergjenca_rrenjeve.pdf>]
-<figures//05_modet_normale.pdf, id=1021, 460.80472pt x 357.13957pt>
+ [15 <./figures//03_konvergjenca_rrenjeve.pdf>]
+<figures//05_modet_normale.pdf, id=1027, 460.80472pt x 357.13957pt>
 File: figures//05_modet_normale.pdf Graphic file (type pdf)
 <use figures//05_modet_normale.pdf>
-Package pdftex.def Info: figures//05_modet_normale.pdf  used on input line 77.
+Package pdftex.def Info: figures//05_modet_normale.pdf  used on input line 741.
+
 (pdftex.def)             Requested size: 333.92218pt x 258.81328pt.
- [16 <./figures//05_modet_normale.pdf>] (./chapters/alg_03.tex [17]) (./chapter
-s/zhvillim_03.tex [18]
-[19]) (./chapters/thellim_03.tex [20])) [21]
-\openout2 = `chapters/04_interpolimi_regresi.aux'.
-
-
-(./chapters/04_interpolimi_regresi.tex
+ [16 <./figures//05_modet_normale.pdf>] [17] [18] [19] [20] [21]
 Kapitulli 4.
-<figures//06_interpolimi_runge.pdf, id=1207, 643.11661pt x 238.30714pt>
+<figures//06_interpolimi_runge.pdf, id=1214, 643.11661pt x 238.30714pt>
 File: figures//06_interpolimi_runge.pdf Graphic file (type pdf)
 <use figures//06_interpolimi_runge.pdf>
 Package pdftex.def Info: figures//06_interpolimi_runge.pdf  used on input line 
-19.
+1013.
 (pdftex.def)             Requested size: 440.5896pt x 163.26485pt.
 [22
 
-
-
-
- <./figures//06_interpolimi_runge.pdf>]
-<figures//07_regresioni_kepler.pdf, id=1252, 461.9545pt x 259.68968pt>
+]
+<figures//07_regresioni_kepler.pdf, id=1222, 461.9545pt x 259.68968pt>
 File: figures//07_regresioni_kepler.pdf Graphic file (type pdf)
 <use figures//07_regresioni_kepler.pdf>
 Package pdftex.def Info: figures//07_regresioni_kepler.pdf  used on input line 
-46.
+1040.
 (pdftex.def)             Requested size: 333.92218pt x 187.72137pt.
- [23 <./figures//07_regresioni_kepler.pdf>] (./chapters/alg_04.tex [24]) (./cha
-pters/zhvillim_04.tex [25] [26])
-(./chapters/thellim_04.tex [27])) [28]
-\openout2 = `chapters/05_diferencimi_integrimi.aux'.
-
- (./chapters/05_diferencimi_integrimi.tex
+ [23 <./figures//06_interpolimi_runge.pdf> <./figures//07_regresioni_kepler.pdf
+>] [24] [25] [26] [27] [28]
 Kapitulli 5.
-<figures//08_gabimi_derivimit.pdf, id=1429, 462.1774pt x 258.24008pt>
+<figures//08_gabimi_derivimit.pdf, id=1436, 462.1774pt x 258.24008pt>
 File: figures//08_gabimi_derivimit.pdf Graphic file (type pdf)
 <use figures//08_gabimi_derivimit.pdf>
-Package pdftex.def Info: figures//08_gabimi_derivimit.pdf  used on input line 3
-3.
+Package pdftex.def Info: figures//08_gabimi_derivimit.pdf  used on input line 1
+327.
 (pdftex.def)             Requested size: 343.19977pt x 191.76846pt.
 [29
 
-
-
-
 ]
-<figures//09_kuadratura_konvergjenca.pdf, id=1440, 462.1774pt x 257.70853pt>
+<figures//09_kuadratura_konvergjenca.pdf, id=1446, 462.1774pt x 257.70853pt>
 File: figures//09_kuadratura_konvergjenca.pdf Graphic file (type pdf)
 <use figures//09_kuadratura_konvergjenca.pdf>
 Package pdftex.def Info: figures//09_kuadratura_konvergjenca.pdf  used on input
- line 49.
+ line 1343.
 (pdftex.def)             Requested size: 343.19977pt x 191.37373pt.
  [30 <./figures//08_gabimi_derivimit.pdf> <./figures//09_kuadratura_konvergjenc
-a.pdf>] (./chapters/alg_05.tex [31]) (./chapters/zhvillim_05.tex [32]
-[33]) (./chapters/thellim_05.tex [34])) [35]
-\openout2 = `chapters/06_edodinamika.aux'.
-
- (./chapters/06_edodinamika.tex
+a.pdf>] [31] [32] [33] [34] [35]
 Kapitulli 6.
 [36
 
-
-
-
 ]
-<figures//10_energjia_lavjerresit.pdf, id=1676, 462.34705pt x 259.68968pt>
+<figures//10_energjia_lavjerresit.pdf, id=1682, 462.34705pt x 259.68968pt>
 File: figures//10_energjia_lavjerresit.pdf Graphic file (type pdf)
 <use figures//10_energjia_lavjerresit.pdf>
 Package pdftex.def Info: figures//10_energjia_lavjerresit.pdf  used on input li
-ne 47.
+ne 1637.
 (pdftex.def)             Requested size: 343.19977pt x 192.76569pt.
-<figures//11_orbita_dy_trupave.pdf, id=1677, 353.73622pt x 337.25296pt>
+ [37 <./figures//10_energjia_lavjerresit.pdf>]
+<figures//11_orbita_dy_trupave.pdf, id=1734, 353.73622pt x 337.25296pt>
 File: figures//11_orbita_dy_trupave.pdf Graphic file (type pdf)
 <use figures//11_orbita_dy_trupave.pdf>
 Package pdftex.def Info: figures//11_orbita_dy_trupave.pdf  used on input line 
-73.
+1663.
 (pdftex.def)             Requested size: 278.27084pt x 265.31537pt.
- [37 <./figures//10_energjia_lavjerresit.pdf>] (./chapters/alg_06.tex
-[38 <./figures//11_orbita_dy_trupave.pdf>]) (./chapters/zhvillim_06.tex
-[39] [40]) (./chapters/thellim_06.tex [41])) [42]
-\openout2 = `chapters/07_diferencat_valet.aux'.
-
-
-(./chapters/07_diferencat_valet.tex
+ [38 <./figures//11_orbita_dy_trupave.pdf>] [39] [40] [41] [42]
 Kapitulli 7.
-<figures//12_vala_bredhese.pdf, id=1882, 498.27815pt x 266.85393pt>
+<figures//12_vala_bredhese.pdf, id=1889, 498.27815pt x 266.85393pt>
 File: figures//12_vala_bredhese.pdf Graphic file (type pdf)
 <use figures//12_vala_bredhese.pdf>
-Package pdftex.def Info: figures//12_vala_bredhese.pdf  used on input line 22.
+Package pdftex.def Info: figures//12_vala_bredhese.pdf  used on input line 1912
+.
 (pdftex.def)             Requested size: 380.30301pt x 203.68245pt.
-<figures//13_dispersimi_numerik.pdf, id=1883, 460.79483pt x 244.67975pt>
+[43
+
+]
+<figures//13_dispersimi_numerik.pdf, id=1898, 460.79483pt x 244.67975pt>
 File: figures//13_dispersimi_numerik.pdf Graphic file (type pdf)
 <use figures//13_dispersimi_numerik.pdf>
 Package pdftex.def Info: figures//13_dispersimi_numerik.pdf  used on input line
- 41.
+ 1931.
 (pdftex.def)             Requested size: 338.55743pt x 179.77583pt.
-[43
-
-
-
-
-] [44 <./figures//12_vala_bredhese.pdf> <./figures//13_dispersimi_numerik.pdf>]
- (./chapters/alg_07.tex [45]) (./chapters/zhvillim_07.tex [46])
-(./chapters/thellim_07.tex [47])) [48] [49]
-\openout2 = `chapters/08_probabiliteti.aux'.
-
- (./chapters/08_probabiliteti.tex
+ [44 <./figures//12_vala_bredhese.pdf> <./figures//13_dispersimi_numerik.pdf>] 
+[45] [46] [47] [48] [49]
 Kapitulli 8.
-<figures//14_shperndarja_binomiale.pdf, id=2096, 462.12337pt x 245.23567pt>
+[50
+
+]
+<figures//14_shperndarja_binomiale.pdf, id=2110, 462.12337pt x 245.23567pt>
 File: figures//14_shperndarja_binomiale.pdf Graphic file (type pdf)
 <use figures//14_shperndarja_binomiale.pdf>
 Package pdftex.def Info: figures//14_shperndarja_binomiale.pdf  used on input l
-ine 36.
+ine 2204.
 (pdftex.def)             Requested size: 343.19977pt x 182.13388pt.
-[50
-
-
-
-
-]
-<figures//15_teorema_qendrore.pdf, id=2105, 633.23546pt x 215.49036pt>
+<figures//15_teorema_qendrore.pdf, id=2111, 633.23546pt x 215.49036pt>
 File: figures//15_teorema_qendrore.pdf Graphic file (type pdf)
 <use figures//15_teorema_qendrore.pdf>
-Package pdftex.def Info: figures//15_teorema_qendrore.pdf  used on input line 6
-5.
+Package pdftex.def Info: figures//15_teorema_qendrore.pdf  used on input line 2
+233.
 (pdftex.def)             Requested size: 440.5896pt x 149.93468pt.
- (./chapters/alg_08.tex [51 <./figures//14_shperndarja_binomiale.pdf>]
-[52 <./figures//15_teorema_qendrore.pdf>]) (./chapters/zhvillim_08.tex [53])
-(./chapters/thellim_08.tex [54])) [55] [56]
-\openout2 = `chapters/09_numrat_kampionimi.aux'.
-
-
-(./chapters/09_numrat_kampionimi.tex
+ [51 <./figures//14_shperndarja_binomiale.pdf>] [52 <./figures//15_teorema_qend
+rore.pdf>] [53] [54] [55] [56]
 Kapitulli 9.
-<figures//16_testi_cifteve_prng.pdf, id=2296, 570.54813pt x 245.23567pt>
+<figures//16_testi_cifteve_prng.pdf, id=2303, 570.54813pt x 245.23567pt>
 File: figures//16_testi_cifteve_prng.pdf Graphic file (type pdf)
 <use figures//16_testi_cifteve_prng.pdf>
 Package pdftex.def Info: figures//16_testi_cifteve_prng.pdf  used on input line
- 16.
+ 2463.
 (pdftex.def)             Requested size: 417.39919pt x 179.40971pt.
 [57
 
-
-
-
  <./figures//16_testi_cifteve_prng.pdf>]
-<figures//17_kampionimi_eksponencial.pdf, id=2347, 462.14316pt x 245.23567pt>
+<figures//17_kampionimi_eksponencial.pdf, id=2354, 462.14316pt x 245.23567pt>
 File: figures//17_kampionimi_eksponencial.pdf Graphic file (type pdf)
 <use figures//17_kampionimi_eksponencial.pdf>
 Package pdftex.def Info: figures//17_kampionimi_eksponencial.pdf  used on input
- line 34.
+ line 2481.
 (pdftex.def)             Requested size: 343.19977pt x 182.12265pt.
- [58 <./figures//17_kampionimi_eksponencial.pdf>] (./chapters/alg_09.tex [59]) 
-(./chapters/zhvillim_09.tex [60]
-[61]) (./chapters/thellim_09.tex [62])) [63]
-\openout2 = `chapters/10_integrimi_mc.aux'.
-
- (./chapters/10_integrimi_mc.tex
+ [58 <./figures//17_kampionimi_eksponencial.pdf>] [59] [60] [61] [62] [63]
 Kapitulli 10.
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 19.
+(hyperref)                removing `math shift' on input line 2745.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\pi' on input line 19.
+(hyperref)                removing `\pi' on input line 2745.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 19.
+(hyperref)                removing `math shift' on input line 2745.
 
-<figures//18_monte_carlo_pi.pdf, id=2497, 608.92973pt x 251.01308pt>
+<figures//18_monte_carlo_pi.pdf, id=2504, 608.92973pt x 251.01308pt>
 File: figures//18_monte_carlo_pi.pdf Graphic file (type pdf)
 <use figures//18_monte_carlo_pi.pdf>
-Package pdftex.def Info: figures//18_monte_carlo_pi.pdf  used on input line 27.
-
+Package pdftex.def Info: figures//18_monte_carlo_pi.pdf  used on input line 275
+3.
 (pdftex.def)             Requested size: 440.5896pt x 181.62552pt.
-<figures//19_gabimi_monte_carlo.pdf, id=2498, 463.18358pt x 251.01308pt>
+<figures//19_gabimi_monte_carlo.pdf, id=2505, 463.18358pt x 251.01308pt>
 File: figures//19_gabimi_monte_carlo.pdf Graphic file (type pdf)
 <use figures//19_gabimi_monte_carlo.pdf>
 Package pdftex.def Info: figures//19_gabimi_monte_carlo.pdf  used on input line
- 40.
+ 2766.
 (pdftex.def)             Requested size: 343.19977pt x 185.99954pt.
 [64
 
-
-
-
 ] [65 <./figures//18_monte_carlo_pi.pdf> <./figures//19_gabimi_monte_carlo.pdf>
 ]
-<figures//20_zbritja_mjetit_monte_carlo.pdf, id=2612, 462.20975pt x 245.43956pt
+<figures//20_zbritja_mjetit_monte_carlo.pdf, id=2619, 462.20975pt x 245.43956pt
 >
 File: figures//20_zbritja_mjetit_monte_carlo.pdf Graphic file (type pdf)
 <use figures//20_zbritja_mjetit_monte_carlo.pdf>
 Package pdftex.def Info: figures//20_zbritja_mjetit_monte_carlo.pdf  used on in
-put line 71.
+put line 2797.
 (pdftex.def)             Requested size: 343.19977pt x 182.2516pt.
- (./chapters/alg_10.tex [66 <./figures//20_zbritja_mjetit_monte_carlo.pdf>]
+ [66 <./figures//20_zbritja_mjetit_monte_carlo.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 20.
-) (./chapters/zhvillim_10.tex [67] [68]) (./chapters/thellim_10.tex [69]))
+(Font)              <12> on input line 2836.
+ [67] [68] [69]
 [70]
-\openout2 = `chapters/11_bredhjet_markov.aux'.
-
- (./chapters/11_bredhjet_markov.tex
 Kapitulli 11.
-<figures//21_bredhja_e_rastit.pdf, id=2768, 642.9523pt x 265.46706pt>
+<figures//21_bredhja_e_rastit.pdf, id=2775, 642.9523pt x 265.46706pt>
 File: figures//21_bredhja_e_rastit.pdf Graphic file (type pdf)
 <use figures//21_bredhja_e_rastit.pdf>
-Package pdftex.def Info: figures//21_bredhja_e_rastit.pdf  used on input line 1
-8.
+Package pdftex.def Info: figures//21_bredhja_e_rastit.pdf  used on input line 3
+049.
 (pdftex.def)             Requested size: 440.5896pt x 181.91675pt.
-[71
-
-
-
-
- <./figures//21_bredhja_e_rastit.pdf>]
-<figures//22_difuzioni_gaussian.pdf, id=2826, 462.00418pt x 245.23567pt>
+<figures//22_difuzioni_gaussian.pdf, id=2776, 462.00418pt x 245.23567pt>
 File: figures//22_difuzioni_gaussian.pdf Graphic file (type pdf)
 <use figures//22_difuzioni_gaussian.pdf>
 Package pdftex.def Info: figures//22_difuzioni_gaussian.pdf  used on input line
- 37.
+ 3068.
 (pdftex.def)             Requested size: 343.19977pt x 182.1713pt.
-<figures//23_zinxhiri_markov.pdf, id=2827, 462.18484pt x 243.94011pt>
+[71
+
+]
+<figures//23_zinxhiri_markov.pdf, id=2786, 462.18484pt x 243.94011pt>
 File: figures//23_zinxhiri_markov.pdf Graphic file (type pdf)
 <use figures//23_zinxhiri_markov.pdf>
-Package pdftex.def Info: figures//23_zinxhiri_markov.pdf  used on input line 60
-.
+Package pdftex.def Info: figures//23_zinxhiri_markov.pdf  used on input line 30
+91.
 (pdftex.def)             Requested size: 343.19977pt x 181.14934pt.
- [72 <./figures//22_difuzioni_gaussian.pdf>] (./chapters/alg_11.tex [73 <./figu
-res//23_zinxhiri_markov.pdf>])
-(./chapters/zhvillim_11.tex [74] [75]) (./chapters/thellim_11.tex [76]))
-[77]
-\openout2 = `chapters/12_metropolis_ising.aux'.
-
- (./chapters/12_metropolis_ising.tex
+ [72 <./figures//21_bredhja_e_rastit.pdf> <./figures//22_difuzioni_gaussian.pdf
+>] [73 <./figures//23_zinxhiri_markov.pdf>] [74] [75] [76] [77]
 Kapitulli 12.
 [78
 
-
-
-
 ]
-<figures//24_ising_konfigurime.pdf, id=3034, 464.08878pt x 251.4996pt>
+<figures//24_ising_konfigurime.pdf, id=3041, 464.08878pt x 251.4996pt>
 File: figures//24_ising_konfigurime.pdf Graphic file (type pdf)
 <use figures//24_ising_konfigurime.pdf>
 Package pdftex.def Info: figures//24_ising_konfigurime.pdf  used on input line 
-47.
+3384.
 (pdftex.def)             Requested size: 361.74785pt x 196.04608pt.
-<figures//25_ising_magnetizimi.pdf, id=3035, 461.25256pt x 245.23567pt>
+<figures//25_ising_magnetizimi.pdf, id=3042, 461.25256pt x 245.23567pt>
 File: figures//25_ising_magnetizimi.pdf Graphic file (type pdf)
 <use figures//25_ising_magnetizimi.pdf>
 Package pdftex.def Info: figures//25_ising_magnetizimi.pdf  used on input line 
-64.
+3401.
 (pdftex.def)             Requested size: 343.19977pt x 182.47066pt.
- [79 <./figures//24_ising_konfigurime.pdf>] (./chapters/alg_12.tex [80 <./figur
-es//25_ising_magnetizimi.pdf>] [81]) (./chapters/zhvillim_12.tex [82]
-[83]) (./chapters/thellim_12.tex [84])) [85]
-\openout2 = `chapters/shtojca.aux'.
-
- (./chapters/shtojca.tex
+ [79 <./figures//24_ising_konfigurime.pdf>] [80 <./figures//25_ising_magnetizim
+i.pdf>] [81] [82] [83] [84] [85]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
+Underfull \hbox (badness 10000) in paragraph at lines 3706--3706
 []|\T1/lmr/m/n/10 (+20) boundary-value prob-
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 38--39
+Underfull \hbox (badness 1199) in paragraph at lines 3712--3713
 []|\T1/lmr/m/n/10 (+20) Procedura e gjener-imit ose përzg-jed-hjes së
  []
 
 [86
 
-
-
-
 ] [87] [88] [89]
-Underfull \hbox (badness 1502) in paragraph at lines 187--188
+Underfull \hbox (badness 1502) in paragraph at lines 3861--3862
 []|\T1/lmr/m/n/10.95 (+20) Hanelli--Osmani; Datja; Burden--
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 188--188
+Underfull \hbox (badness 10000) in paragraph at lines 3862--3862
 []|\T1/lmr/m/n/10.95 (+20) Vlera vet-jake dhe
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
+Underfull \hbox (badness 10000) in paragraph at lines 3864--3864
 []|\T1/lmr/m/n/10.95 (+20) Derivim dhe
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--191
+Underfull \hbox (badness 10000) in paragraph at lines 3865--3865
 []|\T1/lmr/m/n/10.95 (+20) Ekuacione difer-en-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 191--192
+Underfull \hbox (badness 10000) in paragraph at lines 3865--3866
 []|\T1/lmr/m/n/10.95 (+20) Dishmema; Hanelli--Osmani;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
+Underfull \hbox (badness 10000) in paragraph at lines 3867--3867
 []|\T1/lmr/m/n/10.95 (+20) Probabilitet dhe
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 195--196
+Underfull \hbox (badness 1701) in paragraph at lines 3869--3870
 []|\T1/lmr/m/n/10.95 (+20) Newman; Press et al.; Robert--
  []
 
-[90]) [91] [92
-
-
+[90] [91] [92
 
 
 ] [93
 
-] [94] (./Simulim_dhe_Metoda_Numerike_Leksione.aux
-(./chapters/01_hyrje.aux) (./chapters/02_aritmetika.aux)
-(./chapters/03_ekuacionet_sistemet_vetjake.aux)
-(./chapters/04_interpolimi_regresi.aux)
-(./chapters/05_diferencimi_integrimi.aux) (./chapters/06_edodinamika.aux)
-(./chapters/07_diferencat_valet.aux) (./chapters/08_probabiliteti.aux)
-(./chapters/09_numrat_kampionimi.aux) (./chapters/10_integrimi_mc.aux)
-(./chapters/11_bredhjet_markov.aux) (./chapters/12_metropolis_ising.aux)
-(./chapters/shtojca.aux))
+] [94] (./Simulim_dhe_Metoda_Numerike_Leksione.aux)
 Package rerunfilecheck Info: File `Simulim_dhe_Metoda_Numerike_Leksione.out' ha
 s not changed.
 (rerunfilecheck)             Checksum: 7865211D1DAEC13DA0C351846483AB21;21541.
  ) 
 Here is how much of TeX's memory you used:
- 21600 strings out of 480129
- 366849 string characters out of 5893410
- 1110112 words of memory out of 5000000
- 37273 multiletter control sequences out of 15000+600000
- 600485 words of font info for 291 fonts, out of 8000000 for 9000
+ 21085 strings out of 480129
+ 347794 string characters out of 5893410
+ 1164277 words of memory out of 5000000
+ 36946 multiletter control sequences out of 15000+600000
+ 600673 words of font info for 293 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 60i,11n,63p,1033b,1980s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,63p,1033b,1972s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -1183,11 +1076,11 @@ are/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmtt9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Simulim_dhe_Metoda_Numerike_Leksione.pdf (100 pages, 1221885 
+Output written on Simulim_dhe_Metoda_Numerike_Leksione.pdf (100 pages, 1227641 
 bytes).
 PDF statistics:
- 3804 PDF objects out of 4296 (max. 8388607)
- 2760 compressed objects within 28 object streams
- 1440 named destinations out of 1440 (max. 500000)
+ 3814 PDF objects out of 4296 (max. 8388607)
+ 2770 compressed objects within 28 object streams
+ 1447 named destinations out of 1728 (max. 500000)
  70558 words of extra memory for PDF output out of 74296 (max. 10000000)
 
