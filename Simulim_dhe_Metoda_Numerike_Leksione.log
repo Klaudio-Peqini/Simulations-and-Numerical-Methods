@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.8.6)  9 OCT 2026 00:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2026.8.6)  19 OCT 2026 15:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Simulim_dhe_Metoda_Numerike_Leksione.tex
-(./Simulim_dhe_Metoda_Numerike_Leksione.tex
+**Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.tex
+(./Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
 (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
@@ -527,7 +527,7 @@ LaTeX Info: Redefining \labelcref on input line 2370.
 LaTeX Info: Redefining \labelcpageref on input line 2370.
 Package cleveref Info: `listings' support loaded on input line 3131.
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 58
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 73
 .
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
@@ -538,28 +538,27 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count317
 \l__pdf_internal_box=\box64
 )
-(./Simulim_dhe_Metoda_Numerike_Leksione.aux)
-\openout1 = `Simulim_dhe_Metoda_Numerike_Leksione.aux'.
+No file Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.aux.
+\openout1 = `Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 73.
+LaTeX Font Info:    ... okay on input line 73.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -617,18 +616,18 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \c@lstlisting=\count324
-LaTeX Info: Redefining \microtypecontext on input line 58.
-Package microtype Info: Applying patch `item' on input line 58.
-Package microtype Info: Applying patch `toc' on input line 58.
-Package microtype Info: Applying patch `eqnum' on input line 58.
-Package microtype Info: Applying patch `footnote' on input line 58.
+LaTeX Info: Redefining \microtypecontext on input line 73.
+Package microtype Info: Applying patch `item' on input line 73.
+Package microtype Info: Applying patch `toc' on input line 73.
+Package microtype Info: Applying patch `eqnum' on input line 73.
+Package microtype Info: Applying patch `footnote' on input line 73.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 58.
+LaTeX Info: Redefining \showhyphens on input line 73.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -640,7 +639,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 58.
+Package hyperref Info: Link coloring OFF on input line 73.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -653,89 +652,48 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count325
 )
-LaTeX Info: Redefining \ref on input line 58.
-LaTeX Info: Redefining \pageref on input line 58.
-LaTeX Info: Redefining \nameref on input line 58.
-
-(./Simulim_dhe_Metoda_Numerike_Leksione.out)
-(./Simulim_dhe_Metoda_Numerike_Leksione.out)
+LaTeX Info: Redefining \ref on input line 73.
+LaTeX Info: Redefining \pageref on input line 73.
+LaTeX Info: Redefining \nameref on input line 73.
 \@outlinefile=\write3
-\openout3 = `Simulim_dhe_Metoda_Numerike_Leksione.out'.
+\openout3 = `Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.out'.
 
- [1
+
+[1
 
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<figures//01_cikli_simulimit.pdf, id=414, 633.92363pt x 209.58301pt>
+<figures//01_cikli_simulimit.pdf, id=12, 633.92363pt x 209.58301pt>
 File: figures//01_cikli_simulimit.pdf Graphic file (type pdf)
 <use figures//01_cikli_simulimit.pdf>
-Package pdftex.def Info: figures//01_cikli_simulimit.pdf  used on input line 82
-.
+Package pdftex.def Info: figures//01_cikli_simulimit.pdf  used on input line 12
+2.
 (pdftex.def)             Requested size: 445.23193pt x 147.20277pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.86 \chapter
-             *{Si të përdoret ky tekst} [1
+l.127 \chapter
+              *{Si të përdoret ky tekst} [1
 
- <./figures//01_cikli_simulimit.pdf>] [2
+ <./figures//01_cikli_simulimit.pdf>] (/usr/share/texmf/tex/latex/lm/ot1lmr.fd)
 
-] (./Simulim_dhe_Metoda_Numerike_Leksione.toc
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 2
-.
+(/usr/share/texmf/tex/latex/lm/omllmm.fd)
+(/usr/share/texmf/tex/latex/lm/omslmsy.fd)
+(/usr/share/texmf/tex/latex/lm/omxlmex.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [2
 
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
-.
-
-(/usr/share/texmf/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-2.
-
-(/usr/share/texmf/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-2.
-
-(/usr/share/texmf/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 2.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 2.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
-File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
-File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [3
-
-] [4])
+]
 \tf@toc=\write4
-\openout4 = `Simulim_dhe_Metoda_Numerike_Leksione.toc'.
+\openout4 = `Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.toc'.
 
+ [3
 
-[5]
+]
 Kapitulli 1.
 [1
 
@@ -745,317 +703,565 @@ Kapitulli 1.
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 205.
- [3] [4]
-[5] [6]
-Kapitulli 2.
-[7
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 310.
+ [3]
 
-]
-<figures//02_anulimi_katastrofik.pdf, id=750, 462.28432pt x 243.25018pt>
+LaTeX Warning: Citation `hanelli' on page 4 undefined on input line 356.
+
+
+LaTeX Warning: Citation `hoxha' on page 4 undefined on input line 356.
+
+
+LaTeX Warning: Citation `datja' on page 4 undefined on input line 356.
+
+
+LaTeX Warning: Citation `newman' on page 4 undefined on input line 356.
+
+
+LaTeX Warning: Citation `landau' on page 4 undefined on input line 356.
+
+[4] [5] [6] [7]
+Kapitulli 2.
+[8
+
+] [9]
+<figures//02_anulimi_katastrofik.pdf, id=257, 462.28432pt x 243.25018pt>
 File: figures//02_anulimi_katastrofik.pdf Graphic file (type pdf)
 <use figures//02_anulimi_katastrofik.pdf>
 Package pdftex.def Info: figures//02_anulimi_katastrofik.pdf  used on input lin
-e 411.
+e 633.
 (pdftex.def)             Requested size: 347.83502pt x 183.02733pt.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 412.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 412.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 412.
-<figures//04_kushtzimi_matrices.pdf, id=751, 460.90784pt x 243.78607pt>
-File: figures//04_kushtzimi_matrices.pdf Graphic file (type pdf)
-<use figures//04_kushtzimi_matrices.pdf>
-Package pdftex.def Info: figures//04_kushtzimi_matrices.pdf  used on input line
- 432.
-(pdftex.def)             Requested size: 347.83502pt x 183.97737pt.
- [8 <./figures//02_anulimi_katastrofik.pdf>] [9 <./figures//04_kushtzimi_matric
-es.pdf>] [10] [11] [12] [13]
+ [10 <./figures//02_anulimi_katastrofik.pdf>] [11] [12]
+
+LaTeX Warning: Citation `hanelli' on page 13 undefined on input line 810.
+
+
+LaTeX Warning: Citation `hoxha' on page 13 undefined on input line 810.
+
+
+LaTeX Warning: Citation `datja' on page 13 undefined on input line 810.
+
+
+LaTeX Warning: Citation `higham' on page 13 undefined on input line 810.
+
+[13] [14] [15] [16]
 Kapitulli 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 670.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 670.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 670.
-
-[14
+[17
 
 ]
-<figures//03_konvergjenca_rrenjeve.pdf, id=982, 462.1774pt x 245.12106pt>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 1004.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 1004.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 1004.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1004.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1004.
+
+<figures//03_konvergjenca_rrenjeve.pdf, id=453, 462.1774pt x 245.12106pt>
 File: figures//03_konvergjenca_rrenjeve.pdf Graphic file (type pdf)
 <use figures//03_konvergjenca_rrenjeve.pdf>
 Package pdftex.def Info: figures//03_konvergjenca_rrenjeve.pdf  used on input l
-ine 696.
+ine 1030.
 (pdftex.def)             Requested size: 347.83502pt x 184.48366pt.
- [15 <./figures//03_konvergjenca_rrenjeve.pdf>]
-<figures//05_modet_normale.pdf, id=1027, 460.80472pt x 357.13957pt>
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 1031.
+[18 <./figures//03_konvergjenca_rrenjeve.pdf>]
+<figures//05_modet_normale.pdf, id=501, 460.80472pt x 357.13957pt>
 File: figures//05_modet_normale.pdf Graphic file (type pdf)
 <use figures//05_modet_normale.pdf>
-Package pdftex.def Info: figures//05_modet_normale.pdf  used on input line 741.
-
+Package pdftex.def Info: figures//05_modet_normale.pdf  used on input line 1075
+.
 (pdftex.def)             Requested size: 333.92218pt x 258.81328pt.
- [16 <./figures//05_modet_normale.pdf>] [17] [18] [19] [20] [21]
+ [19] [20 <./figures//05_modet_normale.pdf>] [21]
+
+LaTeX Warning: Citation `hanelli' on page 22 undefined on input line 1176.
+
+
+LaTeX Warning: Citation `hoxha' on page 22 undefined on input line 1176.
+
+
+LaTeX Warning: Citation `datja' on page 22 undefined on input line 1176.
+
+
+LaTeX Warning: Citation `zeqiri2020' on page 22 undefined on input line 1176.
+
+[22] [23] [24]
 Kapitulli 4.
-<figures//06_interpolimi_runge.pdf, id=1214, 643.11661pt x 238.30714pt>
+[25
+
+]
+<figures//06_interpolimi_runge.pdf, id=698, 643.11661pt x 238.30714pt>
 File: figures//06_interpolimi_runge.pdf Graphic file (type pdf)
 <use figures//06_interpolimi_runge.pdf>
 Package pdftex.def Info: figures//06_interpolimi_runge.pdf  used on input line 
-1013.
+1388.
 (pdftex.def)             Requested size: 440.5896pt x 163.26485pt.
-[22
-
-]
-<figures//07_regresioni_kepler.pdf, id=1222, 461.9545pt x 259.68968pt>
+<figures//07_regresioni_kepler.pdf, id=699, 461.9545pt x 259.68968pt>
 File: figures//07_regresioni_kepler.pdf Graphic file (type pdf)
 <use figures//07_regresioni_kepler.pdf>
 Package pdftex.def Info: figures//07_regresioni_kepler.pdf  used on input line 
-1040.
+1415.
 (pdftex.def)             Requested size: 333.92218pt x 187.72137pt.
- [23 <./figures//06_interpolimi_runge.pdf> <./figures//07_regresioni_kepler.pdf
->] [24] [25] [26] [27] [28]
+ [26 <./figures//06_interpolimi_runge.pdf>] [27 <./figures//07_regresioni_keple
+r.pdf>] [28]
+
+LaTeX Warning: Citation `hanelli' on page 29 undefined on input line 1508.
+
+
+LaTeX Warning: Citation `hoxha' on page 29 undefined on input line 1508.
+
+
+LaTeX Warning: Citation `datja' on page 29 undefined on input line 1508.
+
+
+LaTeX Warning: Citation `butka' on page 29 undefined on input line 1508.
+
+
+LaTeX Warning: Citation `tasho' on page 29 undefined on input line 1508.
+
+[29] [30] [31]
 Kapitulli 5.
-<figures//08_gabimi_derivimit.pdf, id=1436, 462.1774pt x 258.24008pt>
+[32
+
+]
+<figures//08_gabimi_derivimit.pdf, id=922, 462.1774pt x 258.24008pt>
 File: figures//08_gabimi_derivimit.pdf Graphic file (type pdf)
 <use figures//08_gabimi_derivimit.pdf>
 Package pdftex.def Info: figures//08_gabimi_derivimit.pdf  used on input line 1
-327.
+747.
 (pdftex.def)             Requested size: 343.19977pt x 191.76846pt.
-[29
-
-]
-<figures//09_kuadratura_konvergjenca.pdf, id=1446, 462.1774pt x 257.70853pt>
+ [33 <./figures//08_gabimi_derivimit.pdf>]
+<figures//09_kuadratura_konvergjenca.pdf, id=977, 462.1774pt x 257.70853pt>
 File: figures//09_kuadratura_konvergjenca.pdf Graphic file (type pdf)
 <use figures//09_kuadratura_konvergjenca.pdf>
 Package pdftex.def Info: figures//09_kuadratura_konvergjenca.pdf  used on input
- line 1343.
+ line 1763.
 (pdftex.def)             Requested size: 343.19977pt x 191.37373pt.
- [30 <./figures//08_gabimi_derivimit.pdf> <./figures//09_kuadratura_konvergjenc
-a.pdf>] [31] [32] [33] [34] [35]
+ [34 <./figures//09_kuadratura_konvergjenca.pdf>] [35]
+
+LaTeX Warning: Citation `hanelli' on page 36 undefined on input line 1857.
+
+
+LaTeX Warning: Citation `hoxha' on page 36 undefined on input line 1857.
+
+
+LaTeX Warning: Citation `datja' on page 36 undefined on input line 1857.
+
+
+LaTeX Warning: Citation `newman' on page 36 undefined on input line 1857.
+
+
+LaTeX Warning: Citation `press' on page 36 undefined on input line 1857.
+
+[36] [37] [38]
 Kapitulli 6.
-[36
+[39
 
 ]
-<figures//10_energjia_lavjerresit.pdf, id=1682, 462.34705pt x 259.68968pt>
+<figures//10_energjia_lavjerresit.pdf, id=1160, 462.34705pt x 259.68968pt>
 File: figures//10_energjia_lavjerresit.pdf Graphic file (type pdf)
 <use figures//10_energjia_lavjerresit.pdf>
 Package pdftex.def Info: figures//10_energjia_lavjerresit.pdf  used on input li
-ne 1637.
+ne 2099.
 (pdftex.def)             Requested size: 343.19977pt x 192.76569pt.
- [37 <./figures//10_energjia_lavjerresit.pdf>]
-<figures//11_orbita_dy_trupave.pdf, id=1734, 353.73622pt x 337.25296pt>
+ [40]
+<figures//11_orbita_dy_trupave.pdf, id=1181, 353.73622pt x 337.25296pt>
 File: figures//11_orbita_dy_trupave.pdf Graphic file (type pdf)
 <use figures//11_orbita_dy_trupave.pdf>
 Package pdftex.def Info: figures//11_orbita_dy_trupave.pdf  used on input line 
-1663.
+2125.
 (pdftex.def)             Requested size: 278.27084pt x 265.31537pt.
- [38 <./figures//11_orbita_dy_trupave.pdf>] [39] [40] [41] [42]
+ [41 <./figures//10_energjia_lavjerresit.pdf>] [42 <./figures//11_orbita_dy_tru
+pave.pdf>]
+
+LaTeX Warning: Citation `dishmema' on page 43 undefined on input line 2205.
+
+
+LaTeX Warning: Citation `hanelli' on page 43 undefined on input line 2205.
+
+
+LaTeX Warning: Citation `hoxha' on page 43 undefined on input line 2205.
+
+
+LaTeX Warning: Citation `datja' on page 43 undefined on input line 2205.
+
+
+LaTeX Warning: Citation `dishmemaArticle' on page 43 undefined on input line 22
+05.
+
+[43] [44] [45] [46]
 Kapitulli 7.
-<figures//12_vala_bredhese.pdf, id=1889, 498.27815pt x 266.85393pt>
-File: figures//12_vala_bredhese.pdf Graphic file (type pdf)
-<use figures//12_vala_bredhese.pdf>
-Package pdftex.def Info: figures//12_vala_bredhese.pdf  used on input line 1912
-.
-(pdftex.def)             Requested size: 380.30301pt x 203.68245pt.
-[43
+[47
 
 ]
-<figures//13_dispersimi_numerik.pdf, id=1898, 460.79483pt x 244.67975pt>
+<figures//12_vala_bredhese.pdf, id=1384, 498.27815pt x 266.85393pt>
+File: figures//12_vala_bredhese.pdf Graphic file (type pdf)
+<use figures//12_vala_bredhese.pdf>
+Package pdftex.def Info: figures//12_vala_bredhese.pdf  used on input line 2415
+.
+(pdftex.def)             Requested size: 380.30301pt x 203.68245pt.
+<figures//13_dispersimi_numerik.pdf, id=1385, 460.79483pt x 244.67975pt>
 File: figures//13_dispersimi_numerik.pdf Graphic file (type pdf)
 <use figures//13_dispersimi_numerik.pdf>
 Package pdftex.def Info: figures//13_dispersimi_numerik.pdf  used on input line
- 1931.
+ 2434.
 (pdftex.def)             Requested size: 338.55743pt x 179.77583pt.
- [44 <./figures//12_vala_bredhese.pdf> <./figures//13_dispersimi_numerik.pdf>] 
-[45] [46] [47] [48] [49]
+ [48 <./figures//12_vala_bredhese.pdf>] [49 <./figures//13_dispersimi_numerik.p
+df>]
+
+LaTeX Warning: Citation `hoxha' on page 50 undefined on input line 2523.
+
+
+LaTeX Warning: Citation `hanelli' on page 50 undefined on input line 2523.
+
+
+LaTeX Warning: Citation `naco' on page 50 undefined on input line 2523.
+
+
+LaTeX Warning: Citation `giordano' on page 50 undefined on input line 2523.
+
+
+LaTeX Warning: Citation `landau' on page 50 undefined on input line 2523.
+
+[50] [51] [52] [53]
 Kapitulli 8.
-[50
+[54
 
 ]
-<figures//14_shperndarja_binomiale.pdf, id=2110, 462.12337pt x 245.23567pt>
+<figures//14_shperndarja_binomiale.pdf, id=1599, 462.12337pt x 245.23567pt>
 File: figures//14_shperndarja_binomiale.pdf Graphic file (type pdf)
 <use figures//14_shperndarja_binomiale.pdf>
 Package pdftex.def Info: figures//14_shperndarja_binomiale.pdf  used on input l
-ine 2204.
+ine 2749.
 (pdftex.def)             Requested size: 343.19977pt x 182.13388pt.
-<figures//15_teorema_qendrore.pdf, id=2111, 633.23546pt x 215.49036pt>
+ [55 <./figures//14_shperndarja_binomiale.pdf>]
+<figures//15_teorema_qendrore.pdf, id=1643, 633.23546pt x 215.49036pt>
 File: figures//15_teorema_qendrore.pdf Graphic file (type pdf)
 <use figures//15_teorema_qendrore.pdf>
 Package pdftex.def Info: figures//15_teorema_qendrore.pdf  used on input line 2
-233.
+778.
 (pdftex.def)             Requested size: 440.5896pt x 149.93468pt.
- [51 <./figures//14_shperndarja_binomiale.pdf>] [52 <./figures//15_teorema_qend
-rore.pdf>] [53] [54] [55] [56]
+ [56 <./figures//15_teorema_qendrore.pdf>]
+
+LaTeX Warning: Citation `capollari' on page 57 undefined on input line 2853.
+
+
+LaTeX Warning: Citation `butka' on page 57 undefined on input line 2853.
+
+
+LaTeX Warning: Citation `tasho' on page 57 undefined on input line 2853.
+
+
+LaTeX Warning: Citation `newman' on page 57 undefined on input line 2853.
+
+
+LaTeX Warning: Citation `landau' on page 57 undefined on input line 2853.
+
+[57] [58] [59] [60]
 Kapitulli 9.
-<figures//16_testi_cifteve_prng.pdf, id=2303, 570.54813pt x 245.23567pt>
+[61
+
+]
+<figures//16_testi_cifteve_prng.pdf, id=1800, 570.54813pt x 245.23567pt>
 File: figures//16_testi_cifteve_prng.pdf Graphic file (type pdf)
 <use figures//16_testi_cifteve_prng.pdf>
 Package pdftex.def Info: figures//16_testi_cifteve_prng.pdf  used on input line
- 2463.
+ 3049.
 (pdftex.def)             Requested size: 417.39919pt x 179.40971pt.
-[57
-
- <./figures//16_testi_cifteve_prng.pdf>]
-<figures//17_kampionimi_eksponencial.pdf, id=2354, 462.14316pt x 245.23567pt>
+<figures//17_kampionimi_eksponencial.pdf, id=1801, 462.14316pt x 245.23567pt>
 File: figures//17_kampionimi_eksponencial.pdf Graphic file (type pdf)
 <use figures//17_kampionimi_eksponencial.pdf>
 Package pdftex.def Info: figures//17_kampionimi_eksponencial.pdf  used on input
- line 2481.
+ line 3067.
 (pdftex.def)             Requested size: 343.19977pt x 182.12265pt.
- [58 <./figures//17_kampionimi_eksponencial.pdf>] [59] [60] [61] [62] [63]
+ [62 <./figures//16_testi_cifteve_prng.pdf>] [63 <./figures//17_kampionimi_eksp
+onencial.pdf>] [64]
+
+LaTeX Warning: Citation `capollari' on page 65 undefined on input line 3169.
+
+
+LaTeX Warning: Citation `butka' on page 65 undefined on input line 3169.
+
+
+LaTeX Warning: Citation `tasho' on page 65 undefined on input line 3169.
+
+
+LaTeX Warning: Citation `press' on page 65 undefined on input line 3169.
+
+
+LaTeX Warning: Citation `robert' on page 65 undefined on input line 3169.
+
+[65] [66] [67] [68]
 Kapitulli 10.
+[69
+
+]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2745.
+(hyperref)                removing `math shift' on input line 3373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\pi' on input line 2745.
+(hyperref)                removing `\pi' on input line 3373.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2745.
+(hyperref)                removing `math shift' on input line 3373.
 
-<figures//18_monte_carlo_pi.pdf, id=2504, 608.92973pt x 251.01308pt>
+<figures//18_monte_carlo_pi.pdf, id=2010, 608.92973pt x 251.01308pt>
 File: figures//18_monte_carlo_pi.pdf Graphic file (type pdf)
 <use figures//18_monte_carlo_pi.pdf>
-Package pdftex.def Info: figures//18_monte_carlo_pi.pdf  used on input line 275
-3.
+Package pdftex.def Info: figures//18_monte_carlo_pi.pdf  used on input line 338
+1.
 (pdftex.def)             Requested size: 440.5896pt x 181.62552pt.
-<figures//19_gabimi_monte_carlo.pdf, id=2505, 463.18358pt x 251.01308pt>
+<figures//19_gabimi_monte_carlo.pdf, id=2011, 463.18358pt x 251.01308pt>
 File: figures//19_gabimi_monte_carlo.pdf Graphic file (type pdf)
 <use figures//19_gabimi_monte_carlo.pdf>
 Package pdftex.def Info: figures//19_gabimi_monte_carlo.pdf  used on input line
- 2766.
+ 3394.
 (pdftex.def)             Requested size: 343.19977pt x 185.99954pt.
-[64
-
-] [65 <./figures//18_monte_carlo_pi.pdf> <./figures//19_gabimi_monte_carlo.pdf>
-]
-<figures//20_zbritja_mjetit_monte_carlo.pdf, id=2619, 462.20975pt x 245.43956pt
+[70 <./figures//18_monte_carlo_pi.pdf>]
+<figures//20_zbritja_mjetit_monte_carlo.pdf, id=2067, 462.20975pt x 245.43956pt
 >
 File: figures//20_zbritja_mjetit_monte_carlo.pdf Graphic file (type pdf)
 <use figures//20_zbritja_mjetit_monte_carlo.pdf>
 Package pdftex.def Info: figures//20_zbritja_mjetit_monte_carlo.pdf  used on in
-put line 2797.
+put line 3425.
 (pdftex.def)             Requested size: 343.19977pt x 182.2516pt.
- [66 <./figures//20_zbritja_mjetit_monte_carlo.pdf>]
+ [71 <./figures//19_gabimi_monte_carlo.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 2836.
- [67] [68] [69]
-[70]
+(Font)              <12> on input line 3464.
+ [72 <./figures//20_zbritja_mjetit_monte_carlo.pdf>]
+
+LaTeX Warning: Citation `butka' on page 73 undefined on input line 3501.
+
+
+LaTeX Warning: Citation `tasho' on page 73 undefined on input line 3501.
+
+
+LaTeX Warning: Citation `hyka' on page 73 undefined on input line 3501.
+
+
+LaTeX Warning: Citation `newman' on page 73 undefined on input line 3501.
+
+
+LaTeX Warning: Citation `robert' on page 73 undefined on input line 3501.
+
+
+LaTeX Warning: Citation `press' on page 73 undefined on input line 3501.
+
+[73] [74] [75] [76]
 Kapitulli 11.
-<figures//21_bredhja_e_rastit.pdf, id=2775, 642.9523pt x 265.46706pt>
+[77
+
+]
+<figures//21_bredhja_e_rastit.pdf, id=2286, 642.9523pt x 265.46706pt>
 File: figures//21_bredhja_e_rastit.pdf Graphic file (type pdf)
 <use figures//21_bredhja_e_rastit.pdf>
 Package pdftex.def Info: figures//21_bredhja_e_rastit.pdf  used on input line 3
-049.
+720.
 (pdftex.def)             Requested size: 440.5896pt x 181.91675pt.
-<figures//22_difuzioni_gaussian.pdf, id=2776, 462.00418pt x 245.23567pt>
+<figures//22_difuzioni_gaussian.pdf, id=2287, 462.00418pt x 245.23567pt>
 File: figures//22_difuzioni_gaussian.pdf Graphic file (type pdf)
 <use figures//22_difuzioni_gaussian.pdf>
 Package pdftex.def Info: figures//22_difuzioni_gaussian.pdf  used on input line
- 3068.
+ 3739.
 (pdftex.def)             Requested size: 343.19977pt x 182.1713pt.
-[71
-
-]
-<figures//23_zinxhiri_markov.pdf, id=2786, 462.18484pt x 243.94011pt>
+ [78 <./figures//21_bredhja_e_rastit.pdf>]
+<figures//23_zinxhiri_markov.pdf, id=2352, 462.18484pt x 243.94011pt>
 File: figures//23_zinxhiri_markov.pdf Graphic file (type pdf)
 <use figures//23_zinxhiri_markov.pdf>
-Package pdftex.def Info: figures//23_zinxhiri_markov.pdf  used on input line 30
-91.
+Package pdftex.def Info: figures//23_zinxhiri_markov.pdf  used on input line 37
+62.
 (pdftex.def)             Requested size: 343.19977pt x 181.14934pt.
- [72 <./figures//21_bredhja_e_rastit.pdf> <./figures//22_difuzioni_gaussian.pdf
->] [73 <./figures//23_zinxhiri_markov.pdf>] [74] [75] [76] [77]
+ [79 <./figures//22_difuzioni_gaussian.pdf> <./figures//23_zinxhiri_markov.pdf>
+] [80]
+
+LaTeX Warning: Citation `capollari' on page 81 undefined on input line 3857.
+
+
+LaTeX Warning: Citation `butka' on page 81 undefined on input line 3857.
+
+
+LaTeX Warning: Citation `tasho' on page 81 undefined on input line 3857.
+
+
+LaTeX Warning: Citation `robert' on page 81 undefined on input line 3857.
+
+
+LaTeX Warning: Citation `krauth' on page 81 undefined on input line 3857.
+
+[81] [82] [83] [84]
 Kapitulli 12.
-[78
+[85
 
 ]
-<figures//24_ising_konfigurime.pdf, id=3041, 464.08878pt x 251.4996pt>
+<figures//24_ising_konfigurime.pdf, id=2553, 464.08878pt x 251.4996pt>
 File: figures//24_ising_konfigurime.pdf Graphic file (type pdf)
 <use figures//24_ising_konfigurime.pdf>
 Package pdftex.def Info: figures//24_ising_konfigurime.pdf  used on input line 
-3384.
+4097.
 (pdftex.def)             Requested size: 361.74785pt x 196.04608pt.
-<figures//25_ising_magnetizimi.pdf, id=3042, 461.25256pt x 245.23567pt>
+ [86]
+<figures//25_ising_magnetizimi.pdf, id=2567, 461.25256pt x 245.23567pt>
 File: figures//25_ising_magnetizimi.pdf Graphic file (type pdf)
 <use figures//25_ising_magnetizimi.pdf>
 Package pdftex.def Info: figures//25_ising_magnetizimi.pdf  used on input line 
-3401.
+4114.
 (pdftex.def)             Requested size: 343.19977pt x 182.47066pt.
- [79 <./figures//24_ising_konfigurime.pdf>] [80 <./figures//25_ising_magnetizim
-i.pdf>] [81] [82] [83] [84] [85]
+ [87 <./figures//24_ising_konfigurime.pdf> <./figures//25_ising_magnetizimi.pdf
+>] [88]
+
+LaTeX Warning: Citation `capollari' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `butka' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `metropolis' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `hastings' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `krauth' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `robert' on page 89 undefined on input line 4217.
+
+
+LaTeX Warning: Citation `walter' on page 89 undefined on input line 4217.
+
+[89] [90] [91] [92] [93]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 3706--3706
+Underfull \hbox (badness 10000) in paragraph at lines 4423--4423
 []|\T1/lmr/m/n/10 (+20) boundary-value prob-
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 3712--3713
+Underfull \hbox (badness 1199) in paragraph at lines 4429--4430
 []|\T1/lmr/m/n/10 (+20) Procedura e gjener-imit ose p�rzg-jed-hjes s�
  []
 
-[86
+[94
 
-] [87] [88] [89]
-Underfull \hbox (badness 1502) in paragraph at lines 3861--3862
+] [95] [96] [97]
+
+LaTeX Warning: Citation `hanelli' on page 98 undefined on input line 4577.
+
+
+LaTeX Warning: Citation `hoxha' on page 98 undefined on input line 4580.
+
+
+LaTeX Warning: Citation `datja' on page 98 undefined on input line 4583.
+
+
+LaTeX Warning: Citation `dishmema' on page 98 undefined on input line 4586.
+
+
+LaTeX Warning: Citation `dishmemaArticle' on page 98 undefined on input line 45
+86.
+
+
+LaTeX Warning: Citation `naco' on page 98 undefined on input line 4589.
+
+[98]
+
+LaTeX Warning: Citation `capollari' on page 99 undefined on input line 4592.
+
+
+LaTeX Warning: Citation `butka' on page 99 undefined on input line 4592.
+
+
+LaTeX Warning: Citation `tasho' on page 99 undefined on input line 4592.
+
+
+LaTeX Warning: Citation `metropolis' on page 99 undefined on input line 4595.
+
+
+LaTeX Warning: Citation `hastings' on page 99 undefined on input line 4595.
+
+
+LaTeX Warning: Citation `krauth' on page 99 undefined on input line 4595.
+
+
+LaTeX Warning: Citation `robert' on page 99 undefined on input line 4595.
+
+
+Underfull \hbox (badness 1502) in paragraph at lines 4604--4605
 []|\T1/lmr/m/n/10.95 (+20) Hanelli--Osmani; Datja; Burden--
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3862--3862
+Underfull \hbox (badness 10000) in paragraph at lines 4605--4605
 []|\T1/lmr/m/n/10.95 (+20) Vlera vet-jake dhe
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3864--3864
+Underfull \hbox (badness 10000) in paragraph at lines 4607--4607
 []|\T1/lmr/m/n/10.95 (+20) Derivim dhe
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3865--3865
+Underfull \hbox (badness 10000) in paragraph at lines 4608--4608
 []|\T1/lmr/m/n/10.95 (+20) Ekuacione difer-en-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3865--3866
+Underfull \hbox (badness 10000) in paragraph at lines 4608--4609
 []|\T1/lmr/m/n/10.95 (+20) Dishmema; Hanelli--Osmani;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3867--3867
+Underfull \hbox (badness 10000) in paragraph at lines 4610--4610
 []|\T1/lmr/m/n/10.95 (+20) Probabilitet dhe
  []
 
 
-Underfull \hbox (badness 1701) in paragraph at lines 3869--3870
+Underfull \hbox (badness 1701) in paragraph at lines 4612--4613
 []|\T1/lmr/m/n/10.95 (+20) Newman; Press et al.; Robert--
  []
 
-[90] [91] [92
+[99] [100] [101
 
 
-] [93
+] [102
 
-] [94] (./Simulim_dhe_Metoda_Numerike_Leksione.aux)
-Package rerunfilecheck Info: File `Simulim_dhe_Metoda_Numerike_Leksione.out' ha
-s not changed.
-(rerunfilecheck)             Checksum: 7865211D1DAEC13DA0C351846483AB21;21541.
+] [103]
+(./Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `Simulim_dhe_Metoda_Numerike_Leksione_Rish
+ikuar.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Simulim_dhe_Metoda_Numerike_Leksion
+e_Rishikuar.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  C2FC2179DA6B3DDD5A62737C3B82B2AD;22107.
  ) 
 Here is how much of TeX's memory you used:
- 21085 strings out of 480129
- 347794 string characters out of 5893410
- 1164277 words of memory out of 5000000
- 36946 multiletter control sequences out of 15000+600000
- 600673 words of font info for 293 fonts, out of 8000000 for 9000
+ 21068 strings out of 480129
+ 347187 string characters out of 5893410
+ 1164196 words of memory out of 5000000
+ 36854 multiletter control sequences out of 15000+600000
+ 602136 words of font info for 309 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 60i,11n,63p,1033b,1972s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,11n,63p,1043b,2104s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm
@@ -1076,11 +1282,11 @@ are/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public
 /lm/lmtt9.pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Simulim_dhe_Metoda_Numerike_Leksione.pdf (100 pages, 1227641 
-bytes).
+Output written on Simulim_dhe_Metoda_Numerike_Leksione_Rishikuar.pdf (107 pages
+, 1238395 bytes).
 PDF statistics:
- 3814 PDF objects out of 4296 (max. 8388607)
- 2770 compressed objects within 28 object streams
- 1447 named destinations out of 1728 (max. 500000)
- 70558 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 3367 PDF objects out of 3580 (max. 8388607)
+ 2358 compressed objects within 24 object streams
+ 1499 named destinations out of 1728 (max. 500000)
+ 69753 words of extra memory for PDF output out of 74296 (max. 10000000)
 

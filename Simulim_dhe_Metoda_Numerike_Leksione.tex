@@ -50,10 +50,25 @@
 \newenvironment{kujdes}{\par\medskip\noindent\textbf{Kujdes numerik.}\ }{\par\medskip}
 \newenvironment{lidhje}{\par\medskip\noindent\textbf{Lidhja me laboratorin.}\ }{\par\medskip}
 \newenvironment{orientim}{\par\medskip\noindent\textbf{Orientim për studim.}\ }{\par\medskip}
+\newenvironment{ideja}{\par\medskip\noindent\textbf{Ideja kryesore.}\ }{\par\medskip}
+\newenvironment{llogaritjedore}{\par\medskip\noindent\textbf{Llogaritje me dorë.}\ }{\par\medskip}
+\newenvironment{kompleksitet}{\par\medskip\noindent\textbf{Kompleksiteti.}\ }{\par\medskip}
+\newenvironment{qendrueshmeri}{\par\medskip\noindent\textbf{Qëndrueshmëria dhe kontrolli.}\ }{\par\medskip}
+\newenvironment{interpretim}{\par\medskip\noindent\textbf{Si lexohet rezultati.}\ }{\par\medskip}
+\newenvironment{parashikim}{\par\medskip\noindent\textbf{Ndaluni dhe parashikoni.}\ }{\par\medskip}
+\newcommand{\hartakapitullit}[4]{%
+\par\smallskip
+\noindent\begin{tabularx}{\textwidth}{>{\bfseries\raggedright\arraybackslash}p{.23\textwidth}Y}
+Pyetja udhëzuese & #1\\
+Shembulli minimal & #2\\
+Kostoja që ndiqet & #3\\
+Kontrolli vendimtar & #4
+\end{tabularx}\par\medskip}
 \lstdefinestyle{scientific}{basicstyle=\ttfamily\footnotesize,keywordstyle=\bfseries,commentstyle=\itshape,showstringspaces=false,frame=single,framerule=.3pt,breaklines=true,columns=fullflexible,literate={ë}{{\"e}}1 {Ë}{{\"E}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1}
 \lstset{style=scientific}
 
-% Ky version është rishikuar pas ndërtimit të laboratorëve 02--12.
+% Version i rishikuar pedagogjikisht pas ndërtimit të laboratorëve 01--12.
+% Përmbajtja e zgjeruar ruhet; çdo kapitull nis me shembull minimal, llogaritje me dorë, kompleksitet dhe kontroll qëndrueshmërie.
 % Është skedar i vetëm: kapitujt, zhvillimet, algoritmet dhe shtojca janë integruar.
 \begin{document}
 \frontmatter
@@ -74,38 +89,81 @@
 \end{titlepage}
 
 \chapter*{Parathënie}
-Ky tekst përmbledh në një tërësi koherente përmbajtjen e lëndës \emph{Simulim dhe Metoda Numerike}, me 30 orë leksione dhe 30 orë laborator. Ai vazhdon filozofinë e kursit \emph{Modelim në Fizikë}: nga pyetja fizike te modeli matematik, nga modeli te algoritmi dhe nga algoritmi te një eksperiment numerik i verifikueshëm e i riprodhueshëm. Theksi i ri vendoset te gabimi numerik, kampionimi, simulimi stokastik dhe metodat Monte Carlo.
+Ky tekst përmbledh në një tërësi koherente përmbajtjen e lëndës
+\emph{Simulim dhe Metoda Numerike}, me 30 orë leksione dhe 30 orë laborator.
+Ai vazhdon filozofinë e kursit \emph{Modelim në Fizikë}: një llogaritje
+fillon me pyetjen fizike, jo me kodin. Nga pyetja ndërtohet modeli, nga modeli
+nxirret algoritmi dhe vetëm më pas shkruhet programi. Rezultati pranohet pasi
+është kontrolluar me një zgjidhje analitike, një ligj ruajtjeje, një studim
+konvergjence ose një argument statistik.
 
-Teksti nuk e lidh metodën shkencore me një gjuhë të vetme programimi. Shembujt mund të realizohen në Python ose MATLAB/Octave. Notebook-u përdoret për të bashkuar shpjegimin, kodin, figurat dhe interpretimin; funksionet dhe paketat përdoren për kod të ripërdorshëm. Termat \emph{bredhje}, \emph{statistike} dhe \emph{pacaktueshmëri} përdoren në mënyrë të njëtrajtshme në të gjithë tekstin.
+Botimi i rishikuar ruan derivimet dhe materialin e zgjeruar të dorëshkrimit,
+por ndryshon mënyrën e hyrjes në çdo temë. Përpara formalizmit jepet një
+shembull minimal që mund të llogaritet me dorë. Më pas paraqiten formula,
+algoritmi, kostoja llogaritëse dhe kushti që e bën rezultatin të besueshëm.
+Kjo renditje është veçanërisht e rëndësishme për studentin që ndeshet për herë
+të parë me gabimin e rrumbullakimit, qëndrueshmërinë ose proceset stokastike.
+
+Katër pyetje shoqërojnë çdo metodë gjatë gjithë tekstit:
+\begin{enumerate}
+\item \emph{Cilin problem fizik ose matematik po zgjidhim?}
+\item \emph{Sa punë dhe sa kujtesë kërkon algoritmi kur rritet hyrja?}
+\item \emph{Si ndikojnë perturbimet, rrumbullakimi dhe diskretizimi?}
+\item \emph{Cila provë na bind se rezultati është i saktë dhe fizikisht i arsyeshëm?}
+\end{enumerate}
+
+Shembujt kryesorë përdorin Python/NumPy, ndërsa lidhja me GNU Octave ruhet në
+laboratorë. Gjuha e programimit është mjet; argumenti shkencor përbëhet nga
+modeli, derivimi, prova numerike dhe interpretimi. Termat \emph{bredhje},
+\emph{statistike}, \emph{pacaktueshmëri}, \emph{gabim i këputjes} dhe
+\emph{balancë e detajuar} përdoren në mënyrë të njëtrajtshme.
 
 \begin{figure}[h]
 \centering\includegraphics[width=.96\textwidth]{01_cikli_simulimit.pdf}
-\caption{Cikli i punës në simulimin fizik. Rezultati kthehet te pyetja fillestare përmes verifikimit dhe vleftësimit.}
+\caption{Cikli i punës në simulimin fizik. Rezultati kthehet te pyetja
+fillestare përmes verifikimit dhe vleftësimit.}
 \end{figure}
 
 \chapter*{Si të përdoret ky tekst}
-Çdo kapitull përmban objektiva, teori, derivime, shembuj fizikë, algoritme,
-analizë të gabimit dhe lidhje me laboratorin. Leximi nuk duhet të reduktohet në
-ndjekjen e formulave. Për çdo metodë përdorni ritmin e mëposhtëm:
-\begin{enumerate}
-\item formuloni pyetjen fizike dhe përcaktoni madhësinë që kërkohet;
-\item deklaroni supozimet dhe nxirrni modelin matematik;
-\item derivoni algoritmin dhe rendin e gabimit;
-\item parashikoni sjelljen para ekzekutimit të kodit;
-\item verifikoni zbatimin me rast analitik, ligj ruajtjeje ose studim konvergjence;
-\item ndryshoni vetëm një parametër dhe interpretoni ndryshimin;
-\item ruani kodin si skript dhe ekzekutojeni jashtë notebook-ut.
-\end{enumerate}
+Teksti mund të lexohet në dy kalime. Në kalimin e parë ndiqen ideja kryesore,
+shembulli minimal dhe interpretimi fizik. Në kalimin e dytë studiohen derivimi
+i plotë, kufijtë e gabimit dhe rastet e përgjithshme. Kjo nuk e ndan kursin në
+një pjesë ``të lehtë'' dhe një pjesë ``të vështirë''; përkundrazi, e lidh
+intuitën me formalizmin në rendin në të cilin zakonisht ndërtohet kuptimi.
 
-Në notebook-un përkatës, Seksioni~7 paraqet shembullin e plotë të zgjidhur,
-ndërsa Seksioni~8 është punishte eksploruese. Shembulli i plotë është pjesa
-themelore; punishtja përdoret për ndjeshmëri, regjime kufitare dhe pyetje
-``çfarë ndodh nëse?''. Python përdoret për zbatimin kryesor, ndërsa GNU Octave
-për të dalluar idenë numerike nga sintaksa e një gjuhe të vetme.
+\begin{center}
+\begin{tabularx}{.96\textwidth}{p{.19\textwidth}YY}
+\toprule
+Faza & Pyetja e studentit & Produkti i pritshëm\\ \midrule
+Kuptimi & Çfarë po përpiqemi të gjejmë? & Një fjali me madhësinë dalëse dhe njësinë e saj.\\
+Llogaritja me dorë & Si del hapi i parë pa kod? & Dy ose tri hapa algjebrikë të kontrollueshëm.\\
+Algoritmi & Çfarë përsërit kompjuteri? & Pseudokod, kriter ndalimi dhe madhësi hyrëse.\\
+Kompleksiteti & Si rritet puna? & Një formulë $T(n)$, pastaj $\Theta(\cdot)$ dhe kostoja në kujtesë.\\
+Besueshmëria & Kur mund të dështojë metoda? & Kusht qëndrueshmërie, mbetje ose studim konvergjence.\\
+Interpretimi & Çfarë na mëson rezultati për sistemin? & Përfundim fizik me kufijtë e vlefshmërisë.\\
+\bottomrule
+\end{tabularx}
+\end{center}
 
-Kur paraqitet një rezultat numerik, studenti duhet të jetë në gjendje të
-përgjigjet: cilin model po zgjidhim, me cilën metodë, me çfarë gabimi, si u
-verifikua dhe brenda cilave kufizime fizike është i besueshëm?
+Ritmi i rekomanduar është
+\emph{llogarit me dorë $\rightarrow$ parashiko $\rightarrow$ ekzekuto
+$\rightarrow$ mat $\rightarrow$ interpreto}. Para ekzekutimit të një qelize
+kodi, studenti duhet të shkruajë shenjën, rendin e madhësisë ose prirjen që
+pret. Pas ekzekutimit, nuk mjafton pohimi ``grafiku duket mirë'': duhet të
+shpjegohet mekanizmi që prodhoi formën e grafikut.
+
+Kompleksiteti llogaritet fillimisht në letër. Përcaktohet madhësia e hyrjes,
+zgjidhet veprimi bazë, numërohet sa herë kryhet dhe nxirret $T(n)$. Vetëm më
+pas maten kohët në kompjuter. Kohëmatja kontrollon prirjen e parashikuar, por
+nuk e zëvendëson derivimin, sepse ndikohet nga procesori, memoria cache,
+sistemi operativ dhe interpretuesi.
+
+Në notebook-un përkatës, shembulli i plotë është pjesa themelore, ndërsa
+punishtja përdoret për ndjeshmëri, regjime kufitare dhe pyetje të tipit
+``çfarë ndodh nëse?''. Kur paraqitet një rezultat numerik, studenti duhet të
+jetë në gjendje të thotë: cilin model zgjidhi, me cilën metodë, me çfarë
+kostoje, me çfarë gabimi, si e verifikoi dhe brenda cilave kufizime fizike e
+konsideron të besueshëm.
 
 \tableofcontents
 \mainmatter
@@ -124,6 +182,53 @@ $\rightarrow$ verifikim $\rightarrow$ interpretim}. Në fund, përdorni rënien
 në ajër si shembull të plotë dhe ndryshoni vetëm një supozim të modelit për të
 kuptuar dallimin ndërmjet modelimit dhe programimit.
 \end{orientim}
+
+\hartakapitullit
+{Si shndërrohet një pyetje fizike në një eksperiment numerik të kontrollueshëm?}
+{Rënia me rezistencë lineare të ajrit.}
+{$N=T/\Delta t$ hapa; $\Theta(N)$ kohë dhe $\Theta(N)$ ose $\Theta(1)$ kujtesë.}
+{Zgjidhja analitike, njësitë, konvergjenca dhe kufiri i qëndrueshmërisë.}
+
+\begin{ideja}
+Një simulim nuk është thjesht ekzekutimi i një programi. Ai është një
+eksperiment mbi një model. Prandaj duhen ndarë qartë katër objekte: sistemi
+real, modeli matematik, algoritmi dhe kodi. Një gabim në kod mund të zbulohet
+me verifikim; një model i papërshtatshëm kërkon krahasim me dukurinë reale.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për rënien me drejtim pozitiv lart marrim
+\begin{equation}
+ m\frac{\dd v}{\dd t}=-mg-cv,\qquad \tau=\frac{m}{c}.
+\end{equation}
+Euler-i jep
+\begin{equation}
+ v_{n+1}=v_n+\Delta t\left(-g-\frac{v_n}{\tau}\right).
+\end{equation}
+Nëse $m=1$ kg, $c=0.5$ kg/s, $v_0=0$ dhe $\Delta t=0.2$ s, atëherë
+$\tau=2$ s, $v_1=-1.962$ m/s dhe $v_2=-3.728$ m/s. Dy hapa të tillë janë
+llogaritja që kodi do të përsërisë shumë herë. Vlera kufitare është
+$v_\infty=-mg/c=-19.62$ m/s; ajo jep menjëherë një kontroll të shenjës dhe
+të rendit të madhësisë.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Për një interval $[0,T]$, $N=T/\Delta t$. Në çdo hap kryhet një numër i
+fiksuar veprimesh, prandaj $T(N)=aN+b\in\Theta(N)$. Ruajtja e gjithë
+trajektores kërkon $\Theta(N)$ vende; nëse nevojitet vetëm gjendja e fundit,
+mjaftojnë $\Theta(1)$. Kjo zgjedhje duhet deklaruar, sepse kompleksiteti në
+kujtesë varet nga produkti që kërkojmë.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Një perturbim i shpejtësisë shumëzohet në çdo hap me
+$G=1-\Delta t/\tau$. Kërkesa $|G|<1$ jep
+$0<\Delta t<2\tau$. Për shembullin e mësipërm $G=0.9$, kështu që
+perturbimet zvogëlohen. Ky kontroll nuk provon se modeli i rezistencës lineare
+është fizikisht i përshtatshëm; provon vetëm se skema diskrete nuk e zmadhon
+artificialisht gabimin në këtë regjim.
+\end{qendrueshmeri}
+
 
 
 \section{Nga modeli te eksperimenti numerik}
@@ -360,7 +465,7 @@ Për laboratorin rekomandohet që çdo notebook të përmbajë një tabelë të 
 % ===== Fillimi i skedarit të integruar: chapters/02_aritmetika.tex =====
 \chapter{Aritmetika kompjuterike dhe analiza e gabimeve}
 \begin{qellime}
-Studenti përshkruan numrat me pikë të lëvizshme; dallon gabimin absolut e relativ, gabimin e përparmë e të prapmë; analizon kushtëzimin dhe qëndrueshmërinë; njeh anulimin, humbjen e rëndësisë dhe grumbullimin e gabimeve.
+Studenti shpjegon rrumbullakimin duke nisur nga një model i thjeshtë dhjetor; dallon gabimin absolut, relativ, të këputjes dhe të rrumbullakimit; nxjerr me dorë formulën e kompleksitetit dhe e kontrollon me kohëmatje; dallon kushtëzimin e problemit nga qëndrueshmëria e algoritmit; njeh anulimin, humbjen e shifrave dhe grumbullimin e gabimeve.
 \end{qellime}
 
 \begin{orientim}
@@ -372,94 +477,276 @@ mbetjen. Eksperimentet me anulimin dhe matricën gati singulare janë provat
 numerike të këtyre dallimeve.
 \end{orientim}
 
+\hartakapitullit
+{Pse formula të barabarta në letër mund të japin rezultate të ndryshme në kompjuter?}
+{Një makinë dhjetore me tri shifra dhe shprehja $1-\cos x$.}
+{Numërimi i veprimeve, $T(n)$ dhe kontrolli i pjerrësisë log--log.}
+{Gabimi relativ, kushtëzimi, gabimi i prapëm dhe një formulim i qëndrueshëm.}
 
-\section{Përfaqësimi me saktësi të fundme}
-Një numër normal binar përfaqësohet si
-\begin{equation}
- x=(-1)^s(1.b_1b_2\ldots b_p)_2\,2^e.
-\end{equation}
-Në standardin IEEE 754, formati double ka 53 bita saktësi në mantisë. Distanca relative ndërmjet numrave pranë njësisë është afërsisht $2^{-52}$. Madhësia
-\begin{equation}
- u=\tfrac12\,\beta^{1-p}
-\end{equation}
-quhet njësia e rrumbullakimit. Modeli bazë është
-\begin{equation}
- \operatorname{fl}(x\circ y)=(x\circ y)(1+\delta),\qquad |\delta|\le u,
-\end{equation}
-për një veprim $\circ$, me kusht që të mos ndodhë tejmbushje ose nënmbushje.
+\begin{ideja}
+Kompjuteri punon me një bashkësi të fundme numrash. Çdo rezultat i ndërmjetëm
+mund të rrumbullakohet, ndaj renditja e veprimeve dhe forma e formulës kanë
+rëndësi. Për ta analizuar një llogaritje ndajmë tri pyetje: sa punë kërkon
+algoritmi, sa i ndjeshëm është problemi dhe sa gabim shton algoritmi.
+\end{ideja}
 
-Numrat \texttt{Inf}, \texttt{-Inf} dhe \texttt{NaN} sinjalizojnë rezultate jashtë bashkësisë së numrave të fundmë ose veprime të papërcaktuara. Krahasimi i numrave realë nuk duhet të mbështetet verbërisht në barazinë bit për bit; përdoret një tolerancë që merr parasysh shkallën e problemit.
 
-\section{Gabimi absolut dhe relativ}
-Nëse $x$ është vlera e saktë dhe $\tilde x$ përafrimi,
-\begin{equation}
- e_a=|\tilde x-x|,\qquad e_r=\frac{|\tilde x-x|}{|x|}.
-\end{equation}
-Gabimi relativ nuk ka kuptim kur $x=0$ dhe bëhet i paqëndrueshëm pranë zeros. Në vektorë përdoret një normë, për shembull
-\begin{equation}
- e_r=\frac{\|\tilde{\vect x}-\vect x\|_2}{\|\vect x\|_2}.
-\end{equation}
 
-\section{Anulimi dhe humbja e shifrave}
-Zbritja e dy numrave pothuaj të barabartë heq shifrat kryesore të përbashkëta dhe zmadhon gabimin relativ të mbetjes. Shprehja $\sqrt{x+1}-\sqrt{x}$ për $x\gg1$ llogaritet më mirë si
+\section{Rrumbullakimi në një makinë dhjetore të thjeshtë}
+Përpara se të studiojmë bitat e formatit IEEE 754, marrim një makinë
+imagjinare që ruan vetëm tri shifra domethënëse. Kjo heq detajet teknike dhe
+na lejon të shohim mekanizmin bazë: nga pafundësia e numrave realë makina
+zgjedh një bashkësi të fundme vlerash të paraqitshme.
+
+Në këtë makinë numri
 \begin{equation}
- \frac{1}{\sqrt{x+1}+\sqrt{x}}.
+ x=12.3456
 \end{equation}
-Të dyja janë algjebrikisht të njëjta, por jo numerikisht të barasvlershme.
+ruhet si $\operatorname{fl}(x)=12.3$, ku $\operatorname{fl}$ shënon
+rezultatin pas rrumbullakimit. Gabimi absolut dhe relativ janë
+\begin{equation}
+ e_a=|12.3-12.3456|=0.0456,
+ \qquad
+ e_r=\frac{0.0456}{12.3456}\simeq3.69\times10^{-3}.
+\end{equation}
+Gabimi absolut ka të njëjtën njësi si $x$; gabimi relativ është pa përmasa dhe
+lejon krahasimin e gabimeve në shkallë të ndryshme.
+
+\begin{llogaritjedore}
+Le të jenë
+\begin{equation}
+ a=1.00\times10^4,\qquad b=-1.00\times10^4,\qquad c=1.00.
+\end{equation}
+Duke rrumbullakuar pas çdo veprimi,
+\begin{align}
+ \operatorname{fl}(\operatorname{fl}(a+b)+c)&=1.00,\\
+ \operatorname{fl}(a+\operatorname{fl}(b+c))&=0.00.
+\end{align}
+Në rreshtin e dytë, $b+c=-9999$ rrumbullakohet në $-1.00\times10^4$ dhe
+shtesa $1$ humbet. Matematika reale nuk e ka humbur vetinë e shoqërimit;
+aritmetika me saktësi të fundme ka futur rrumbullakim ndërmjet hapave.
+\end{llogaritjedore}
+
+Ky shembull duhet mbajtur mend kur një simulim kryen miliona mbledhje.
+Ndryshimi i rendit të reduktimit në një procesor paralel mund të ndryshojë
+bitat e fundit pa nënkuptuar domosdoshmërisht gabim programimi.
+
+\section{Nga paraqitja dhjetore te IEEE 754}
+Një numër normal binar shkruhet
+\begin{equation}
+ x=(-1)^s(1.b_1b_2\ldots b_p)_2,2^e.
+\end{equation}
+Në formatin \texttt{float64} përdoren një bit për shenjën, 11 bite për
+eksponentin dhe 52 bite të ruajtura për pjesën thyesore të mantisës. Biti i
+parë është implicit, ndaj saktësia efektive është 53 bite.
+
+Numri dhjetor $0.1$ ka zhvillim binar periodik, njësoj si $1/3$ ka zhvillim
+dhjetor periodik. Prandaj kompjuteri ruan numrin binar më të afërt, jo
+vlerën reale të saktë $0.1$. Kjo shpjegon pse një shumë si
+\texttt{0.1 + 0.2} mund të mos jetë bit për bit e barabartë me \texttt{0.3}.
+
+Njësia e rrumbullakimit është
+\begin{equation}
+ u=\tfrac12\beta^{1-p},
+\end{equation}
+ndërsa epsiloni i makinës pranë njësisë është largësia nga $1$ te numri i
+paraqitshëm pasues. Për \texttt{float64},
+$\varepsilon_{\rm mach}=2^{-52}\simeq2.22\times10^{-16}$ dhe
+$u\simeq\varepsilon_{\rm mach}/2$.
+
+\begin{lstlisting}[language=Python,caption={Matja e epsilonit të makinës.}]
+eps = 1.0
+hapa = 0
+while 1.0 + eps/2.0 > 1.0:
+    eps /= 2.0
+    hapa += 1
+print(eps, hapa)
+\end{lstlisting}
+
+Në çdo përsëritje kryhen afërsisht një pjesëtim, një mbledhje dhe një
+krahasim. Nëse cikli bën $p$ përsëritje,
+\begin{equation}
+ T(p)=3p+c\in\Theta(p).
+\end{equation}
+Ky është shembulli i parë ku kompleksiteti nxirret nga pseudokodi përpara se
+të matet koha.
+
+Krahasimi numerik duhet të përdorë tolerancë të lidhur me shkallën:
+\begin{equation}
+ |x-y|\leq\varepsilon_a+\varepsilon_r|y|.
+\end{equation}
+Toleranca absolute mbron krahasimin pranë zeros; toleranca relative përshtatet
+me madhësinë e vlerave. Ato nuk zgjidhen verbërisht nga numri i shifrave që
+dëshirojmë, por nga saktësia e hyrjeve dhe kërkesa e problemit.
+
+\section{Gabimi, këputja dhe përhapja e perturbimeve}
+Nëse $x$ është vlera e saktë dhe $\widetilde x$ përafrimi,
+\begin{equation}
+ e_a=|\widetilde x-x|,
+ \qquad
+ e_r=\frac{|\widetilde x-x|}{|x|}.
+\end{equation}
+Gabimi relativ nuk përcaktohet për $x=0$ dhe mund të jetë mashtrues kur
+vlera e saktë është shumë pranë zeros. Për vektorë përdoret një normë dhe
+duhet treguar cila normë është zgjedhur.
+
+Dy burime duhen ndarë. \emph{Gabimi i këputjes} lind kur një proces i pafundëm
+zëvendësohet me një formulë të fundme, si te derivati me diferenca. Ai
+zakonisht ulet kur rrjeta rafinohet. \emph{Gabimi i rrumbullakimit} lind nga
+paraqitja e fundme dhe veprimet; ai mund të rritet kur hapi bëhet shumë i
+vogël ose kur grumbullohen shumë veprime.
+
+Nëse $\widetilde x=x+\delta x$ dhe $y=f(x)$, linearizimi jep
+\begin{equation}
+ \delta y\simeq f'(x)\delta x,
+ \qquad
+ \frac{|\delta y|}{|y|}\simeq
+ \left|\frac{xf'(x)}{f(x)}\right|\frac{|\delta x|}{|x|}.
+\end{equation}
+Faktori
+\begin{equation}
+ \kappa_f(x)=\left|\frac{xf'(x)}{f(x)}\right|
+\end{equation}
+është numri relativ i kushtëzimit. Për $f(x)=x^2$, $\kappa_f=2$: një
+perturbim relativ prej $0.5\%$ në $x$ prodhon, në rend të parë, rreth $1\%$
+perturbim relativ në $x^2$.
+
+\section{Anulimi dhe formulat numerikisht të sigurta}
+Kur zbriten dy numra pothuajse të barabartë, shifrat kryesore të përbashkëta
+anulohen dhe mbeten shifrat më pak të sakta. Për $x$ të vogël, shprehja
+$1-\cos x$ përmban pikërisht këtë rrezik. Identiteti
+\begin{equation}
+ 1-\cos x=2\sin^2\left(\frac{x}{2}\right)
+\end{equation}
+është matematikisht i barabartë, por numerikisht më i sigurt. Para se të
+ekzekutohet kodi, duhet parashikuar se formula e parë do të dështojë e para
+kur $x\to0$.
+
+Po kështu, për $x\gg1$,
+\begin{equation}
+ \sqrt{x+1}-\sqrt{x}
+ =\frac{1}{\sqrt{x+1}+\sqrt{x}}.
+\end{equation}
+Forma e djathtë shmang zbritjen e dy rrënjëve pothuajse të barabarta.
 
 \begin{figure}[ht]
 \centering\includegraphics[width=.75\textwidth]{02_anulimi_katastrofik.pdf}
-\caption{Gabimi i shkaktuar nga anulimi kur $x$ bëhet i krahasueshëm me saktësinë e makinës.}
+\caption{Gabimi i shkaktuar nga anulimi kur diferenca bëhet e krahasueshme
+me saktësinë e makinës.}
 \end{figure}
 
-\begin{kujdes}
-Renditja e veprimeve ka rëndësi. Në një shumë me terma me madhësi shumë të ndryshme, termat e vegjël mund të humbasin. Mbledhja nga moduli më i vogël te më i madhi ose algoritmi Kahan redukton humbjen.
-\end{kujdes}
-
-\section{Kushtëzimi i problemit}
-Kushtëzimi është veti e problemit matematik. Për $y=f(x)$, numri relativ i kushtëzimit lokal është
+Për ekuacionin $ax^2+bx+c=0$, formula e zakonshme mund të humbasë rrënjën e
+vogël kur $b^2\gg4ac$. Një formë e sigurt është
 \begin{equation}
- \kappa_f(x)=\left|\frac{x f'(x)}{f(x)}\right|.
+ q=-\frac12\left(b+\operatorname{sgn}(b)\sqrt{b^2-4ac}\right),
+ \qquad x_1=\frac{q}{a},\quad x_2=\frac{c}{q}.
 \end{equation}
-Në sistemin $A\vect x=\vect b$,
+Identitetet e Vietës, $x_1+x_2=-b/a$ dhe $x_1x_2=c/a$, japin kontrolle të
+thjeshta që mund të kryhen me dorë dhe në kod.
+
+\section{Kompleksiteti: nga numërimi me dorë te matja}
+Kompleksiteti përshkruan si rriten koha dhe kujtesa me madhësinë e hyrjes.
+Hapi i parë është të përcaktohet qartë hyrja $n$. Për shumën e $n$ numrave,
+një model i thjeshtë numëron një inicializim, $n$ mbledhje, rreth $n$ hapa
+të ciklit dhe $n+1$ kontrolle:
 \begin{equation}
- \frac{\|\delta\vect x\|}{\|\vect x\|}\lesssim \kappa(A)\frac{\|\delta\vect b\|}{\|\vect b\|},
+ T(n)=1+n+n+(n+1)=3n+2\in\Theta(n).
+\end{equation}
+Shënimi $O(n)$ është kufi i sipërm, $\Omega(n)$ kufi i poshtëm dhe
+$\Theta(n)$ kufi i shtrënguar i ritmit të rritjes.
+
+Për dy cikle të plota të ndërfutura, veprimi bazë kryhet $n^2$ herë. Nëse
+cikli i brendshëm shkon deri te $i$, numri i veprimeve është
+\begin{equation}
+ \sum_{i=1}^{n}i=\frac{n(n+1)}{2}\in\Theta(n^2).
+\end{equation}
+Faktori $1/2$ ndikon kohën reale, por jo klasën asimptotike. Në një cikël që
+përgjysmon hyrjen, pas $k$ hapash kemi $n/2^k\leq1$, prandaj
+$k\geq\log_2n$ dhe kostoja është $\Theta(\log n)$.
+
+Një shembull i plotë është polinomi
+\begin{equation}
+ p(x)=a_0+a_1x+\cdots+a_nx^n.
+\end{equation}
+Nëse çdo fuqi ndërtohet nga fillimi, numri i shumëzimeve rritet si
+$n(n+1)/2$ dhe metoda është $\Theta(n^2)$. Skema e Horner-it,
+\begin{equation}
+ p(x)=a_0+x\left(a_1+x\left(a_2+\cdots+x(a_{n-1}+xa_n)\right)\right),
+\end{equation}
+kryen $n$ shumëzime dhe $n$ mbledhje, pra është $\Theta(n)$.
+
+Matja kompjuterike kontrollon këtë përfundim. Nëse
+$t(n)\simeq Cn^p$, atëherë
+\begin{equation}
+ \log t\simeq\log C+p\log n.
+\end{equation}
+Pjerrësia e grafikut log--log duhet të afrohet me $2$ për metodën e
+drejtpërdrejtë dhe me $1$ për Horner-in. Përmasa të vogla ndikohen nga kostot
+fikse; përmasa të mëdha nga cache-i dhe optimizimet. Prandaj kohëmatja
+interpretohet si provë e prirjes, jo si zëvendësim i numërimit.
+
+\section{Kushtëzimi, qëndrueshmëria dhe sistemet lineare}
+Kushtëzimi është veti e problemit: sa ndryshon zgjidhja e saktë kur
+perturbohen hyrjet. Qëndrueshmëria është veti e algoritmit: sa gabim shton
+procedura konkrete. Gabimi i përparmë mat ndryshimin në rezultat; gabimi i
+prapëm kërkon perturbimin minimal të hyrjeve që do ta bënte rezultatin e
+llogaritur të saktë. Në mënyrë skematike,
+\begin{equation}
+ \text{gabimi i përparmë}\ \lesssim\
+ \text{kushtëzimi}\times\text{gabimi i prapëm}.
+\end{equation}
+Një algoritëm i mirë nuk mund ta bëjë një problem shumë të keqkushtëzuar
+të pandjeshëm, por një algoritëm i paqëndrueshëm mund të dëmtojë edhe një
+problem të mirëkushtëzuar.
+
+Për $A\vect x=\vect b$,
+\begin{equation}
+ \frac{\|\delta\vect x\|}{\|\vect x\|}
+ \lesssim\kappa(A)\frac{\|\delta\vect b\|}{\|\vect b\|},
  \qquad \kappa(A)=\|A\|\,\|A^{-1}\|.
 \end{equation}
-Një matricë me $\kappa\gg1$ është e keqkushtëzuar: perturbime të vogla në të dhëna mund të prodhojnë ndryshime të mëdha në zgjidhje.
-
-\begin{figure}[ht]
-\centering\includegraphics[width=.75\textwidth]{04_kushtzimi_matrices.pdf}
-\caption{Rritja e numrit të kushtëzimit kur dy rreshta të matricës bëhen pothuaj linearë të varur.}
-\end{figure}
-
-\section{Gabimi i përparmë dhe i prapmë}
-Gabimi i përparmë mat distancën ndërmjet rezultatit numerik dhe zgjidhjes së saktë. Analiza e prapme kërkon problemin pak të perturbur që zgjidhet saktësisht nga rezultati i llogaritur. Një algoritëm është i qëndrueshëm në kuptimin e prapëm nëse perturbimi i kërkuar është i vogël. Marrëdhënia konceptuale është
+Familja
 \begin{equation}
- \text{gabimi i përparmë}\ \lesssim\ \text{kushtëzimi}\times\text{gabimi i prapëm}.
+ A_\varepsilon=
+ \begin{pmatrix}1&1\\1&1+\varepsilon\end{pmatrix}
 \end{equation}
-Prandaj, edhe algoritmi më i mirë nuk mund ta shpëtojë një problem intrinsikisht të keqkushtëzuar.
+bëhet pothuaj singulare kur $\varepsilon\to0$, sepse dy rreshtat bëhen
+pothuaj të njëjtë. Një perturbim i vogël i të dhënave mund të prodhojë
+ndryshim të madh në zgjidhje.
 
-\section{Gabimet matricore}
-Shumëzimi matricor kryen shumë mbledhje dhe shumëzime. Kufiri klasik për një produkt skalar me $n$ terma ka faktor
+Për një përafrim $\widehat{\vect x}$, mbetja është
+$\vect r=\vect b-A\widehat{\vect x}$. Mbetja mund të jetë shumë e vogël edhe
+kur gabimi i zgjidhjes është i madh, nëse $\kappa(A)$ është e madhe. Prandaj
+raporti numerik duhet të paraqesë të dyja. Në kod përdoret faktorizimi ose
+operatori i zgjidhjes, jo formimi eksplicit i $A^{-1}\vect b$.
+
+Për një varg prej $n$ veprimesh, kufiri klasik përdor
 \begin{equation}
- \gamma_n=\frac{nu}{1-nu}\approx nu.
+ \gamma_n=\frac{nu}{1-nu}\simeq nu,
 \end{equation}
-Invertimi eksplicit i matricës për të zgjidhur $A\vect x=\vect b$ është zakonisht më i shtrenjtë dhe më pak i qëndrueshëm se faktorizimi i drejtpërdrejtë. Në kod përdoret operatori i zgjidhjes, jo $A^{-1}\vect b$.
-
-\begin{shembull}[Shuma e energjive]
-Nëse energjia totale merret si diferencë e dy energjive të mëdha, gabimi relativ mund të jetë i lartë edhe kur secila energji është llogaritur me shumë shifra. Një formulim që llogarit drejtpërdrejt madhësinë e vogël mund të jetë numerikisht më i sigurt.
-\end{shembull}
+kur $nu<1$. Ky është kufi i rastit më të pafavorshëm, jo parashikim i saktë.
+Shuma në çift dhe shuma Kahan ruajnë të njëjtën klasë $\Theta(n)$, por mund
+të ulin ndjeshëm gabimin. Ky dallim ndërmjet rendit asimptotik dhe konstantave
+numerike është thelbësor: algoritme me të njëjtin kompleksitet mund të kenë
+cilësi shumë të ndryshme.
 
 \begin{lidhje}
-Në laborator maten $u$, anulimi dhe ndikimi i rendit të mbledhjes. Pastaj ndërtohet një familje sistemesh $2\times2$ dhe krahasohet gabimi i zgjidhjes me $\kappa(A)$.
+Laboratori 2 ndjek pikërisht këtë rend: makinë dhjetore, \texttt{float64},
+anulim, numërim veprimesh, Horner, matje log--log dhe krahasim të formulave
+kuadratike. Çdo eksperiment nis me një parashikim dhe mbyllet me një kontroll
+matematik ose fizik.
 \end{lidhje}
 
 \section*{Pyetje kontrolli}
 \begin{enumerate}
+\item Pse $(a+b)+c$ dhe $a+(b+c)$ mund të ndryshojnë në aritmetikën me saktësi të fundme?
+\item Dalloni gabimin e këputjes nga gabimi i rrumbullakimit dhe jepni nga një shembull.
+\item Nxirrni $T(n)$ për një cikël linear, një cikël trekëndor dhe një cikël me përgjysmim.
+\item Cili është dallimi ndërmjet $O(n)$ dhe $\Theta(n)$?
+\item Pse matja e kohës nuk e zëvendëson numërimin e veprimeve?
 \item Dalloni një problem të keqkushtëzuar nga një algoritëm i paqëndrueshëm.
 \item Pse $A^{-1}\vect b$ nuk është mënyra e rekomanduar për të zgjidhur sistemin?
-\item Jepni një reformulim që shmang anulimin katastrofik.
+\item Jepni dy reformulime që shmangin anulimin dhe tregoni kontrollin për secilin.
 \end{enumerate}
 
 % ===== Fillimi i skedarit të integruar: chapters/alg_02.tex =====
@@ -533,7 +820,7 @@ Le të jetë $\operatorname{fl}(x)$ numri i përfaqësueshëm më i afërt me $x
 \end{equation}
 Ky model është relativ dhe prandaj nuk përshkruan drejtpërdrejt sjelljen pranë nënmbushjes. Për një varg veprimesh, çdo hap fut një faktor të ri $(1+\delta_i)$. Prodhimi plotëson
 \begin{equation}
- \prod_{i=1}^{n}(1+\delta_i)=1+\theta_n,qquad
+ \prod_{i=1}^{n}(1+\delta_i)=1+\theta_n,\qquad
  |\theta_n|\le\gamma_n=\frac{nu}{1-nu},
 \end{equation}
 kur $nu<1$. Formula $\gamma_n\simeq nu$ është e dobishme, por nuk duhet interpretuar si parashikim i saktë i gabimit: ajo është kufi në rastin më të pafavorshëm.
@@ -632,7 +919,7 @@ Produkti skalar $\vect x^T\vect y$ kombinon shumëzime dhe mbledhje. Kufiri tipi
  |\operatorname{fl}(\vect x^T\vect y)-\vect x^T\vect y|
  \le\gamma_n |\vect x|^T|\vect y|.
 \end{equation}
-Ky rezultat përhapet te shumëzimi matricor element për element. Në simulime të mëdha, ndryshimi i bibliotekës BLAS, numrit të threads ose rendit të ndarjes mund të ndryshojë bitat e fundit pa ndryshuar vlefshmërinë shkencore. Riprodhueshmëria duhet të përcaktojë nëse kërkohet identitet bit për bit apo vetëm pajtim brenda një tolerance.
+Ky rezultat përhapet te shumëzimi matricor element për element. Në simulime të mëdha, ndryshimi i bibliotekës BLAS, numrit të fijeve të ekzekutimit ose rendit të ndarjes mund të ndryshojë bitat e fundit pa ndryshuar vlefshmërinë shkencore. Riprodhueshmëria duhet të përcaktojë nëse kërkohet identitet bit për bit apo vetëm pajtim brenda një tolerance.
 
 \subsubsection{Kushtëzimi komponentor}
 Numri klasik $\kappa(A)=\|A\|\|A^{-1}\|$ mat perturbime normore. Në disa probleme, hyrjet kanë pacaktueshmëri relative komponent më komponent. Atëherë një matricë me elemente në shkallë shumë të ndryshme mund të duket keq në një normë, edhe pse struktura fizike e perturbimeve është më e kufizuar. Analiza komponentore përdor $|\Delta A|\le\varepsilon|A|$ dhe $|\Delta b|\le\varepsilon|b|$. Ky dallim është me rëndësi në rrjete rezistive, sisteme bilanci dhe matrica që përmbajnë koeficientë me njësi të ndryshme.
@@ -665,6 +952,53 @@ $A\vect v_k-\lambda_k\vect v_k$. Derivoni hapin, parashikoni regjimin e
 konvergjencës dhe vetëm pastaj zbatoni kriterin e ndalimit. Krahasimi ndërmjet
 metodës së sigurt dhe metodës së shpejtë është pjesë e rezultatit.
 \end{orientim}
+
+\hartakapitullit
+{Si gjendet një zgjidhje kur nuk mund ta izolojmë algjebrikisht?}
+{$x^2-2=0$, një sistem $2\times2$ dhe modi dominues i një matrice.}
+{Përgjysmimi $\Theta(\!\log((b-a)/\varepsilon))$; eliminimi $\Theta(n^3)$.}
+{Intervali që kufizon rrënjën, pivotimi, mbetja dhe hendeku spektral.}
+
+\begin{ideja}
+Tri problemet e kapitullit duken të ndryshme, por ndjekin të njëjtën logjikë:
+ndërtojmë një varg përafrimesh dhe kërkojmë një madhësi që tregon afrimin.
+Për rrënjën përdorim $|f(x_k)|$ dhe ndryshimin e hapit; për sistemin përdorim
+mbetjen $\vect r=\vect b-A\widehat{\vect x}$; për vektorin vetjak përdorim
+mbetjen $A\vect v-\lambda\vect v$.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për $f(x)=x^2-2$ në $[1,2]$, përgjysmimi jep $x_1=1.5$ dhe
+$f(x_1)=0.25$, prandaj intervali i ri është $[1,1.5]$. Hapi pasues është
+$x_2=1.25$ me $f(x_2)=-0.4375$, kështu që rrënja mbetet në
+$[1.25,1.5]$. Njutoni, nga $x_0=1.5$, jep
+\begin{equation}
+ x_1=x_0-\frac{x_0^2-2}{2x_0}=1.416\overline6,\qquad
+ x_2\simeq1.414216.
+\end{equation}
+Përgjysmimi ecën më ngadalë, por ruan një interval të sigurt; Njutoni është
+shumë i shpejtë pranë rrënjës, por kërkon derivat dhe pikë fillestare të mirë.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Pas $k$ hapash, gjatësia e intervalit është $(b-a)/2^k$. Për tolerancë
+$\varepsilon$ nevojiten
+\begin{equation}
+ k\geq\left\lceil\log_2\frac{b-a}{\varepsilon}\right\rceil.
+\end{equation}
+Eliminimi i Gausit për një matricë të dendur kërkon rreth
+$\tfrac23n^3+\Oh(n^2)$ veprime dhe $\Theta(n^2)$ kujtesë. Metoda fuqi kushton
+$\Theta(kn^2)$ pas $k$ iteracionesh për matricë të dendur, ose
+$\Theta(k\,\mathrm{nnz}(A))$ për matricë të rrallë.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Njutoni bëhet i rrezikshëm kur $f'(x_k)$ është shumë i vogël. Eliminimi pa
+pivotim mund të pjesëtojë me një numër të vogël dhe të zmadhojë rrumbullakimin.
+Një mbetje e vogël nuk garanton gabim të vogël kur sistemi është
+keqkushtëzuar; për këtë arsye raportohen së bashku mbetja dhe $\kappa(A)$.
+\end{qendrueshmeri}
+
 
 
 \section{Ekuacioni skalar $f(x)=0$}
@@ -940,7 +1274,7 @@ Metoda e Müller-it përdor tri pika $x_0,x_1,x_2$ dhe ndërton polinomin kuadra
 \end{equation}
 koeficienti kuadratik është $d=(\delta_2-\delta_1)/(h_1+h_2)$. Polinomi rreth $x_2$ shkruhet
 \begin{equation}
- p(x_2+s)=f(x_2)+bs+ds^2,qquad b=\delta_2+h_2d.
+ p(x_2+s)=f(x_2)+bs+ds^2,\qquad b=\delta_2+h_2d.
 \end{equation}
 Rrënja që jep hapin më të qëndrueshëm është
 \begin{equation}
@@ -953,7 +1287,7 @@ Diskriminanti mund të jetë negativ edhe kur pikat janë reale, prandaj impleme
 \subsubsection{Refinimi iterativ i sistemeve lineare}
 Pas zgjidhjes së $A\widehat x=b$, llogaritet mbetja $r=b-A\widehat x$ dhe zgjidhet
 \begin{equation}
- A\delta x=r,qquad \widehat x\leftarrow\widehat x+\delta x.
+ A\delta x=r,\qquad \widehat x\leftarrow\widehat x+\delta x.
 \end{equation}
 Në aritmetikë të saktë, një hap do të korrigjonte të gjithë gabimin. Në praktikë, nëse mbetja llogaritet me saktësi më të lartë se faktorizimi, refinimi mund të rikuperojë disa shifra. Faktorizimi LU ripërdoret, kështu që çdo korrigjim kushton vetëm dy zëvendësime trekëndore. Procesi ndalet kur mbetja e shkallëzuar nuk ulet më ose korrigjimi bëhet i papërfillshëm.
 
@@ -970,7 +1304,7 @@ Në mekanikën e sistemeve me shumë shkallë lirie shfaqet
 \end{equation}
 ku $M$ është matrica e masës dhe $K$ matrica e ngurtësisë. Nëse $M$ është simetrike pozitivisht e përcaktuar, faktorizimi Cholesky $M=LL^T$ e kthen problemin në
 \begin{equation}
- L^{-1}KL^{-T}\vect z=\omega^2\vect z,qquad \vect u=L^{-T}\vect z.
+ L^{-1}KL^{-T}\vect z=\omega^2\vect z,\qquad \vect u=L^{-T}\vect z.
 \end{equation}
 Matrica e transformuar është simetrike. Modet mund të normalizohen që $\vect u_i^TM\vect u_j=\delta_{ij}$ dhe atëherë $\vect u_i^TK\vect u_j=\omega_i^2\delta_{ij}$. Këto identitete janë prova numerike: mbetja $\|K\vect u_i-\omega_i^2M\vect u_i\|$ kontrollon çdo çift vetjak, ndërsa ortogonaliteti kontrollon të gjithë bazën.
 
@@ -995,6 +1329,47 @@ duhet shoqëruar me term të mbetjes ose me model statistikor. Shembulli i
 Keplerit përdoret për të lidhur linearizimin, njësitë, mbetjet dhe
 pacaktueshmërinë e parametrave.
 \end{orientim}
+
+\hartakapitullit
+{Si ndërtohet një funksion nga një numër i fundmë matjesh?}
+{Drejtëza nëpër dy pika dhe përshtatja e një ligji linear me zhurmë.}
+{Interpolimi i drejtpërdrejtë $\Theta(n^2)$; vlerësimi baricentrik $\Theta(n)$.}
+{Mbetjet, kushtëzimi i matricës së dizajnit dhe prova me të dhëna të pambaruara.}
+
+\begin{ideja}
+Interpolimi kërkon që kurba të kalojë nëpër çdo pikë; regresi pranon se
+matjet kanë zhurmë dhe kërkon prirjen që i shpjegon ato më mirë. Zgjedhja nuk
+është vetëm teknike. Ajo shpreh se çfarë besojmë për të dhënat: vlera të
+sakta të një funksioni, apo matje me pacaktueshmëri.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për pikat $(0,1)$ dhe $(2,5)$, polinomi i shkallës së parë është
+\begin{equation}
+ p(x)=1\frac{x-2}{0-2}+5\frac{x-0}{2-0}=1+2x.
+\end{equation}
+Prandaj $p(1)=3$. Kjo llogaritje e vogël tregon rolin e bazave të Lagranzhit:
+secila është $1$ në nyjën e vet dhe $0$ në nyjën tjetër. Kur pikat kanë
+zhurmë, detyrimi për të kaluar nëpër të gjitha mund të krijojë luhatje që nuk
+kanë kuptim fizik; atëherë përdoret regresi.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Formimi dhe vlerësimi naiv i polinomit të Lagranzhit kërkon
+$\Theta(n^2)$ veprime për $n$ nyje. Peshat baricentrike llogariten një herë
+me $\Theta(n^2)$, pastaj çdo vlerësim i ri kushton $\Theta(n)$. Katrorët më të
+vegjël me një matricë $m\times p$ dhe $m\geq p$ kushtojnë afërsisht
+$\Theta(mp^2)$ me QR; kostoja duhet lidhur me numrin e matjeve dhe parametrave.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Matrica e Vandermondit me nyje baraslarguara mund të jetë shumë e
+keqkushtëzuar. Rritja e shkallës nuk garanton përmirësim; mund të shfaqet
+fenomeni Runge. Nyjet Çebishev, forma baricentrike dhe QR janë zgjedhje më të
+sigurta. Për regresin, mbetjet duhet të paraqiten kundrejt ndryshores dhe një
+pjesë e të dhënave duhet lënë për kontroll jashtë përshtatjes.
+\end{qendrueshmeri}
+
 
 
 \section{Interpolimi polinomial}
@@ -1021,7 +1396,7 @@ Interpolimi Hermitian përdor edhe vlerat e derivateve. Për dy pika, polinomi k
 
 Ekstrapolimi vlerëson jashtë intervalit të të dhënave dhe është shumë më i rrezikshëm. Ekstrapolimi Richardson shfrytëzon një zhvillim të njohur të gabimit,
 \begin{equation}
- A(h)=A+c h^p+\Oh(h^{p+1}),qquad
+ A(h)=A+c h^p+\Oh(h^{p+1}),\qquad
  A\approx\frac{2^pA(h/2)-A(h)}{2^p-1}.
 \end{equation}
 Ai përdoret për të rritur rendin ose për të vlerësuar kufirin $h\to0$.
@@ -1296,6 +1671,51 @@ dhe ndikimin e rrumbullakimit. Grafiku log--log i gabimit kundrejt hapit është
 po aq i rëndësishëm sa vlera e integralit ose e derivatit.
 \end{orientim}
 
+\hartakapitullit
+{Si përafrohen ndryshimi lokal dhe grumbullimi global nga vlera diskrete?}
+{Derivati dhe integrali i $f(x)=x^2$.}
+{$\Theta(N)$ vlerësime për formulat e përbëra; kujtesë $\Theta(1)$ në rrjedhë.}
+{Studimi i hapit, rendi i konvergjencës dhe ekuilibri këputje--rrumbullakim.}
+
+\begin{ideja}
+Diferencimi numerik është i ndjeshëm sepse pjesëton një diferencë të vogël me
+një hap të vogël. Integrimi është zakonisht më i butë sepse mesatarizon.
+Në të dy rastet, formulat dalin nga e njëjta ide: zëvendësojmë funksionin me
+një përafrim lokal dhe kontrollojmë termin që kemi lënë jashtë.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për $f(x)=x^2$, $x=1$ dhe $h=0.1$, diferenca përpara jep
+\begin{equation}
+ \frac{f(1.1)-f(1)}{0.1}=2.1,
+\end{equation}
+ndërsa diferenca qendrore jep
+\begin{equation}
+ \frac{f(1.1)-f(0.9)}{0.2}=2.0,
+\end{equation}
+që përputhet me $f'(1)=2$. Për $\int_0^1x^2\dd x$ me dy nënintervale,
+trapezi jep $0.375$, kurse Simpsoni jep saktësisht $1/3$. Shembulli tregon
+se rendi i metodës ka kuptim të matshëm, jo vetëm simbolik.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Një rregull i përbërë me $N$ nënintervale kryen $\Theta(N)$ vlerësime të
+funksionit. Nëse pikat përpunohen njëra pas tjetrës, shuma kërkon
+$\Theta(1)$ kujtesë; ruajtja e të gjitha pikave kërkon $\Theta(N)$. Për
+kuadraturën adaptive, numri i vlerësimeve nuk dihet paraprakisht dhe duhet
+raportuar bashkë me tolerancën.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Për një formulë derivimi të rendit $p$, gabimi ka formë tipike
+$C_1h^p+C_2u/h$. Termi i parë ulet kur zvogëlohet $h$, ndërsa i dyti rritet
+nga rrumbullakimi dhe anulimi. Prandaj ekziston një hap optimal; ``sa më i
+vogël hapi'' nuk është rregull universal. Studimi log--log duhet të tregojë
+fillimisht pjerrësinë e pritur dhe më pas rrafshimin ose rritjen nga
+rrumbullakimi.
+\end{qendrueshmeri}
+
+
 
 \section{Derivatet nga zhvillimi Taylor}
 Nga
@@ -1501,7 +1921,7 @@ të jetë e saktë për gradën më të lartë të mundshme. Me $2n$ parametra p
 
 Për intervalin $[a,b]$ përdoret transformimi
 \begin{equation}
- x=\frac{a+b}{2}+\frac{b-a}{2}\xi,qquad
+ x=\frac{a+b}{2}+\frac{b-a}{2}\xi,\qquad
  \dd x=\frac{b-a}{2}\dd\xi.
 \end{equation}
 Avantazhi është saktësia e lartë me pak vlerësime; kufizimi është se nyjet nuk janë të futura natyrshëm, prandaj kontrolli adaptiv kërkon çifte rregullash ose nënndarje.
@@ -1526,7 +1946,7 @@ def kontroll_simpson(f, a, b, n):
 \end{lstlisting}
 
 \subsection{Përmbledhje dhe ushtrime}
-Derivimi numerik është intrinsikisht më i ndjeshëm ndaj zhurmës, ndërsa integrimi ka efekt mesatarizues. Rendi formal duhet konfirmuar me një studim rrjeti dhe jo vetëm cituar.
+Derivimi numerik është në vetvete më i ndjeshëm ndaj zhurmës, ndërsa integrimi ka efekt mesatarizues. Rendi formal duhet konfirmuar me një studim rrjeti dhe jo vetëm cituar.
 \begin{enumerate}
 \item Nxirrni formulën qendrore me pesë pika për $f'(x)$ dhe termin kryesor të gabimit.
 \item Vërtetoni saktësinë kubike të Simpsonit duke integruar monomet $1,x,x^2,x^3$.
@@ -1591,6 +2011,48 @@ ndani gabimin lokal nga ai global. Për sistemet mekanike kontrolloni edhe
 strukturën: energjinë, momentin këndor, hapësirën e fazës dhe ngjarjet. Një
 trajektore që duket e lëmuar nuk është vetvetiu provë e saktësisë.
 \end{orientim}
+
+\hartakapitullit
+{Si ndërtohet e ardhmja e një sistemi nga gjendja e tanishme?}
+{$y'=-\lambda y$ dhe oshilatori harmonik.}
+{Euler $N$ vlerësime; RK4 $4N$; të dyja $\Theta(N)$ për sistem me madhësi fikse.}
+{Rajoni i qëndrueshmërisë, konvergjenca dhe sjellja afatgjatë e energjisë.}
+
+\begin{ideja}
+Një integrues kohor zëvendëson evolucionin e vazhdueshëm me hapa. Rend i
+lartë do të thotë se gabimi zvogëlohet më shpejt kur zvogëlohet hapi; nuk do
+të thotë automatikisht se metoda është e qëndrueshme për çdo hap ose se ruan
+strukturën fizike për kohë të gjatë.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për $y'=-2y$, $y(0)=1$ dhe $\Delta t=0.1$, Euler-i jep
+\begin{equation}
+ y_1=(1-0.2)y_0=0.8,\qquad y_2=0.64.
+\end{equation}
+Zgjidhja e saktë në $t=0.2$ është $e^{-0.4}\simeq0.6703$. Diferenca është
+gabim diskretizimi, jo gabim i modelit. Përgjysmimi i hapit duhet ta zvogëlojë
+gabimin global afërsisht me faktor $2$ për Euler-in dhe me faktor $16$ për
+RK4, pasi të jemi në regjimin asimptotik.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Në $N=T/\Delta t$ hapa, Euler-i kërkon $N$ vlerësime të fushës dhe RK4
+kërkon $4N$. Të dyja janë $\Theta(N)$, por konstantja ndikon në kohën reale.
+Për një sistem të dendur me $d$ ndryshore, një vlerësim mund të kushtojë
+$\Theta(d^2)$; atëherë kostoja e plotë bëhet $\Theta(Nd^2)$.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Për ekuacionin provë $y'=-\lambda y$, Euler-i ka faktor
+$G=1-\lambda\Delta t$. Kërkesa $|G|<1$ jep
+$0<\lambda\Delta t<2$. Një problem i ngurtë mund të kërkojë hap shumë të
+vogël për qëndrueshmëri, edhe kur zgjidhja ndryshon ngadalë. Për sisteme
+Hamiltoniane kontrollohet edhe devijimi afatgjatë i energjisë; një integrues
+simplektik shpesh jep dinamikë më besnike se një metodë me gabim lokal më të
+vogël.
+\end{qendrueshmeri}
+
 
 
 \section{Problemi i vlerës fillestare}
@@ -1892,6 +2354,47 @@ dispersimit dhe kontrolli i energjisë diskrete. Animacioni i valës shërben p�
 interpretim, por kushti CFL dhe studimi i konvergjencës përbëjnë provën.
 \end{orientim}
 
+\hartakapitullit
+{Si përhapet një perturbim në një rrjetë pa krijuar valë numerike artificiale?}
+{Ekuacioni njëpërmasor i valës dhe një impuls fillestar.}
+{$\Theta(N_xN_t)$ kohë; $\Theta(N_x)$ kujtesë me tri shtresa kohore.}
+{Kushti CFL, analiza von Neumann, dispersimi dhe bilanci i energjisë.}
+
+\begin{ideja}
+Diskretizimi i një ekuacioni me derivate të pjesshme lidh çdo pikë të rrjetës
+me fqinjët e saj. Formula lokale është e thjeshtë, por përsëritet në të gjithë
+hapësirën dhe kohën. Kjo e bën kushtin e qëndrueshmërisë dhe koston e rrjetës
+po aq të rëndësishme sa vetë formula.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për $u_{tt}=c^2u_{xx}$, skema qendrore është
+\begin{equation}
+ u_j^{n+1}=2(1-\lambda^2)u_j^n+\lambda^2(u_{j-1}^n+u_{j+1}^n)-u_j^{n-1},
+ \qquad \lambda=\frac{c\Delta t}{\Delta x}.
+\end{equation}
+Nëse $\lambda=0.8$, $u_j^n=1$, fqinjët janë $0.5$ dhe $0.5$, ndërsa
+$u_j^{n-1}=0.8$, atëherë $u_j^{n+1}=0.56$. Kjo llogaritje kontrollon indeksat
+dhe shenjat përpara se skema të zbatohet në mijëra pika.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Për $N_x$ pika dhe $N_t$ hapa, numri i përditësimeve është afërsisht
+$(N_x-2)N_t$, pra $\Theta(N_xN_t)$. Duke ruajtur vetëm shtresën e kaluar,
+të tanishmen dhe të ardhmen, kujtesa është $\Theta(N_x)$. Në dy përmasa
+kostoja bëhet $\Theta(N_xN_yN_t)$; përgjysmimi i hapit në çdo drejtim rrit
+fort punën totale.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Për skemën e mësipërme kërkohet $\lambda\leq1$. Nëse $c=1$ m/s dhe
+$\Delta x=0.1$ m, duhet $\Delta t\leq0.1$ s. Një hap $0.08$ s është brenda
+kufirit; $0.12$ s jo. Edhe kur CFL plotësohet, valët diskrete kanë shpejtësi
+fazore që varet nga gjatësia valore. Prandaj kontrollohen veçmas qëndrueshmëria
+dhe dispersimi.
+\end{qendrueshmeri}
+
+
 
 \section{Nga PDE te rrjeti}
 Në rrjetin $x_j=j\Delta x$, $t^n=n\Delta t$, fusha përfaqësohet nga $u_j^n\approx u(x_j,t^n)$. Për ekuacionin e valës
@@ -2169,6 +2672,48 @@ vlerësuesi i ndërtuar prej mostrës; dalloni devijimin standard nga gabimi
 standard. Në simulimet dinamike ndiqni jo vetëm histogramin, por edhe
 mesataren kumulative, intervalin e besimit dhe ligjin $N^{-1/2}$.
 \end{orientim}
+
+\hartakapitullit
+{Si kthehen realizimet e rastit në një përfundim me pacaktueshmëri të matshme?}
+{Njëqind hedhje monedhe dhe mesatarja e një matjeje.}
+{$\Theta(N)$ kohë; statistikat rrjedhëse mund të përdorin $\Theta(1)$ kujtesë.}
+{Gabimi standard, mbulimi i intervalit, pavarësia dhe stabiliteti i variancës.}
+
+\begin{ideja}
+Një realizim i vetëm nuk përshkruan një proces të rastit. Përfundimi vjen nga
+shpërndarja e rezultateve dhe nga mënyra si zvogëlohet pacaktueshmëria kur
+rritet mostra. Probabiliteti i modelit dhe frekuenca e vrojtuar lidhen, por
+nuk janë e njëjta madhësi për një mostër të fundme.
+\end{ideja}
+
+\begin{llogaritjedore}
+Në $N=100$ hedhje dalin $56$ herë ``kokë'', kështu që
+$\widehat p=0.56$. Gabimi standard i përafërt është
+\begin{equation}
+ \operatorname{SE}(\widehat p)=
+ \sqrt{\frac{\widehat p(1-\widehat p)}{N}}\simeq0.0496.
+\end{equation}
+Një interval normal orientues $\widehat p\pm1.96\,\operatorname{SE}$ është
+afërsisht $[0.463,0.657]$. Ai përmban $0.5$, prandaj rezultati nuk jep arsye
+të fortë për të mohuar një monedhë të drejtë. Për mostra të vogla përdoret
+intervali Wilson në vend të këtij përafrimi të thjeshtë.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Gjenerimi dhe përpunimi i $N$ realizimeve kërkon $\Theta(N)$ kohë. Nëse
+ruhen vetëm numëruesi, mesatarja dhe varianca rrjedhëse, kujtesa është
+$\Theta(1)$; histogrami ose bootstrap-i mund të kërkojnë ruajtjen e mostrës.
+Dyfishimi i $N$ dyfishon afërsisht punën, por e ul gabimin standard vetëm me
+faktor $\sqrt2$.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Formula $\sum x_i^2/N-\bar x^2$ mund të humbasë saktësi kur dy terma të mëdhenj
+zbriten. Algoritmi i Welford-it përditëson mesataren dhe shumën e devijimeve
+pa këtë anulim. Nga ana statistike, teorema qendrore kufitare kërkon kushte;
+mostrat e korreluara nuk duhen trajtuar si $N$ vrojtime të pavarura.
+\end{qendrueshmeri}
+
 
 
 \section{Ngjarjet dhe probabiliteti}
@@ -2449,6 +2994,47 @@ shpërndarja e hyrjes dhe matni efikasitetin. Fara ruhet si pjesë e rezultatit,
 jo si hollësi programimi.
 \end{orientim}
 
+\hartakapitullit
+{Si prodhon një algoritëm determinist mostra që sillen si realizime të rastit?}
+{Një gjenerator linear kongruencial dhe transformimi i anasjelltë eksponencial.}
+{$\Theta(N)$ për $N$ mostra; refuzimi kërkon mesatarisht $N/p_{\rm pran}$ propozime.}
+{Perioda, korrelacionet, testet e shpërndarjes dhe kontrolli i farës.}
+
+\begin{ideja}
+Një gjenerator pseudorastësor është një sistem dinamik diskret. Fara përcakton
+plotësisht vargun, gjë që lejon riprodhimin e eksperimentit. Qëllimi nuk është
+``rastësia absolute'', por një varg me periodë dhe veti statistike të
+përshtatshme për pyetjen shkencore.
+\end{ideja}
+
+\begin{llogaritjedore}
+Marrim $X_{n+1}=(4X_n+1)\bmod9$ me $X_0=0$. Vargu fillon
+\begin{equation}
+ 0,1,5,3,4,8,6,7,2,0,\ldots
+\end{equation}
+dhe ka periodë $9$ në këtë shembull të vogël. Numrat uniformë mund të merren
+si $U_n=X_n/9$. Për një shpërndarje eksponenciale me parametër $\lambda$,
+$X=-\log(1-U)/\lambda$. Me $U=0.8$ dhe $\lambda=2$ merret
+$X\simeq0.8047$.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Një përditësim i gjeneratorit kushton numër konstant veprimesh, prandaj
+$N$ mostra kushtojnë $\Theta(N)$. Në kampionimin me refuzim, nëse probabiliteti
+i pranimit është $p_{\rm pran}$, numri mesatar i propozimeve për $N$ pranime
+është $N/p_{\rm pran}$. Kjo formulë e thjeshtë tregon pse një mbështjellëse e
+dobët bëhet shumë e kushtueshme në dimension të lartë.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Histogrami nuk mjafton për të vërtetuar cilësinë e gjeneratorit. Kontrollohen
+CDF-ja, momentet, autokorrelacioni dhe prova të shumëpërmasore. Për
+$-\log(1-U)$ pranë $U=0$ përdoret \texttt{log1p(-U)} për saktësi më të mirë.
+Në ekzekutim paralel duhen rryma të pavarura; ndryshimi i farës pa dokumentim
+e bën eksperimentin të pariprodhueshëm.
+\end{qendrueshmeri}
+
+
 
 \section{Pseudo-rastësia}
 Një gjenerator pseudorastësor është algoritëm determinist që prodhon një varg me veti statistike të ngjashme me mostrat e pavarura uniforme. Gjeneratori kongruencial linear është
@@ -2622,7 +3208,7 @@ Në koordinata polare, elementi i sipërfaqes është $r\dd r\dd\theta$, kështu
 \end{equation}
 dhe
 \begin{equation}
- Z_1=R\cos\Theta,qquad Z_2=R\sin\Theta.
+ Z_1=R\cos\Theta,\qquad Z_2=R\sin\Theta.
 \end{equation}
 Duhet shmangur $U_1=0$. Mostrat verifikohen jo vetëm me histogram, por edhe me mesatare, variancë, kuantile dhe korrelacion ndërmjet $Z_1$ e $Z_2$.
 
@@ -2727,6 +3313,48 @@ mesatarizohet. Pastaj nxirrni vlerësuesin, variancën dhe gabimin standard.
 Metodat e reduktimit të variancës krahasohen me të njëjtin buxhet vlerësimesh
 të funksionit; përndryshe krahasimi nuk është i drejtë.
 \end{orientim}
+
+\hartakapitullit
+{Si vlerësohet një integral duke e interpretuar si mesatare të mostrës?}
+{$\int_0^1x^2\dd x$ dhe vlerësimi gjeometrik i $\pi$.}
+{$\Theta(Nd)$ për $N$ pika në $d$ përmasa; për gabim $\varepsilon$, zakonisht $N\propto\varepsilon^{-2}$.}
+{Gabimi standard, konvergjenca $N^{-1/2}$ dhe reduktimi i variancës.}
+
+\begin{ideja}
+Monte Carlo nuk e përafron funksionin me një polinom; ai e rishkruan integralin
+si pritje dhe e vlerëson me mesatare. Fuqia e metodës është se ritmi
+$N^{-1/2}$ varet pak nga dimensioni. Dobësia është se ky ritëm është i ngadaltë,
+prandaj kontrolli i variancës është pjesë qendrore e algoritmit.
+\end{ideja}
+
+\begin{llogaritjedore}
+Për $I=\int_0^1x^2\dd x$, zgjedhim tri pika $0.2$, $0.5$ dhe $0.8$. Vlerësuesi
+është
+\begin{equation}
+ \widehat I=\frac{0.2^2+0.5^2+0.8^2}{3}=0.31,
+\end{equation}
+ndërsa vlera e saktë është $1/3$. Devijimi standard i tri vlerave është
+rreth $0.304$, kështu që gabimi standard është rreth $0.176$: mostra është
+shumë e vogël për një përfundim të saktë. Kjo llogaritje shpjegon pse bashkë
+me mesataren duhet raportuar pacaktueshmëria.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Nëse vlerësimi i integrandit në $d$ përmasa kushton $\Theta(d)$, kostoja është
+$\Theta(Nd)$ dhe kujtesa mund të mbetet $\Theta(1)$ me statistikë rrjedhëse.
+Nga $\operatorname{SE}=\sigma/\sqrt N$ del
+$N\simeq\sigma^2/\varepsilon^2$. Përgjysmimi i gabimit kërkon afërsisht
+katërfishimin e mostrës; ky është buxheti bazë i çdo simulimi Monte Carlo.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Këtu ``qëndrueshmëria'' lidhet kryesisht me variancën dhe me peshat. Në
+kampionimin e rëndësisë, një propozim që është shumë i vogël atje ku integrandi
+është i madh prodhon pesha ekstreme dhe madhësi efektive të vogël. Variablat
+antitetike, shtresëzimi dhe variabli kontrollues synojnë të ulin variancën pa
+ndryshuar pritjen.
+\end{qendrueshmeri}
+
 
 
 \section{Integrali si pritje}
@@ -2977,7 +3605,7 @@ Le të ndahet domeni në rajone pa mbivendosje $D_k$ me probabilitete $p_k$. Int
 \end{equation}
 Nëse në shtresën $k$ përdoren $n_k$ mostra të pavarura,
 \begin{equation}
- \widehat I=\sum_kp_k\overline h_k,qquad
+ \widehat I=\sum_kp_k\overline h_k,\qquad
  \Var(\widehat I)=\sum_k\frac{p_k^2\sigma_k^2}{n_k}.
 \end{equation}
 Me kosto të njëjtë për mostër dhe $\sum_kn_k=N$, minimizimi jep ndarjen Neyman $n_k\propto p_k\sigma_k$. Pra më shumë mostra vendosen në shtresa me peshë ose variancë të madhe. Kur $\sigma_k$ nuk njihet, përdoret një fazë pilot.
@@ -3033,15 +3661,58 @@ $\avg{X_n^2}$, kufirin e vazhdueshëm dhe spektrin e matricës së kalimit.
 Autokorrelacioni përcakton sa informacion të pavarur përmban trajektorja.
 \end{orientim}
 
+\hartakapitullit
+{Si shfaqet sjellja makroskopike nga hapa lokalë të rastit?}
+{Bredhja njëpërmasore dhe një zinxhir Markov me dy gjendje.}
+{$\Theta(MN)$ për $M$ trajektore me $N$ hapa; përhapja matricore varet nga rrallësia.}
+{Ligji $\langle X_N^2\rangle\propto N$, shpërndarja stacionare, hendeku spektral dhe $N_{\rm eff}$.}
+
+\begin{ideja}
+Bredhja e rastit lidh shkallën mikroskopike të hapave me difuzionin
+makroskopik. Zinxhiri Markov e përgjithëson idenë: gjendja e ardhshme varet
+nga gjendja e tanishme përmes probabiliteteve të kalimit. Shpërndarja
+stacionare nuk do të thotë se gjendja ndalon; do të thotë se shpërndarja nuk
+ndryshon më.
+\end{ideja}
+
+\begin{llogaritjedore}
+Hapat $+1,+1,-1,+1$ japin pozicionin $X_4=2$. Për një bredhje simetrike me
+hap $\ell$, $\E[X_N]=0$ dhe $\E[X_N^2]=N\ell^2$; largësia tipike rritet si
+$\sqrt N$, jo si $N$. Për matricën rresht-stohastike
+\begin{equation}
+ P=\begin{pmatrix}0.8&0.2\\0.3&0.7\end{pmatrix},
+\end{equation}
+kushti $\boldsymbol\pi=\boldsymbol\pi P$ dhe $\pi_1+\pi_2=1$ jep
+$\boldsymbol\pi=(0.6,0.4)$.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Simulimi i $M$ trajektoreve me $N$ hapa kërkon $\Theta(MN)$ përditësime.
+Nëse mbahen vetëm pozicionet e tanishme, kujtesa është $\Theta(M)$; ruajtja e
+çdo trajektoreje kërkon $\Theta(MN)$. Shumëzimi me një matricë kalimi të
+dendur me $s$ gjendje kushton $\Theta(s^2)$ për hap, ndërsa një matricë e
+rrallë kushton $\Theta(\mathrm{nnz}(P))$.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Vlera vetjake e dytë e $P$ kontrollon humbjen e kujtesës; për matricën e
+mësipërme ajo është $0.5$, ndaj hendeku spektral është $0.5$. Mostrat e një
+zinxhiri janë të korreluara. Numri i tyre nuk është numri i vrojtimeve të
+pavarura: përdoret $N_{\rm eff}\simeq N/(2\tau_{\rm int})$. Disa zinxhirë,
+gjurmët kohore dhe autokorrelacioni janë kontrolle më të vlefshme se një
+histogram i vetëm.
+\end{qendrueshmeri}
+
+
 
 \section{Bredhja simetrike në një përmasë}
 Le të jenë hapat $S_i=\pm\ell$ me probabilitet $1/2$. Pas $N$ hapash,
 \begin{equation}
- X_N=\sum_{i=1}^{N}S_i,qquad \E[X_N]=0,qquad \E[X_N^2]=N\ell^2.
+ X_N=\sum_{i=1}^{N}S_i,\qquad \E[X_N]=0,\qquad \E[X_N^2]=N\ell^2.
 \end{equation}
 Zhvendosja tipike rritet si $\sqrt N$, jo si $N$. Nëse çdo hap zgjat $\Delta t$, atëherë
 \begin{equation}
- \avg{X^2}=2Dt,qquad D=\frac{\ell^2}{2\Delta t}.
+ \avg{X^2}=2Dt,\qquad D=\frac{\ell^2}{2\Delta t}.
 \end{equation}
 Në $d$ përmasa, $\avg{r^2}=2dDt$.
 
@@ -3279,7 +3950,7 @@ Zgjidhja kuadratike që plotëson kufijtë është
 \end{equation}
 Në kufirin e difuzionit, koha mesatare $\tau(x)$ plotëson ekuacionin e prapëm
 \begin{equation}
- D\tau''(x)=-1,qquad \tau(0)=\tau(a)=0,
+ D\tau''(x)=-1,\qquad \tau(0)=\tau(a)=0,
 \end{equation}
 me zgjidhje $\tau(x)=x(a-x)/(2D)$. Kjo lidh drejtpërdrejt ekuacionin diskret me modelin e vazhdueshëm.
 
@@ -3338,6 +4009,48 @@ $\Delta E$ lokalisht dhe ndani termalizimin nga matjet. Përfundimet mbi
 tranzicionin kërkojnë autokorrelacion, gabime me blloqe dhe disa madhësi
 rrjete; një konfigurim i vetëm është vetëm ilustrim.
 \end{orientim}
+
+\hartakapitullit
+{Si kampionojmë një shpërndarje të njohur vetëm deri në një faktor normalizimi?}
+{Pranimi Metropolis dhe përmbysja e një spini në modelin Ising.}
+{Një sweep kushton $\Theta(L^2)$; $S$ sweeps kushtojnë $\Theta(SL^2)$.}
+{Balanca e detajuar, termalizimi, autokorrelacioni dhe krahasimi i madhësive të rrjetës.}
+
+\begin{ideja}
+Metropolis--Hastings nuk prodhon mostra të pavarura. Ai ndërton një zinxhir që
+kalon më shpesh në gjendje me peshë të madhe dhe, pas termalizimit, ka
+shpërndarjen synuar. Refuzimi është pjesë e dinamikës: kur propozimi refuzohet,
+gjendja e vjetër regjistrohet përsëri.
+\end{ideja}
+
+\begin{llogaritjedore}
+Në modelin Ising pa fushë, përmbysja e spinit $s_i$ ndryshon energjinë me
+\begin{equation}
+ \Delta E=2Js_i\sum_{j\in\mathrm{fq}(i)}s_j.
+\end{equation}
+Nëse $s_i=+1$ dhe tre fqinjë janë $+1$ ndërsa një është $-1$, shuma e
+fqinjëve është $2$ dhe $\Delta E=4J$. Për $\beta J=0.5$, pranimi është
+$e^{-2}\simeq0.1353$. Nëse $\Delta E\leq0$, propozimi pranohet me
+probabilitet $1$.
+\end{llogaritjedore}
+
+\begin{kompleksitet}
+Rrjeta $L\times L$ ka $L^2$ spine. Një sweep përpiqet mesatarisht një
+përmbysje për spin dhe kushton $\Theta(L^2)$. Me $S_{\rm term}$ sweeps
+termalizimi dhe $S_{\rm mat}$ sweeps matjeje, kostoja është
+$\Theta((S_{\rm term}+S_{\rm mat})L^2)$. Kujtesa e konfigurimit është
+$\Theta(L^2)$.
+\end{kompleksitet}
+
+\begin{qendrueshmeri}
+Kontrolli lokal krahason $\Delta E$ me diferencën e energjisë totale para dhe
+pas përmbysjes. Kontrolli probabilitar verifikon balancën e detajuar dhe
+shpërndarjen në një sistem shumë të vogël që mund të numërohet saktësisht.
+Pranë temperaturës kritike rritet autokorrelacioni; shumë matje radhazi mund
+të përmbajnë pak informacion të pavarur. Raportohen $\tau_{\rm int}$,
+$N_{\rm eff}$, blloqet dhe disa madhësi $L$.
+\end{qendrueshmeri}
+
 
 
 \section{Pse nevojitet MCMC}
@@ -3605,7 +4318,7 @@ Metropolis--Hastings ndërton një dinamikë artificiale me shpërndarje stacion
 \subsection{Kufijtë analitikë të modelit Ising}
 Në temperaturë zero dhe $H=0$, energjia minimizohet kur të gjitha spinet janë të njëjta. Në rrjetin katror çdo spin ka katër fqinjë, por çdo lidhje numërohet një herë; ka $2N$ lidhje. Prandaj energjia bazë është
 \begin{equation}
- E_0=-2JN,qquad e_0=-2J.
+ E_0=-2JN,\qquad e_0=-2J.
 \end{equation}
 Magnetizimi për spin ka modul një. Këto janë teste të drejtpërdrejta për kodin në temperaturë të ulët.
 
@@ -3685,6 +4398,10 @@ Termi në shqip & Termi ndërkombëtar & Kuptimi në këtë tekst\\ \midrule
 Termi në shqip & Termi ndërkombëtar & Kuptimi në këtë tekst\\ \midrule
 \endhead
 algoritëm & algorithm & Varg i fundmë hapash që prodhon një rezultat nga hyrjet.\\
+kompleksitet kohor & time complexity & Ritmi i rritjes së numrit të veprimeve me madhësinë e hyrjes.\\
+kompleksitet në kujtesë & space complexity & Ritmi i rritjes së kujtesës së nevojshme me madhësinë e hyrjes.\\
+kufi asimptotik $O$ & big-O upper bound & Kufi i sipërm asimptotik; nuk është domosdoshmërisht kufi i shtrënguar.\\
+kufi i shtrënguar $\Theta$ & tight asymptotic bound & Rend rritjeje me kufi të sipërm dhe të poshtëm të së njëjtës klasë.\\
 zbatim & implementation & Realizimi i algoritmit në një gjuhë programimi.\\
 rrjetë & grid, mesh & Bashkësia diskrete e pikave në kohë ose hapësirë.\\
 hap & step size & Largësia $h$, $\Delta t$ ose $\Delta x$ ndërmjet pikave të rrjetës.\\
@@ -3765,6 +4482,32 @@ def shpejtesia_terminale(masa_kg: float,
 \item \textbf{Interpretimi.} Përgjigjja fizike dhe kufijtë e saj.
 \item \textbf{Detyra.} Ndryshim modeli, metode ose të dhënash që kërkon arsyetim të ri.
 \end{enumerate}
+
+\subsection{Receta e kompleksitetit: nga pseudokodi te matja}
+Për çdo algoritëm ndiqen të njëjtat hapa. Së pari përcaktohet madhësia e
+hyrjes: $n$ elemente, $N$ hapa kohorë, $N_xN_y$ pika rrjete ose $N$ mostra.
+Pastaj zgjidhet veprimi dominues dhe numërohet sa herë kryhet. Shuma e
+numërimeve jep një formulë $T(n)$; vetëm pas kësaj mbahen termat dominues dhe
+jepet klasa $\Theta(\cdot)$. Në mënyrë të veçantë raportohet kujtesa.
+
+Matja në kompjuter përdor disa madhësi hyrëse, përsëritje dhe medianën e
+kohës. Për dy matje, një vlerësim i eksponentit është
+\begin{equation}
+ p\simeq\frac{\log(t_2/t_1)}{\log(n_2/n_1)}.
+\end{equation}
+Me shumë pika përdoret përshtatja lineare e $\log t$ kundrejt $\log n$.
+Nëse eksponenti i matur nuk përputhet menjëherë me teorinë, kontrollohen
+kostot fikse, diapazoni i $n$, vektorizimi, cache-i dhe fakti nëse veprimi i
+zgjedhur është vërtet dominues.
+
+\begin{lstlisting}[language=Python,caption={Vlerësimi i pjerrësisë log--log.}]
+import numpy as np
+
+n = np.asarray(madhesite, dtype=float)
+t = np.asarray(kohet_mediane, dtype=float)
+p, logC = np.polyfit(np.log(n), np.log(t), 1)
+print(f"t(n) afersisht C*n^{p:.2f}")
+\end{lstlisting}
 
 \section{Kontrollet minimale të cilësisë}
 \begin{longtable}{p{.24\textwidth}p{.68\textwidth}}
@@ -3882,7 +4625,17 @@ Një listë e gjatë referencash nuk garanton cilësi. Çdo citim duhet të ket�
 
 \backmatter
 \chapter*{Përfundime}
-Metodat numerike dhe Monte Carlo nuk janë vetëm teknika llogaritëse. Ato janë mënyra për të ndërtuar argumente shkencore kur zgjidhja analitike mungon, të dhënat kanë pacaktueshmëri ose hapësira e gjendjeve është shumë e madhe. Një simulim bindës bashkon modelin fizik, analizën e gabimit, kontrollin e kodit, eksperimentin numerik dhe interpretimin e matur.
+Metodat numerike dhe Monte Carlo nuk janë vetëm teknika llogaritëse. Ato janë
+mënyra për të ndërtuar argumente shkencore kur zgjidhja analitike mungon, të
+dhënat kanë pacaktueshmëri ose hapësira e gjendjeve është shumë e madhe.
+
+Në çdo kapitull ndoqëm të njëjtin ritëm: filluam nga një pyetje, kryem një
+llogaritje të vogël me dorë, e shndërruam atë në algoritëm, nxorëm koston dhe
+përcaktuam një provë besueshmërie. Kjo strukturë nuk e thjeshton shkencën duke
+hequr hollësitë; e bën të dukshme logjikën që i lidh ato. Një rezultat numerik
+është bindës kur studenti mund të shpjegojë modelin, kompleksitetin,
+qëndrueshmërinë, gabimin dhe kuptimin fizik me të njëjtën qartësi me të cilën
+paraqet figurën përfundimtare.
 
 \begin{thebibliography}{99}
 \bibitem{hanelli} L. Hanelli dhe F. Osmani, \emph{Analiza numerike me MATLAB}, Pegi, Tiranë, 2013.
