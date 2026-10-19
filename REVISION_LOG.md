@@ -1,33 +1,55 @@
-# Regjistri i rishikimit
+# Shënime mbi rishikimin pedagogjik
 
-## Struktura dhe faqosja
+## Ndryshimet kryesore
 
-- Skedari kryesor quhet `Simulim_dhe_Metoda_Numerike_Leksione.tex`.
-- U hoqën kutitë dekorative me ngjyra, titujt ornamentalë dhe kokat e mbingarkuara të faqeve.
-- U hoqën të gjitha komandat manuale `\clearpage` dhe `\newpage` brenda kapitujve.
-- Kapitujt fillojnë në faqe të re, ndërsa seksionet, formulat, figurat dhe kodet rrjedhin pa ndërprerje artificiale.
-- Përmbajtja përdor faqosje standarde A4 dhe fontin standard Computer Modern të LaTeX-it.
-- Nënndarjet e shkurtra u bashkuan nën një numër më të vogël seksionesh kryesore.
+- U rishkruan **Parathënia** dhe udhëzuesi **Si të përdoret ky tekst**.
+- U vendos ritmi i përbashkët: *llogarit me dorë → parashiko → ekzekuto →
+  mat → interpreto*.
+- Çdo kapitull mori një hartë hyrëse me pyetjen, shembullin, koston dhe
+  kontrollin vendimtar.
+- Çdo kapitull përmban një shembull të thjeshtë të zgjidhur me dorë.
+- Kompleksiteti u bë pjesë e pandarë e trajtimit: përcaktimi i madhësisë së
+  hyrjes, nxjerrja e `T(n)`, klasifikimi asimptotik dhe kontrolli log–log.
+- Qëndrueshmëria trajtohet pranë metodës përkatëse, jo si shtesë e shkëputur.
+- U shtua në shtojcë receta e përgjithshme për analizën e kompleksitetit me
+  dorë dhe në kompjuter.
+- Fjalorthi u zgjerua me kompleksitetin kohor, kompleksitetin në kujtesë dhe
+  shënimet `O` e `Θ`.
 
-## Zhvillimi matematikor
+## Kapitulli 2
 
-- U shtuan dymbëdhjetë njësi të reja zhvillimi matematikor, nga një për çdo kapitull.
-- U zgjeruan derivimet e gabimit lokal dhe global, kushtëzimit, qëndrueshmërisë, konvergjencës dhe kostos llogaritëse.
-- Secili kapitull mori një shtresë të re thellimi me argumente, prova, kufij analitikë dhe lidhje fizike.
-- U zhvilluan në hollësi metodat e rrënjëve, eliminimi me pivotim, QR, interpolimi, ekstrapolimi, regresi, kuadratura, ODE-të, skema e valës, CFL-ja dhe dispersimi numerik.
-- Pjesa stokastike tani zhvillon transformimin e anasjellë, Box--Muller-in, refuzimin, kampionimin e rëndësisë, reduktimin e variancës dhe ligjin Monte Carlo `N^{-1/2}`.
-- U zgjeruan derivimet për difuzionin, zinxhirët Markov, autokorrelacionin, madhësinë efektive, Metropolis--Hastings dhe modelin Ising.
+Rendi i ri është:
 
-## Kodi dhe pedagogjia
+1. rrumbullakimi në një makinë dhjetore me tri shifra;
+2. humbja e vetisë së shoqërimit pas rrumbullakimit;
+3. kalimi te paraqitja binare dhe IEEE 754;
+4. epsiloni i makinës dhe kompleksiteti i algoritmit të matjes;
+5. gabimi absolut, relativ, i këputjes dhe i rrumbullakimit;
+6. anulimi dhe formulimet numerikisht të sigurta;
+7. kompleksiteti linear, kuadratik dhe logaritmik;
+8. Horner-i: derivimi me dorë dhe kontrolli me kohëmatje;
+9. kushtëzimi, qëndrueshmëria, gabimi përpara dhe prapa;
+10. sistemet lineare, mbetja dhe numri i kushtëzimit.
 
-- U shtuan shembuj të rinj Python me ndarje të qartë ndërmjet modelit, algoritmit dhe verifikimit.
-- Të 49 fragmentet Python u kontrolluan për sintaksë.
-- Çdo kapitull përfundon me një përmbledhje dhe ushtrime konceptuale, matematikore, llogaritëse ose fizike.
-- U ruajt lidhja me implementimin paralel në MATLAB/Octave dhe me notebook-ët e laboratorit.
+## Shembujt minimalë të rinj
 
-## Terminologjia dhe kontrolli teknik
+- rënia me rezistencë lineare dhe qëndrueshmëria e Euler-it;
+- përgjysmimi dhe Njutoni për `x²−2=0`;
+- interpolimi i një drejtëze nga dy pika;
+- derivati dhe integrali i `x²`;
+- ekuacioni provë `y′=−λy`;
+- një hap i skemës së valës dhe kushti CFL;
+- intervali orientues për hedhjen e monedhës;
+- një gjenerator linear kongruencial me periodë të dukshme;
+- integrimi Monte Carlo i `x²`;
+- bredhja e rastit dhe një zinxhir Markov me dy gjendje;
+- ndryshimi lokal i energjisë në modelin Ising.
 
-- U auditua përdorimi i termave `bredhje`, `statistike` dhe `pacaktueshmëri`.
-- Nuk përfshihen nënhapësira ose metoda të Krilovit.
-- Dokumenti përfundimtar ka 100 faqe A4, pa referenca të papërcaktuara dhe pa tejkalime të margjinave.
-- Të gjitha faqet u renderuan për kontroll vizual.
+## Kontrolli i cilësisë
+
+- burimi LaTeX kompilohet pa gabime;
+- nuk ka referenca ose citime të papërcaktuara;
+- nuk ka kuti teksti të mbushura përtej faqes;
+- të 25 figurat janë të pranishme;
+- terminologjia kryesore është harmonizuar me laboratorët e rishikuar.
+
